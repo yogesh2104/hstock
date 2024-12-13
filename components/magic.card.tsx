@@ -49,10 +49,10 @@ const MagicCard = ({ children, className }: Props) => {
             onBlur={handleBlur}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            className={cn(
-                "relative w-full overflow-hidden rounded-xl border border-border/10 dark:border-border/60 p-2 md:p-6 h-56",
-                className
-            )}
+            // className={cn(
+            //     "relative w-full overflow-hidden rounded-xl border border-border/10 dark:border-border/60 p-2 md:p-6 h-56",
+            //     className
+            // )}
         >
             <div
                 className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"

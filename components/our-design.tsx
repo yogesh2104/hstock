@@ -2,17 +2,18 @@
 import { LayoutGrid } from "./layout-grid";
 import AnimationContainer from "./animation-container";
 import { useIsMobile } from '@/hook/use-mobile';
+import { motion } from 'framer-motion';
 
 export function OurDesign() {
   const isMobile = useIsMobile()
   return (
     <div className="py-10 px-4">
         <AnimationContainer delay={0.1}>
-            <div className="flex flex-col items-center lg:items-center justify-center w-full py-4 max-w-xl mx-auto mb-5">
-                <h2 className="text-center lg:text-center text-3xl md:text-4xl font-medium font-heading mt-6">Our Design</h2>
-            </div>
+          <div className="space-y-3 mb-6 text-center" id='our-design'>    
+            <h2  className="text-3xl md:text-5xl font-extrabold tracking-tight ">Our Design</h2>
+            <p className="text-sm md:text-xl max-w-2xl mx-auto">Innovative tools designed to transform your creative workflow with unparalleled precision and ease</p>
+          </div>
         </AnimationContainer>
-
         <div className="h-[60rem] w-full container mx-auto">
           <LayoutGrid cards={isMobile ? cards.slice(0,4) :cards} />
         </div>

@@ -1,4 +1,4 @@
-import { Cpu, Gauge, Handshake, Workflow } from "lucide-react"
+import { Brush, CircleCheckBig, Cpu, Filter, Frame, Gauge, Handshake, Workflow } from "lucide-react"
 import { Domain } from "./api-endpoint"
 
 export const siteConfig = {
@@ -7,9 +7,9 @@ export const siteConfig = {
     siteDiscription:"hstock Team is an online platform I developed to host BATTLEGROUNDS MOBILE INDIA (BGMI) tournaments, offering both free and paid rooms for players to compete and connect. This side project allowed me to combine my passion for gaming with my front-end and back-end development skills while learning new technologies in the process.",
     email:"privacy@hstock.com",
     footerText:"© 1996-2024, hstockalbums.com, All Rights Reserved",
-    phoneNumber:(<div>
+    phoneNumber:(<>
       <p className="text-gray-400">+91 0000 000 000</p>
-      <p className="text-gray-400">+91 0000 000 000</p></div>),
+      <p className="text-gray-400">+91 0000 000 000</p></>),
     address:"full address",
     ServicesWeProvide :[
       {
@@ -33,6 +33,53 @@ export const siteConfig = {
         icon: Handshake,
       }
     ],
+    traningVideoData:[
+      {
+        title: "Software Training Videos | सॉफ्टवेर ट्रेनिंग विडिओ",
+        videos: [
+          {
+            videoSrc: "https://www.youtube.com/embed/AMPqZfUYX1s?si=YT1QZzNBTJQ9qq7a",
+            thumbnailSrc: "/demo/demo.png",
+            thumbnailAlt: "Hero Video",
+          },
+          {
+            videoSrc: "https://www.youtube.com/embed/AMPqZfUYX1s?si=YT1QZzNBTJQ9qq7a",
+            thumbnailSrc: "/demo/demo2.png",
+            thumbnailAlt: "Advanced Features",
+          },
+          {
+            videoSrc: "https://www.youtube.com/embed/AMPqZfUYX1s?si=YT1QZzNBTJQ9qq7a",
+            thumbnailSrc: "/demo/demo.png",
+            thumbnailAlt: "Tips and Tricks",
+          },
+          {
+            videoSrc: "https://www.youtube.com/embed/AMPqZfUYX1s?si=YT1QZzNBTJQ9qq7a",
+            thumbnailSrc: "/demo/demo3.png",
+            thumbnailAlt: "Case Studies",
+          },
+        ],
+      },
+      {
+        title: "Photoshop Training Videos | फोटोशॉप ट्रेनिंग विडिओ",
+        videos: [
+          {
+            videoSrc: "https://www.youtube.com/embed/AMPqZfUYX1s?si=YT1QZzNBTJQ9qq7a",
+            thumbnailSrc: "/demo/demo2.png",
+            thumbnailAlt: "Hero Video",
+          },
+        ],
+      },
+      {
+        title: "How To Make Self PSD Templates | अपने PSD टेम्पलेट कैसे बनाए",
+        videos: [
+          {
+            videoSrc: "https://www.youtube.com/embed/AMPqZfUYX1s?si=YT1QZzNBTJQ9qq7a",
+            thumbnailSrc: "/demo/demo3.png",
+            thumbnailAlt: "Hero Video",
+          },
+        ],
+      },
+    ],
     highlight : [
       {
         title: "Complete Solution",
@@ -50,6 +97,48 @@ export const siteConfig = {
         title: "Effects & Filters",
         description: "Unique filters and effects like cinematic effects, dark spot healing, smoothness filter, etc.",
       },
+    ],
+    features: [
+      {
+      title: "High-Quality Designs",
+      description: "Attractive, unique, and high-resolution designs.",
+      icon: <Cpu/>,
+      },
+      {
+        title: "Seamless Workflow",
+        description: "Automate your workflow smoothly without any interruptions.",
+        icon: <Workflow/>,
+      },
+      {
+        title: "Superior Speed",
+        description: "Fastest performance compared to other software solutions.",
+        icon: <Gauge/>,
+      },
+      {
+        title: "User-Friendly Interface",
+        description: "Easy-to-understand user interface. And Easy-to-use",
+        icon: <Handshake />,
+      },
+      {
+        title: "Complete Solution",
+        description: "Retouch photos to final designs all in one software.",
+        icon: <CircleCheckBig />,
+      },
+      {
+        title: "Make Your Own Designs",
+        description: "Create your own designs manually or automatically.",
+        icon: <Brush />,
+      },
+      {
+        title: "Extractor",
+        description: "Extract clips, frames, or backgrounds from any template with one click.",
+        icon: <Frame />,
+      },
+      {
+        title: "Effects & Filters",
+        description: "Unique filters and effects like cinematic effects, dark spot healing, smoothness filter, etc.",
+        icon: <Filter />,
+      }
     ],
     ciberPolicyData : {
       english: [
@@ -296,6 +385,110 @@ export const siteConfig = {
         features: ["36 Month Subscription","Automatic Album Designing", "Image Editing With Live Ready To Use Content","Millions of Designing"],
       },
     ],
+    editingOptions :[
+      { 
+        id: "auto-correction", 
+        name: "Auto Correction",
+        beforeImg: "/compare/auto-correction-before.jpg",
+        afterImg: "/compare/auto-correction-after.jpg"
+      },
+      { 
+        id: "hue-saturation", 
+        name: "Hue Saturation",
+        beforeImg: "/compare/hue-saturation-before.jpg",
+        afterImg: "/compare/hue-saturation-after.jpg"
+      },
+      { 
+        id: "blending-mode", 
+        name: "Blending mode",
+        beforeImg: "/compare/blending-mode-before.jpg",
+        afterImg: "/compare/blending-mode-after.jpg"
+      },
+      { 
+        id: "brightness-contrast", 
+        name: "Brightness contrast",
+        beforeImg: "/compare/auto-correction-after.jpg",
+        afterImg: "/compare/auto-correction-before.jpg"
+      },
+      { 
+        id: "change-color-light", 
+        name: "Change Color Light",
+        beforeImg: "/compare/auto-correction-after.jpg",
+        afterImg: "/compare/auto-correction-before.jpg"
+      },
+      { 
+        id: "color-balance", 
+        name: "Color Balance",
+        beforeImg: "/compare/auto-correction-after.jpg",
+        afterImg: "/compare/auto-correction-before.jpg"
+      },
+      { 
+        id: "color-mixer-effect", 
+        name: "Color Mixer Effect",
+        beforeImg: "/compare/auto-correction-after.jpg",
+        afterImg: "/compare/auto-correction-before.jpg"
+      },
+      { 
+        id: "fade", 
+        name: "Fade",
+        beforeImg: "/compare/auto-correction-after.jpg",
+        afterImg: "/compare/auto-correction-before.jpg"
+      },
+      { 
+        id: "focus-tool", 
+        name: "Focus Tool",
+        beforeImg: "/compare/auto-correction-after.jpg",
+        afterImg: "/compare/auto-correction-before.jpg"
+      },
+      { 
+        id: "jewellery-highlight", 
+        name: "Jewellery Highlight",
+        beforeImg: "/compare/auto-correction-after.jpg",
+        afterImg: "/compare/auto-correction-before.jpg"
+      },
+      { 
+        id: "curve-level", 
+        name: "Curve & Level",
+        beforeImg: "/compare/auto-correction-after.jpg",
+        afterImg: "/compare/auto-correction-before.jpg"
+      },
+      { 
+        id: "pencil-effect", 
+        name: "Pencil Effect",
+        beforeImg: "/compare/auto-correction-after.jpg",
+        afterImg: "/compare/auto-correction-before.jpg"
+      },
+      { 
+        id: "shadow-highlight", 
+        name: "Shadow And Highlight",
+        beforeImg: "/compare/auto-correction-after.jpg",
+        afterImg: "/compare/auto-correction-before.jpg"
+      },
+      { 
+        id: "tint-temperature", 
+        name: "Tint And Temperature",
+        beforeImg: "/compare/auto-correction-after.jpg",
+        afterImg: "/compare/auto-correction-before.jpg"
+      },
+      { 
+        id: "toning", 
+        name: "Toning",
+        beforeImg: "/compare/auto-correction-after.jpg",
+        afterImg: "/compare/auto-correction-before.jpg"
+      },
+      { 
+        id: "transparency", 
+        name: "Transparency On Selection",
+        beforeImg: "/compare/auto-correction-after.jpg",
+        afterImg: "/compare/auto-correction-before.jpg"
+      },
+      { 
+        id: "water-color", 
+        name: "Water color Effect",
+        beforeImg: "/compare/auto-correction-after.jpg",
+        afterImg: "/compare/auto-correction-before.jpg"
+      },
+    ],    
     footerLink:[
       {
         name:"About",
@@ -303,7 +496,7 @@ export const siteConfig = {
       },
       {
         name: "Contact",
-        link:"#contact-form"
+        link:"/contact"
       },
       // {
       //   name:"FAQ",
@@ -325,7 +518,7 @@ export const siteConfig = {
         name:"Cyber Crime Policy",
         link:"/cyber-crime-policy"
       }
-    ]
+    ],
 }
 
 export type SiteConfig = typeof siteConfig

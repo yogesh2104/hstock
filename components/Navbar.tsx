@@ -15,6 +15,7 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { logOut } from "@/app/action/signin-action"
 import { useRouter } from "next/navigation"
+import { MainNav } from "./main.nav";
 
 
 const Navbar = ({session}:any) => {
@@ -45,7 +46,7 @@ const Navbar = ({session}:any) => {
     return (
       <header className={cn(
         "sticky top-0 inset-x-0 h-14 w-full border-b border-transparent z-[99999] select-none",
-        scroll && "border-background/80 bg-background/40 backdrop-blur-md"
+        scroll && "text-white bg-background/40 backdrop-blur-md"
       )}>
         <AnimationContainer reverse delay={0.1} className="size-full">
           <FullWidthWrapper className="flex items-center justify-between">
@@ -61,6 +62,7 @@ const Navbar = ({session}:any) => {
               </Link>
    
             </div>
+            <MainNav scroll={scroll}/>
 
             <div className="hidden lg:flex items-center">
               <div className="flex items-center gap-x-4">

@@ -139,7 +139,7 @@ export default function PrivacyPolicy() {
         />
         <div className="mt-6 p-4 bg-gray-50  dark:border text-black rounded-lg">
           <h3 className="text-lg font-semibold mb-2">Company Details</h3>
-          <p className="">
+          <div className="">
             Company Name: {siteConfig.siteName}
             <br />
             Email: {siteConfig.email}
@@ -147,7 +147,7 @@ export default function PrivacyPolicy() {
             Phone: {siteConfig.phoneNumber}
             <br />
             Jurisdiction: {siteConfig.address}
-          </p>
+          </div>
         </div>
       </CardContent>
     </Card>

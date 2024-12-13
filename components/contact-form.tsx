@@ -13,14 +13,12 @@ export default function ContactForm() {
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     setIsLoading(true)
-
-    // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1000))
     setIsLoading(false)
   }
 
   return (
-    <div className="bg-card py-10 px-4" id='contact-form'>
+    <div className="bg-card py-10 px-4 md:container md:mx-auto mb-3 md:rounded-xl" id='contact-form'>
       <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12">
         <div className="space-y-8">
           <div>

@@ -12,11 +12,11 @@ export default function PricingPlans() {
     <section className="w-full py-12">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl">
+          <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">
             Simple and Affordable Pricing Plans
           </h1>
-          <p className="max-w-[600px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed">
-            Start making Amazing Experience In AI Designing
+          <p className="max-w-[600px] text-gray-500 dark:text-gray-400 text-sm md:text-xl/relaxed">
+            Start making Amazing Experience 
           </p>
         </div>
         <div className="grid gap-6 pt-12 lg:grid-cols-3 lg:gap-8">
