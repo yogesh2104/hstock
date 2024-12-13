@@ -9,7 +9,7 @@ export function MainNav({scroll}:{scroll:boolean}) {
 
   return (
     <div className={"mr-4 hidden md:flex"}>
-      <nav className={cn("flex items-center gap-4 text-sm xl:gap-6",scroll && "text-white")}>
+      <nav className={cn("flex items-center gap-4 text-sm xl:gap-6",scroll && "dark:text-white text-black")}>
         <Link
           href="/"
           className={cn("hover:text-foreground/80")}

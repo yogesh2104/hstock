@@ -5,11 +5,18 @@ import { db } from "@/db";
 
 export const signUp = async (formData: FormData) => {
     try {
-        const firstName = formData.get("fname") as string;
-        const lastName = formData.get("lname") as string;
+        const fullName = formData.get("fullName") as string;
         const email = formData.get("email") as string;
         const password = formData.get("password") as string;
-        const phoneNumber = formData.get("phoneNumber") as string;
+        const companyName = formData.get("companyName") as string;
+        const phoneNumber = formData.get("mobileNumber") as string;
+        const address1 = formData.get("address1") as string;
+        const address2 = formData.get("address2") as string;
+        const country = formData.get("country") as string;
+        const state = formData.get("state") as string;
+        const city = formData.get("city") as string;
+        const pinCode = formData.get("pinCode") as string;
+
         
         // Validate input
         if (!email || !password) {
@@ -23,24 +30,28 @@ export const signUp = async (formData: FormData) => {
 
         if (existingUser) {
             return {
-                error: "Email already exists"
+                error: "Email already exists. try Login or Forget Password."
             };
         }
 
         // Hash password
         const hashPassword = await hash(password, 10);
 
-        // Create the new user
         const newUser = await db.user.create({
             data: {
-                name:firstName+ " " +lastName,
+                name:fullName,
                 email,
                 password: hashPassword,
-                phoneNumber:parseInt(phoneNumber)
+                phoneNumber:parseInt(phoneNumber),
+                companyName:companyName,
+                address:address1,
+                address2:address2,
+                country,
+                state,
+                city,
+                pincode:parseInt(pinCode)
             }
         });
-
-
 
         return {
             success: true,

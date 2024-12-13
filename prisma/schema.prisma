@@ -16,11 +16,14 @@ generator client {
 model User {
   id            String          @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
+  companyName   String?
   email         String?         @unique
   emailVerified DateTime?
   password      String?
-  phoneNumber   Float
+  phoneNumber   Float?
   address       String?
+  address2      String?
+  country       String?
   city          String?
   state         String?
   pincode       Float?

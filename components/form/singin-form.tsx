@@ -127,7 +127,7 @@ const SignInForm = () => {
                             type="button"
                             variant="ghost"
                             size="icon"
-                            className="absolute right-0 top-1/2 -translate-y-1/2 hover:bg-transparent"
+                            className="absolute right-0 top-1/2 border-l rounded-none -translate-y-1/2 hover:bg-transparent"
                             onClick={togglePasswordVisibility}
                             aria-label={showPassword ? 'Hide password' : 'Show password'}
                         >

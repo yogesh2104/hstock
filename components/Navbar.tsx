@@ -12,16 +12,11 @@ import AnimationContainer, { FullWidthWrapper } from "./animation-container";
 import { ToggleTheme } from "./ToggleTheme"; 
  import MobileNavbar from "./MobileNavbar";
 import Image from "next/image";
-import { useSession } from "next-auth/react";
-import { logOut } from "@/app/action/signin-action"
-import { useRouter } from "next/navigation"
 import { MainNav } from "./main.nav";
 
 
 const Navbar = ({session}:any) => {
     const [scroll, setScroll] = useState(false);
-    const router = useRouter()
-    const userId = session?.user?.id as string || "#"
 
     const handleScroll = () => {
       if (window.scrollY > 8) {
@@ -38,15 +33,10 @@ const Navbar = ({session}:any) => {
       };
     }, []);
 
-    const handleLogout=()=>{
-      router.refresh()
-      logOut()
-    }
-
     return (
       <header className={cn(
         "sticky top-0 inset-x-0 h-14 w-full border-b border-transparent z-[99999] select-none",
-        scroll && "text-white bg-background/40 backdrop-blur-md"
+        scroll && "dark:text-white text-black bg-background/40 backdrop-blur-md"
       )}>
         <AnimationContainer reverse delay={0.1} className="size-full">
           <FullWidthWrapper className="flex items-center justify-between">
@@ -64,13 +54,22 @@ const Navbar = ({session}:any) => {
             </div>
             <MainNav scroll={scroll}/>
 
+            {session ? 
             <div className="hidden lg:flex items-center">
               <div className="flex items-center gap-x-4">
-                <Link href="/sign-in" className={buttonVariants({ size: "sm", variant: "ghost" })}>Sign In</Link>
-                <Link href="/sign-up" className={cn(buttonVariants({ size: "sm"}),"bg-primary")} >Sing-Up</Link>
+                <div className={buttonVariants({ size: "sm", variant: "ghost" })}>{session?.user?.name}</div>
+                <Link href="/#pricing-plan" className={cn(buttonVariants({ size: "sm"}),"bg-primary")} >Buy Now</Link>
                 <div className="hidden lg:flex"><ToggleTheme /></div>
               </div>
             </div>
+            :
+            <div className="hidden lg:flex items-center">
+              <div className="flex items-center gap-x-4">
+                <Link href="/sign-in" className={buttonVariants({ size: "sm", variant: "ghost" })}>Sign In</Link>
+                <Link href="/sign-up" className={cn(buttonVariants({ size: "sm"}),"bg-primary")} >Sign-Up</Link>
+                <div className="hidden lg:flex"><ToggleTheme /></div>
+              </div>
+            </div>}
 
          
             <MobileNavbar />

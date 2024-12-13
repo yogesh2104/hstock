@@ -75,12 +75,12 @@ export default function FeaturesAndHighlight() {
                 whileHover="hover"
                 className=" border border-blue-900/30 rounded-2xl p-6 shadow-2xl transition-all duration-300 group"
               >
-                <div className="mb-6 w-20 h-20 mx-auto bg-blue-900/30 rounded-full flex items-center justify-center">
-                  <div className="text-blue-300 scale-125 group-hover:scale-150 transition-transform duration-300">
+                <div className="mb-6 w-20 h-20 border border-border/10 dark:border-border/60 mx-auto rounded-full flex items-center justify-center">
+                  <div className="text-white scale-125 group-hover:scale-150 transition-transform duration-300">
                     {feature.icon}
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-blue-300 transition-colors">
+                <h3 className="text-2xl font-bold mb-4 text-white transition-colors">
                   {feature.title}
                 </h3>
                 <p className="text-gray-400 group-hover:text-gray-200 transition-colors">
@@ -126,12 +126,12 @@ export default function FeaturesAndHighlight() {
                 whileHover="hover"
                 className="border border-purple-900/30 rounded-2xl p-6 shadow-2xl transition-all duration-300 group"
               >
-                <div className="mb-6 w-20 h-20 mx-auto bg-purple-900/30 rounded-full flex items-center justify-center">
-                  <div className="text-purple-300 scale-125 group-hover:scale-150 transition-transform duration-300">
+                <div className="mb-6 w-20 h-20 border border-border/10 dark:border-border/60 mx-auto rounded-full flex items-center justify-center">
+                  <div className="text-white scale-125 group-hover:scale-150 transition-transform duration-300">
                     {feature.icon}
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-purple-300 transition-colors">
+                <h3 className="text-2xl font-bold mb-4 text-white transition-colors">
                   {feature.title}
                 </h3>
                 <p className="text-gray-400 group-hover:text-gray-200 transition-colors">
