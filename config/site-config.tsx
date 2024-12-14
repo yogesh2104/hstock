@@ -1,8 +1,8 @@
-import { Brush, CircleCheckBig, Cpu, Filter, Frame, Gauge, Handshake, Workflow } from "lucide-react"
+import { Brush, CircleCheckBig, CircleDollarSign, Cpu, Filter, Frame, Gauge, Handshake, IndianRupee, LayoutDashboard, Send, Video, Workflow } from "lucide-react"
 import { Domain } from "./api-endpoint"
 
 export const siteConfig = {
-    siteName:"HStock",
+    siteName:"HStock Albums",
     siteLogo:"/images/logo.webp",
     siteDiscription:"hstock Team is an online platform I developed to host BATTLEGROUNDS MOBILE INDIA (BGMI) tournaments, offering both free and paid rooms for players to compete and connect. This side project allowed me to combine my passion for gaming with my front-end and back-end development skills while learning new technologies in the process.",
     email:"privacy@hstock.com",
@@ -11,6 +11,33 @@ export const siteConfig = {
       <p className="text-gray-400">+91 0000 000 000</p>
       <p className="text-gray-400">+91 0000 000 000</p></>),
     address:"full address",
+    NavigationItem:[
+      {
+        label:'User Info',
+        icon:LayoutDashboard,
+        path:'/control-panel'
+      },
+      {
+        label:'Payment',
+        icon: CircleDollarSign,
+        path:'/control-panel/payment-info'
+      },
+      {
+        label:'Referral',
+        icon: Send,
+        path:'/control-panel/referral'
+      },
+      {
+        label:'Software Prices',
+        icon: IndianRupee,
+        path:'/control-panel/price'
+      },
+      {
+        label:'Youtube Video',
+        icon: Video,
+        path:'/control-panel/video'
+      }
+    ],
     ServicesWeProvide :[
       {
         title: "High-Quality Designs",
@@ -364,6 +391,7 @@ export const siteConfig = {
     pricingData:[
       {
         name: "Free",
+        logo:"/logo.png",
         price: 0,
         description: "Great for trying out 10 days free.",
         buttonText: "Download for Free",
@@ -372,6 +400,7 @@ export const siteConfig = {
       {
         name: "Professional",
         price: 199,
+        logo:"/logo.png",
         description: "Best for Design And Ready to use",
         buttonText: "Buy Now",
         popular: true,
@@ -380,6 +409,7 @@ export const siteConfig = {
       {
         name: "Enterprise",
         price: 2999,
+        logo:"/logo.png",
         description: "Best for large album",
         buttonText: "Buy Now",
         features: ["36 Month Subscription","Automatic Album Designing", "Image Editing With Live Ready To Use Content","Millions of Designing"],

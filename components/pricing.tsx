@@ -6,8 +6,20 @@ import { Check } from 'lucide-react'
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 import { siteConfig } from '@/config/site-config';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { useState } from "react"
+import HStockFeatures from "./HStockFeatures"
+
 
 export default function PricingPlans() {
+  const [openInfo,setOpenInfo] = useState(false) 
   return (
     <section className="w-full py-12">
       <div className="container mx-auto px-4">
@@ -37,17 +49,15 @@ export default function PricingPlans() {
                   Most Popular
                 </Badge>
               )}
-              <CardHeader>
+              <CardHeader className="cursor-pointer" onClick={()=>setOpenInfo(true)}>
                 <h3 className="text-lg font-semibold">{plan.name}</h3>
+                <img src={plan.logo} className="size-20 mx-auto"/>
               </CardHeader>
               <CardContent className="flex flex-col gap-4">
                 <div className="flex items-baseline gap-1">
                   <span className="text-4xl font-bold">₹</span>
                   <span className="text-5xl font-bold tracking-tight">
                     {plan.price.toFixed(2)}
-                  </span>
-                  <span className="text-sm font-medium text-muted-foreground">
-                    /month
                   </span>
                 </div>
                 <p className="text-sm text-muted-foreground">{plan.description}</p>
@@ -81,6 +91,31 @@ export default function PricingPlans() {
           ))}
         </div>
       </div>
+
+
+
+      <Dialog open={openInfo} onOpenChange={setOpenInfo}>
+        <DialogContent className="max-w-xl">
+          <DialogTitle>
+      <p className="text-2xl font-bold text-center">Explore Features</p>
+
+          </DialogTitle>
+          <DialogHeader>
+            <HStockFeatures/>
+            <div className="text-center">
+              <Button
+                  className={cn(
+                    "w-20 bg-primary text-primary-foreground hover:bg-primary/90"
+                  )}
+                  variant={"default"}
+                  >
+                    Buy Now
+              </Button>
+            </div>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
+
     </section>
   )
 }

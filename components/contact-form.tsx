@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
@@ -10,11 +10,40 @@ import { siteConfig } from '@/config/site-config'
 export default function ContactForm() {
   const [isLoading, setIsLoading] = useState(false)
 
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  })
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle")
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
+  }
+
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    setStatus("sending")
     setIsLoading(true)
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    setIsLoading(false)
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (response.ok) {
+        setStatus("success")
+        setFormData({ name: "", email: "", message: "" })
+      } else {
+        setStatus("error")
+      }
+    } catch (error) {
+      setStatus("error")
+    }
   }
 
   return (
@@ -61,8 +90,11 @@ export default function ContactForm() {
                 </label>
                 <Input
                   id="name"
+                  name='name'
                   placeholder="Enter your full name"
                   required
+                  value={formData.name}
+                  onChange={handleInputChange}
                   className="border border-border/10 dark:border-border/60  text-white placeholder:text-gray-400"
                 />
               </div>
@@ -73,8 +105,11 @@ export default function ContactForm() {
                 <Input
                   id="email"
                   type="email"
+                  name='email'
                   placeholder="Enter your email address"
                   required
+                  value={formData.email}
+                  onChange={handleInputChange}
                   className="border border-border/10 dark:border-border/60  text-white placeholder:text-gray-400"
                 />
               </div>
@@ -84,20 +119,23 @@ export default function ContactForm() {
                 </label>
                 <Textarea
                   id="message"
+                  name="message"
                   placeholder="Type your message"
                   required
+                  value={formData.message}
+                  onChange={handleInputChange}
                   className="border border-border/10 dark:border-border/60  text-white placeholder:text-gray-400 min-h-[160px]"
                 />
               </div>
-              <Button 
-                type="submit" 
-                className="w-full bg-white text-black hover:bg-gray-100"
-                disabled={isLoading}
-              >
-                {isLoading ? 'Sending...' : 'Send Message'}
+              <Button type="submit" disabled={status === "sending"} className="w-full">
+                {status === "sending" ? "Sending..." : "Submit"}
               </Button>
             </form>
           </CardContent>
+          <CardFooter>
+          {status === "success" && <p className="text-green-500">Message sent successfully!</p>}
+          {status === "error" && <p className="text-destructive">Failed to send message. Try again.</p>}
+          </CardFooter>
         </Card>
       </div>
     </div>

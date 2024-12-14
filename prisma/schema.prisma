@@ -30,11 +30,46 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  // Optional for WebAuthn support
+  
   Authenticator Authenticator[]
+
+  licenses      License[]
+  transactions  Transaction[]
  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+
+model Transaction {
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  licenseId     String      @unique @db.ObjectId
+  license       License     @relation(fields: [licenseId], references: [id])
+  buyer         User        @relation(fields: [buyerId], references: [id])
+  buyerId       String      @db.ObjectId
+  amount        Float
+  currency      String      @default("USD")
+  paymentStatus String      @default("success") // success, failed, pending
+  createdAt     DateTime    @default(now())
+}
+
+
+
+model License {
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  key           String      @unique
+  productName   String
+  buyer         User        @relation(fields: [buyerId], references: [id])
+  buyerId       String      @db.ObjectId
+  purchaseDate  DateTime    @default(now())
+  expiryDate    DateTime
+  status        String      @default("active") // active, expired, revoked
+  message       String?
+  links         String[]
+  transaction   Transaction?
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
  
 model Account {
@@ -103,4 +138,11 @@ model Authenticator {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
  
   @@unique([userId, credentialID])
+}
+
+model contact {
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String
+  message   String
 }

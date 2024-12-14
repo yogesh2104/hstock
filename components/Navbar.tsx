@@ -13,6 +13,7 @@ import { ToggleTheme } from "./ToggleTheme";
  import MobileNavbar from "./MobileNavbar";
 import Image from "next/image";
 import { MainNav } from "./main.nav";
+import { siteConfig } from "@/config/site-config";
 
 
 const Navbar = ({session}:any) => {
@@ -39,7 +40,8 @@ const Navbar = ({session}:any) => {
         scroll && "dark:text-white text-black bg-background/40 backdrop-blur-md"
       )}>
         <AnimationContainer reverse delay={0.1} className="size-full">
-          <FullWidthWrapper className="flex items-center justify-between">
+          <FullWidthWrapper className="flex items-center justify-start md:justify-between">
+            <MobileNavbar session={session}/>
             <div className="flex items-center space-x-12">
               <Link href="/" className="font-bold text-lg flex items-center">
                 <Image
@@ -48,7 +50,7 @@ const Navbar = ({session}:any) => {
                 src={"/logo.png"}
                 alt="logo" 
                 className="bg-gradient-to-tr border-secondary from-primary via-primary/70 to-primary rounded-lg w-9 h-9 mr-2 border text-white" />
-                HStock
+                {siteConfig.siteName}
               </Link>
    
             </div>
@@ -70,9 +72,6 @@ const Navbar = ({session}:any) => {
                 <div className="hidden lg:flex"><ToggleTheme /></div>
               </div>
             </div>}
-
-         
-            <MobileNavbar />
           </FullWidthWrapper>
         </AnimationContainer>
       </header>
@@ -96,13 +95,10 @@ const ListItem = React.forwardRef<
                     {...props}
                 >
                     <div className="flex items-center space-x-2 text-neutral-300">
-                        {/* <Icon className="h-4 w-4" /> */}
-                        <h6 className="text-sm font-medium !leading-none">
-                            {title}
-                        </h6>
+                      <h6 className="text-sm font-medium !leading-none">{title}</h6>
                     </div>
                     <p title={children! as string} className="line-clamp-1 text-sm leading-snug text-muted-foreground">
-                        {children}
+                      {children}
                     </p>
                 </Link>
             </NavigationMenuLink>

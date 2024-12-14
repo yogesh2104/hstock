@@ -87,7 +87,7 @@ const HStockFeatures = () => {
 
   return (
     <div className="w-full max-w-4xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-6 text-center">Explore Features</h1>
+      {/* <h1 className="text-2xl font-bold md:mb-6 text-center">Explore Features</h1> */}
       
       <Accordion type="single" collapsible>
         {featureSections.map((section, index) => (
@@ -95,7 +95,7 @@ const HStockFeatures = () => {
             <AccordionTrigger className="text-lg font-semibold p-3 rounded">
               {section.title}
             </AccordionTrigger>
-            <AccordionContent className="p-4 ">
+            <AccordionContent className="p-4">
               {section.description && (
                 <p className="text-gray-600 mb-3">{section.description}</p>
               )}
@@ -103,10 +103,10 @@ const HStockFeatures = () => {
                 <div className="grid md:grid-cols-2 gap-3 order">
                   {section.features.map((feature, featureIndex) => (
                     <Card key={featureIndex} className="hover:shadow-md border transition-shadow">
-                      <CardHeader>
+                      <CardHeader className='p-2 text-start'>
                         <CardTitle>{feature.name}</CardTitle>
                       </CardHeader>
-                      <CardContent>
+                      <CardContent className='p-2 text-start'>
                         <CardDescription>{feature.description}</CardDescription>
                       </CardContent>
                     </Card>
