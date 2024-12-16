@@ -12,6 +12,11 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
+
+enum Role {
+  admin
+  user
+}
  
 model User {
   id            String          @id @default(auto()) @map("_id") @db.ObjectId
@@ -19,6 +24,8 @@ model User {
   companyName   String?
   email         String?         @unique
   emailVerified DateTime?
+  role          Role     @default(user)
+  isGetReferral Boolean
   password      String?
   phoneNumber   Float?
   address       String?
@@ -48,7 +55,7 @@ model Transaction {
   buyer         User        @relation(fields: [buyerId], references: [id])
   buyerId       String      @db.ObjectId
   amount        Float
-  currency      String      @default("USD")
+  currency      String      @default("INR")
   paymentStatus String      @default("success") // success, failed, pending
   createdAt     DateTime    @default(now())
 }
@@ -145,4 +152,45 @@ model contact {
   name      String
   email     String
   message   String
+}
+
+
+model Referral {
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  code          String      @unique
+  discount      Float       @default(0)
+  isActive      Boolean     @default(true)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+}
+
+// model Title {
+//   id      String        @id @default(auto()) @map("_id") @db.ObjectId
+//   title   String        @unique       
+//   video   Video[]
+// }
+
+// model Video{
+//   id            String    @id @default(auto()) @map("_id") @db.ObjectId
+//   title         Title     @relation(fields: [id] , references: [id])
+//   isActive      Boolean   @default(true)
+//   videoSrc      String
+//   thumbnailSrc  String
+//   thumbnailAlt  String
+// }
+
+model Title {
+  id      String   @id @default(auto()) @map("_id") @db.ObjectId
+  title   String   @unique
+  video   Video[]  @relation("TitleToVideo")
+}
+
+model Video {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  titleId       String   @db.ObjectId
+  title         Title    @relation("TitleToVideo", fields: [titleId], references: [id])
+  isActive      Boolean  @default(true)
+  videoSrc      String
+  thumbnailSrc  String
+  thumbnailAlt  String
 }

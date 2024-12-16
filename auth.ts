@@ -56,6 +56,7 @@ export const {
             id: user.id,
             name:user.name,
             email: user.email,
+            role: user.role,
           };
         } catch (error) {
           return null;
@@ -68,14 +69,22 @@ export const {
     }),
   ],
   callbacks:{
-    async jwt({token,user,session}){
+    async jwt({ token, user, trigger,session}){
       if(user){
+        const u = user as unknown as User;
         return{
           ...token,
-          id: user.id,
-          name:user.name,
-          email: user.email,
+          id: u.id,
+          name:u.name,
+          email: u.email,
+          role:u.role
         }
+      }
+      if(trigger== "update"){
+         return{
+          ...token,
+          ...session?.user,
+         }
       }
       return token
     },
@@ -87,6 +96,7 @@ export const {
           id:token.id,
           name:token.name,
           email: token.email,
+          role: token.role,
         }
       }
       // return session

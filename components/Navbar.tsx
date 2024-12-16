@@ -57,6 +57,13 @@ const Navbar = ({session}:any) => {
             <MainNav scroll={scroll}/>
 
             {session ? 
+             <>
+            {session?.user?.role=="admin" ? 
+             <div className="flex items-center gap-x-4">
+               <Link href={'/control-panel'} className={cn(buttonVariants({ size: "sm"}),"bg-primary")} >Admin Dashboard</Link>
+               <div className="hidden lg:flex"><ToggleTheme /></div>
+             </div>
+            : 
             <div className="hidden lg:flex items-center">
               <div className="flex items-center gap-x-4">
                 <div className={buttonVariants({ size: "sm", variant: "ghost" })}>{session?.user?.name}</div>
@@ -64,6 +71,8 @@ const Navbar = ({session}:any) => {
                 <div className="hidden lg:flex"><ToggleTheme /></div>
               </div>
             </div>
+            }
+             </> 
             :
             <div className="hidden lg:flex items-center">
               <div className="flex items-center gap-x-4">

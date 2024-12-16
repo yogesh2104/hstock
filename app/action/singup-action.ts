@@ -44,6 +44,7 @@ export const signUp = async (formData: FormData) => {
                 password: hashPassword,
                 phoneNumber:parseInt(phoneNumber),
                 companyName:companyName,
+                isGetReferral:false,
                 address:address1,
                 address2:address2,
                 country,
