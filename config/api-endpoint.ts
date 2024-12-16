@@ -8,6 +8,7 @@ export const API_ENDPOINT ={
     validateCode:"/referral/validate",
     updateCodeStatus:"/referral/get-code",  // post method
     youtubeVideo:"/you-tube-video",
-    createCode:"//referral/create"
+    createCode:"/referral/create",
+    planApi:"/plan"
     
 }

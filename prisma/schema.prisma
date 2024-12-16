@@ -164,21 +164,6 @@ model Referral {
   updatedAt     DateTime    @updatedAt
 }
 
-// model Title {
-//   id      String        @id @default(auto()) @map("_id") @db.ObjectId
-//   title   String        @unique       
-//   video   Video[]
-// }
-
-// model Video{
-//   id            String    @id @default(auto()) @map("_id") @db.ObjectId
-//   title         Title     @relation(fields: [id] , references: [id])
-//   isActive      Boolean   @default(true)
-//   videoSrc      String
-//   thumbnailSrc  String
-//   thumbnailAlt  String
-// }
-
 model Title {
   id      String   @id @default(auto()) @map("_id") @db.ObjectId
   title   String   @unique
@@ -193,4 +178,16 @@ model Video {
   videoSrc      String
   thumbnailSrc  String
   thumbnailAlt  String
+}
+
+model Plan {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  name         String
+  logo         String   @default("/logo.png")
+  price        Int
+  description  String   
+  buttonText   String   @default("Buy Now")
+  popular      Boolean? @default(false)
+  features     String[]
+  position     Int      @default(1)
 }

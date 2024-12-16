@@ -5,20 +5,29 @@ import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { Check } from 'lucide-react'
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
-import { siteConfig } from '@/config/site-config';
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog"
 import { useState } from "react"
 import HStockFeatures from "./HStockFeatures"
 
+type adminPlanPros = {
+  getPlan: {
+    id: string,
+    name: string,
+    logo: string,
+    price: Number,
+    description: string,
+    buttonText: string,
+    popular: boolean,
+    features: string[]
+  }[]
+}
 
-export default function PricingPlans() {
+export default function PricingPlans({getPlan}:adminPlanPros) {
   const [openInfo,setOpenInfo] = useState(false) 
   return (
     <section className="w-full py-12">
@@ -32,7 +41,7 @@ export default function PricingPlans() {
           </p>
         </div>
         <div className="grid gap-6 pt-12 lg:grid-cols-3 lg:gap-8">
-          {siteConfig.pricingData.map((plan) => (
+          {getPlan.map((plan) => (
             <Card
               key={plan.name}
               className={cn(

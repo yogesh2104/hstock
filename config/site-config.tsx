@@ -28,9 +28,9 @@ export const siteConfig = {
         path:'/control-panel/referral'
       },
       {
-        label:'Software Prices',
+        label:'Software Plan',
         icon: IndianRupee,
-        path:'/control-panel/price'
+        path:'/control-panel/plan'
       },
       {
         label:'Youtube Video',
@@ -59,53 +59,6 @@ export const siteConfig = {
         description: "Easy-to-understand user interface. And Easy-to-use",
         icon: Handshake,
       }
-    ],
-    traningVideoData:[
-      {
-        title: "Software Training Videos | सॉफ्टवेर ट्रेनिंग विडिओ",
-        videos: [
-          {
-            videoSrc: "https://www.youtube.com/embed/AMPqZfUYX1s?si=YT1QZzNBTJQ9qq7a",
-            thumbnailSrc: "/demo/demo.png",
-            thumbnailAlt: "Hero Video",
-          },
-          {
-            videoSrc: "https://www.youtube.com/embed/AMPqZfUYX1s?si=YT1QZzNBTJQ9qq7a",
-            thumbnailSrc: "/demo/demo2.png",
-            thumbnailAlt: "Advanced Features",
-          },
-          {
-            videoSrc: "https://www.youtube.com/embed/AMPqZfUYX1s?si=YT1QZzNBTJQ9qq7a",
-            thumbnailSrc: "/demo/demo.png",
-            thumbnailAlt: "Tips and Tricks",
-          },
-          {
-            videoSrc: "https://www.youtube.com/embed/AMPqZfUYX1s?si=YT1QZzNBTJQ9qq7a",
-            thumbnailSrc: "/demo/demo3.png",
-            thumbnailAlt: "Case Studies",
-          },
-        ],
-      },
-      {
-        title: "Photoshop Training Videos | फोटोशॉप ट्रेनिंग विडिओ",
-        videos: [
-          {
-            videoSrc: "https://www.youtube.com/embed/AMPqZfUYX1s?si=YT1QZzNBTJQ9qq7a",
-            thumbnailSrc: "/demo/demo2.png",
-            thumbnailAlt: "Hero Video",
-          },
-        ],
-      },
-      {
-        title: "How To Make Self PSD Templates | अपने PSD टेम्पलेट कैसे बनाए",
-        videos: [
-          {
-            videoSrc: "https://www.youtube.com/embed/AMPqZfUYX1s?si=YT1QZzNBTJQ9qq7a",
-            thumbnailSrc: "/demo/demo3.png",
-            thumbnailAlt: "Hero Video",
-          },
-        ],
-      },
     ],
     highlight : [
       {
@@ -165,6 +118,88 @@ export const siteConfig = {
         title: "Effects & Filters",
         description: "Unique filters and effects like cinematic effects, dark spot healing, smoothness filter, etc.",
         icon: <Filter />,
+      }
+    ],
+    featureSections:[
+      {
+        title: "Photoshop Versions",
+        description: "Supports all Photoshop versions from CS3 to CC 2023"
+      },
+      {
+        title: "Settings",
+        description: "Select preferred data in one go, easy access to photos, cutout portraits, and template packs"
+      },
+      {
+        title: "Collection",
+        description: "Store custom collections for future use"
+      },
+      {
+        title: "Auto Features",
+        features: [
+          {
+            name: "Auto Page",
+            description: "Create a complete sheet with one click in seconds"
+          },
+          {
+            name: "Auto Fill",
+            description: "Manually open template and insert photo into frame layer"
+          },
+          {
+            name: "Automate",
+            description: "Design entire album at once with a single click"
+          }
+        ]
+      },
+      {
+        title: "Image Manipulation",
+        features: [
+          {
+            name: "Image Change",
+            description: "Replace sample images with your own photos"
+          },
+          {
+            name: "Image Import",
+            description: "Place your own images anywhere on the template"
+          },
+          {
+            name: "Swap",
+            description: "Interchange images used in template"
+          },
+          {
+            name: "Background Change",
+            description: "Modify template background"
+          }
+        ]
+      },
+      {
+        title: "Advanced Editing",
+        features: [
+          {
+            name: "M.1",
+            description: "Multiple image enhancement options including levels, sharpening, hotspot fill, healing filters, color tones, cinematic effects, beauty retouch, and more"
+          },
+          {
+            name: "M.2",
+            description: "Batch processing capabilities like clearing layers, resetting, splitting, inverting images, and template creation"
+          }
+        ]
+      },
+      {
+        title: "Output & Export",
+        features: [
+          {
+            name: "PSD to JPG",
+            description: "Convert finished templates from PSD to JPG format"
+          },
+          {
+            name: "Save & Save As",
+            description: "Save or save as any image or template"
+          },
+          {
+            name: "Watermark",
+            description: "Add custom watermarks to documents"
+          }
+        ]
       }
     ],
     ciberPolicyData : {
@@ -387,33 +422,6 @@ export const siteConfig = {
         title: "Website Link",
         content: `For more information, please visit our website: ${Domain}`
       }
-    ],
-    pricingData:[
-      {
-        name: "Free",
-        logo:"/logo.png",
-        price: 0,
-        description: "Great for trying out 10 days free.",
-        buttonText: "Download for Free",
-        features: ["Free Trial","Automatic Album Designing", "Image Editing With Live Ready To Use Content","Millions of Designing"],
-      },
-      {
-        name: "Professional",
-        price: 199,
-        logo:"/logo.png",
-        description: "Best for Design And Ready to use",
-        buttonText: "Buy Now",
-        popular: true,
-        features: ["12 Month Subscription","Automatic Album Designing", "Image Editing With Live Ready To Use Content","Millions of Designing"],
-      },
-      {
-        name: "Enterprise",
-        price: 2999,
-        logo:"/logo.png",
-        description: "Best for large album",
-        buttonText: "Buy Now",
-        features: ["36 Month Subscription","Automatic Album Designing", "Image Editing With Live Ready To Use Content","Millions of Designing"],
-      },
     ],
     editingOptions :[
       { 
