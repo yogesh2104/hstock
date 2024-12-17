@@ -1,4 +1,4 @@
-import React from "react";
+"use client"
 import { ImagesSlider } from "./images-slider";
 import Link from "next/link";
 

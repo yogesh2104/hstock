@@ -1,7 +1,7 @@
 const env = process.env.NODE_ENV
 export const isDevCookies = env == "development" ?  "authjs.session-token": "__Secure-authjs.session-token"
-export const BASE_URL = env == "development" ? "http://localhost:3000/api"  : "https://debate-arena.vercel.app/api"
-export const Domain = env == "development" ? "http://localhost:3000"  : "https://debate-arena.vercel.app"
+export const BASE_URL = env == "development" ? "http://localhost:3000/api"  : "https://hstock.vercel.app/api"
+export const Domain = env == "development" ? "http://localhost:3000"  : "https://hstock.vercel.app"
 export const API_ENDPOINT ={
     alluserList:"/all-user",
     getAllCode:"/referral/get-code",
@@ -10,6 +10,6 @@ export const API_ENDPOINT ={
     youtubeVideo:"/you-tube-video",
     createCode:"/referral/create",
     planApi:"/plan",
-    heroSection:"/hero-section"
+    heroSection:"/hero-section/"
     
 }
