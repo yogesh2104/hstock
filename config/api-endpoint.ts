@@ -9,6 +9,7 @@ export const API_ENDPOINT ={
     updateCodeStatus:"/referral/get-code",  // post method
     youtubeVideo:"/you-tube-video",
     createCode:"/referral/create",
-    planApi:"/plan"
+    planApi:"/plan",
+    heroSection:"/hero-section"
     
 }

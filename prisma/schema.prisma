@@ -17,7 +17,7 @@ enum Role {
   admin
   user
 }
- 
+
 model User {
   id            String          @id @default(auto()) @map("_id") @db.ObjectId
   name          String?
@@ -47,7 +47,6 @@ model User {
   updatedAt DateTime @updatedAt
 }
 
-
 model Transaction {
   id            String      @id @default(auto()) @map("_id") @db.ObjectId
   licenseId     String      @unique @db.ObjectId
@@ -59,8 +58,6 @@ model Transaction {
   paymentStatus String      @default("success") // success, failed, pending
   createdAt     DateTime    @default(now())
 }
-
-
 
 model License {
   id            String      @id @default(auto()) @map("_id") @db.ObjectId
@@ -130,8 +127,7 @@ model VerificationToken {
  
   @@unique([identifier, token])
 }
- 
-// Optional for WebAuthn support
+
 model Authenticator {
   credentialID         String  @id @map("_id")
   userId               String  @db.ObjectId
@@ -153,7 +149,6 @@ model contact {
   email     String
   message   String
 }
-
 
 model Referral {
   id            String      @id @default(auto()) @map("_id") @db.ObjectId
@@ -190,4 +185,20 @@ model Plan {
   popular      Boolean? @default(false)
   features     String[]
   position     Int      @default(1)
+}
+
+model HeroSection {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  btnText   String  @default("Buy Now")
+  btnLink   String  @default("/#pricing-plan")
+  isShow    Boolean @default(false)
+  image     Image[] @relation("HeroImg")
+}
+
+model Image {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  imageId   String    @db.ObjectId
+  isActive  Boolean   @default(true)
+  imageLink String    
+  path      HeroSection @relation("HeroImg", fields: [imageId], references: [id], onDelete:Cascade)
 }

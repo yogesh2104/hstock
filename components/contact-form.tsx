@@ -127,7 +127,7 @@ export default function ContactForm() {
                   className="border border-border/10 dark:border-border/60  text-white placeholder:text-gray-400 min-h-[160px]"
                 />
               </div>
-              <Button type="submit" disabled={status === "sending"} className="w-full">
+              <Button type="submit" disabled={status === "sending"} className="w-full bg-white text-black hover:bg-white hover:text-black">
                 {status === "sending" ? "Sending..." : "Submit"}
               </Button>
             </form>

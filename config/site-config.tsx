@@ -1,4 +1,4 @@
-import { Brush, CircleCheckBig, CircleDollarSign, Cpu, Filter, Frame, Gauge, Handshake, IndianRupee, LayoutDashboard, Send, Video, Workflow } from "lucide-react"
+import { Brush, CircleCheckBig, CircleDollarSign, Cpu, Filter, Frame, GalleryHorizontal, Gauge, Handshake, IndianRupee, LayoutDashboard, Mail, Send, Video, Workflow } from "lucide-react"
 import { Domain } from "./api-endpoint"
 
 export const siteConfig = {
@@ -12,6 +12,11 @@ export const siteConfig = {
       <p className="text-gray-400">+91 0000 000 000</p></>),
     address:"full address",
     NavigationItem:[
+      {
+        label:'Hero Section',
+        icon: GalleryHorizontal,
+        path:'/control-panel/hero-section'
+      },
       {
         label:'User Info',
         icon:LayoutDashboard,
@@ -28,7 +33,7 @@ export const siteConfig = {
         path:'/control-panel/referral'
       },
       {
-        label:'Software Plan',
+        label:'Plan',
         icon: IndianRupee,
         path:'/control-panel/plan'
       },
@@ -36,6 +41,11 @@ export const siteConfig = {
         label:'Youtube Video',
         icon: Video,
         path:'/control-panel/video'
+      },
+      {
+        label:'Email Content',
+        icon: Mail,
+        path:'/control-panel/email'
       }
     ],
     ServicesWeProvide :[

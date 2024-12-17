@@ -109,24 +109,24 @@ export default function VideoTable({apiResponse}:{apiResponse:any[]}) {
   const handleVideoActiveDeactive=async (id:string)=>{
     setLoader(true)
     const bData = { id }
-        try {
-            const response = await fetch(`${BASE_URL}${API_ENDPOINT.youtubeVideo}`, {
-              method: "PATCH",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(bData),
-            })
-            if (response.ok) {
-                router.refresh()
-            } else {
-                router.refresh()
-            }
-        } catch (error) {
-            router.refresh()
-        } finally{
-            setLoader(false)
-        }
+    try {
+      const response = await fetch(`${BASE_URL}${API_ENDPOINT.youtubeVideo}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bData),
+      })
+      if (response.ok) {
+          router.refresh()
+      } else {
+          router.refresh()
+      }
+    } catch (error) {
+      router.refresh()
+    } finally{
+      setLoader(false)
+    }
   }
 
   if(loader){
