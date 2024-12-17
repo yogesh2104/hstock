@@ -45,7 +45,7 @@ export const siteConfig = {
       {
         label:'Email Content',
         icon: Mail,
-        path:'/control-panel/email'
+        path:'/control-panel/email-section'
       }
     ],
     ServicesWeProvide :[

@@ -202,3 +202,10 @@ model Image {
   imageLink String    
   path      HeroSection @relation("HeroImg", fields: [imageId], references: [id], onDelete:Cascade)
 }
+
+model FeatureSection {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  htmlContent String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
