@@ -7,8 +7,10 @@ import { LucideIcon, Menu } from "lucide-react";
 import Link, { LinkProps } from "next/link";
 import React, { useState } from 'react';
 import { useRouter } from "next/navigation";
+import { ToggleTheme } from "./ToggleTheme";
 
 const MobileNavbar = ({session}:any) => {
+    console.log("session?.user?.role",session?.user?.role)
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     return (
@@ -22,8 +24,12 @@ const MobileNavbar = ({session}:any) => {
                     {session ? 
                         <div className="w-full py-2 mt-10">
                             <div className="flex items-center justify-evenly w-full space-x-2">
+                            {session?.user?.role=="admin" ?
+                                <Link href={'/control-panel'} className={cn(buttonVariants({ size: "sm"}),"bg-primary w-full")} >Admin Dashboard</Link>
+                                :
                                 <div className={cn(buttonVariants({ size: "sm", variant: "outline"}),"w-full")}>{session?.user?.name}</div>
-                                <MobileLink href={"/#pricing-plan"} onOpenChange={setIsOpen} className={cn(buttonVariants({ size: "sm"}),"bg-primary w-full")}>Buy Now</MobileLink>
+                            }
+                            <MobileLink href={"/#pricing-plan"} onOpenChange={setIsOpen} className={cn(buttonVariants({ size: "sm"}),"bg-primary w-full")}>Buy Now</MobileLink>
                             </div>
                         </div>
                         :

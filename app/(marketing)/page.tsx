@@ -57,11 +57,11 @@ const fetchData = async (url: string) => {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    const text = await response.text(); // Get the response as text first
+    const text = await response.text();
     try {
-      return JSON.parse(text); // Try to parse it as JSON
+      return JSON.parse(text);
     } catch (e) {
-      console.error("Failed to parse JSON. Received:", text.substring(0, 200)); // Log the first 200 characters of the response
+      console.error("Failed to parse JSON. Received:", text.substring(0, 200));
       throw new Error("Invalid JSON response");
     }
   } catch (error) {
