@@ -59,9 +59,9 @@ const Navbar = ({session}:any) => {
             {session ? 
              <>
             {session?.user?.role=="admin" ? 
-             <div className="hidden items-center gap-x-4">
+             <div className="hidden md:flex items-center gap-x-4">
                <Link href={'/control-panel'} className={cn(buttonVariants({ size: "sm"}),"bg-primary")} >Admin Dashboard</Link>
-               <div className="hidden lg:flex"><ToggleTheme /></div>
+               <div className="hidden md:flex"><ToggleTheme /></div>
              </div>
             : 
             <div className="hidden lg:flex items-center">

@@ -1,85 +1,99 @@
 "use client"
 
-import { cn } from '@/lib/utils'
+import Link from 'next/link';
+import { useTheme } from 'next-themes';
 import React, { useEffect, useState, useRef, ElementRef, } from 'react'
-import { ChevronsLeft } from 'lucide-react';
+import { LogOut, Users, ChevronsLeft, Moon, Sun, MenuIcon, Mail } from "lucide-react"
 import { usePathname, useRouter } from 'next/navigation';
-import { MenuIcon } from 'lucide-react';
-import { useIsMobile } from '@/hook/use-mobile';
+
 import { Item } from './item';
+import { cn } from '@/lib/utils'
 import { siteConfig } from '@/config/site-config';
+import { useIsMobile } from '@/hook/use-mobile';
+import { Button } from "@/components/ui/button"
+import { logOut } from '@/app/action/signin-action';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuShortcut,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Session } from 'next-auth';
 
-const Navigation = () => {
-    const router = useRouter();
-    const pathname = usePathname();
-    const isMobile = useIsMobile()
-    const isResizingRef = useRef(false);
-    const sidebarRef = useRef<ElementRef<"aside">>(null);
-    const navbarRef = useRef<ElementRef<"div">>(null);
-    const [isResetting, setIsResetting] = useState(false);
-    const [isCollapsed, setIsCollapsed] = useState(isMobile);
+const Navigation = ({session}:{session:Session | null}) => {
+  const router = useRouter();
+  const pathname = usePathname();
+  const isMobile = useIsMobile()
+  const isResizingRef = useRef(false);
+  const sidebarRef = useRef<ElementRef<"aside">>(null);
+  const navbarRef = useRef<ElementRef<"div">>(null);
+  const [isResetting, setIsResetting] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(isMobile);
+  const { theme, setTheme } = useTheme();
 
-    useEffect(() => {
-        if (isMobile) {
-        collapse();
-        } else {
-        resetWidth();
-        }
-    }, [isMobile]);
+  useEffect(() => {
+      if (isMobile) {
+      collapse();
+      } else {
+      resetWidth();
+      }
+  }, [isMobile]);
 
-    useEffect(() => {
-        if (isMobile) {
-        collapse();
-        }
-    }, [pathname, isMobile]);
+  useEffect(() => {
+      if (isMobile) {
+      collapse();
+      }
+  }, [pathname, isMobile]);
 
-    const handleMouseMove = (event: MouseEvent) => {
-        if (!isResizingRef.current) return;
-        let newWidth = event.clientX;
+  const handleMouseMove = (event: MouseEvent) => {
+      if (!isResizingRef.current) return;
+      let newWidth = event.clientX;
 
-        if (newWidth < 240) newWidth = 240;
-        if (newWidth > 480) newWidth = 480;
+      if (newWidth < 240) newWidth = 240;
+      if (newWidth > 480) newWidth = 480;
 
-        if (sidebarRef.current && navbarRef.current) {
-        sidebarRef.current.style.width = `${newWidth}px`;
-        navbarRef.current.style.setProperty("left", `${newWidth}px`);
-        navbarRef.current.style.setProperty("width", `calc(100% - ${newWidth}px)`);
-        }
-    };
+      if (sidebarRef.current && navbarRef.current) {
+      sidebarRef.current.style.width = `${newWidth}px`;
+      navbarRef.current.style.setProperty("left", `${newWidth}px`);
+      navbarRef.current.style.setProperty("width", `calc(100% - ${newWidth}px)`);
+      }
+  };
 
-    const handleMouseUp = () => {
-        isResizingRef.current = false;
-        document.removeEventListener("mousemove", handleMouseMove);
-        document.removeEventListener("mouseup", handleMouseUp);
-    };
+  const handleMouseUp = () => {
+      isResizingRef.current = false;
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+  };
 
-    const resetWidth = () => {
-        if (sidebarRef.current && navbarRef.current) {
-        setIsCollapsed(false);
-        setIsResetting(true);
+  const resetWidth = () => {
+      if (sidebarRef.current && navbarRef.current) {
+      setIsCollapsed(false);
+      setIsResetting(true);
 
-        sidebarRef.current.style.width = isMobile ? "100%" : "240px";
-        navbarRef.current.style.setProperty("width",isMobile ? "0" : "calc(100% - 240px)");
-        navbarRef.current.style.setProperty("left",isMobile ? "100%" : "240px");
-        setTimeout(() => setIsResetting(false), 300);
-        }
-    };
+      sidebarRef.current.style.width = isMobile ? "100%" : "240px";
+      navbarRef.current.style.setProperty("width",isMobile ? "0" : "calc(100% - 240px)");
+      navbarRef.current.style.setProperty("left",isMobile ? "100%" : "240px");
+      setTimeout(() => setIsResetting(false), 300);
+      }
+  };
 
-    const collapse = () => {
-        if (sidebarRef.current && navbarRef.current) {
-        setIsCollapsed(true);
-        setIsResetting(true);
+  const collapse = () => {
+      if (sidebarRef.current && navbarRef.current) {
+      setIsCollapsed(true);
+      setIsResetting(true);
 
-        sidebarRef.current.style.width = "0";
-        navbarRef.current.style.setProperty("width", "100%");
-        navbarRef.current.style.setProperty("left", "0");
-        setTimeout(() => setIsResetting(false), 300);
-        }
-    }
-    
-    const handleNavigation=(path:string)=>{
-        router.replace(path)
-    }
+      sidebarRef.current.style.width = "0";
+      navbarRef.current.style.setProperty("width", "100%");
+      navbarRef.current.style.setProperty("left", "0");
+      setTimeout(() => setIsResetting(false), 300);
+      }
+  }
+  
+  const handleNavigation=(path:string)=>{
+      router.replace(path)
+  }
 
 
 
@@ -91,10 +105,41 @@ const Navigation = () => {
         </div>
         <div>
           <div className='text-start p-[10px]'>
-            <img className='size-10' src='/logo.png' />
+            <Link href={'/'}>
+              <img className='size-10' src='/logo.png' />
+            </Link>
           </div>
           <div className='border-b dark:border-white/[.30]'/> 
         </div>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild className='focus:outline-none focus:ring-0 focus:ring-ring focus:ring-offset-0 focus-visible:ring-0'>
+            <Button variant="ghost" className='w-full'>{session?.user?.email}</Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-60">
+            <DropdownMenuGroup>
+              <DropdownMenuItem>
+                <Users />
+                <span>{session?.user?.name}</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Mail />
+                <span>{session?.user?.email}</span>
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuItem>
+              {theme == "light" ? <Moon /> : <Sun />}
+              <span className='capitalize' onClick={() => setTheme(theme === "light" ? "dark" : "light")}>{theme}</span>
+              
+            </DropdownMenuItem>
+
+            <DropdownMenuItem>
+              <LogOut />
+              <span onClick={logOut}>Log out</span>
+              <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <div className='border-b dark:border-white/[.30]'/> 
         <div className='mt-6 p-1 h-screen'>
           {siteConfig.NavigationItem?.map((nav,navKey)=>{
             return(
