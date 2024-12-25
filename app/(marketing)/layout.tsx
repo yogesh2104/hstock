@@ -2,6 +2,7 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { auth } from "@/auth";
 import AnnouncementBar from "@/components/announcement";
+import SocialMedia from "@/components/social-media";
 
 const MainLayout=async({
     children,
@@ -15,6 +16,7 @@ const MainLayout=async({
         <AnnouncementBar/>
         <Navbar session={session}/>
         {children}
+        <SocialMedia/>
         <Footer/>
       </div>
     )
