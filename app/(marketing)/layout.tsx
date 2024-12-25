@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { auth } from "@/auth";
+import AnnouncementBar from "@/components/announcement";
 
 const MainLayout=async({
     children,
@@ -11,6 +12,7 @@ const MainLayout=async({
  
     return(
       <div>
+        <AnnouncementBar/>
         <Navbar session={session}/>
         {children}
         <Footer/>
