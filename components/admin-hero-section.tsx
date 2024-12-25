@@ -168,14 +168,14 @@ export const AdminHeroSection=({getAPIData}:{getAPIData:adminProps[]})=>{
                         </div>
                         <Carousel className="w-full">
                         <CarouselContent>
-                            <ImagesSlider className="h-[35rem]" images={item.image?.map((img)=>img.imageLink)}>
+                            <ImagesSlider url={item.btnLink} className="h-[35rem]" images={item.image?.map((img)=>img.imageLink)}>
                             <div
                                 className="z-50 flex flex-col justify-end items-end"
                             >
-                                <Link href={item.btnLink} className="px-4 py-2 backdrop-blur-sm border bg-black border-emerald-500/20 text-white mx-auto text-center rounded-full relative mt-4">
+                                {/* <Link href={item.btnLink} className="px-4 py-2 backdrop-blur-sm border bg-black border-emerald-500/20 text-white mx-auto text-center rounded-full relative mt-4">
                                     <span>{item.btnText} →</span>
                                     <div className="absolute inset-x-0  h-px -bottom-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-emerald-500 to-transparent" />
-                                </Link>
+                                </Link> */}
                             </div>
                             </ImagesSlider>
                         </CarouselContent>
