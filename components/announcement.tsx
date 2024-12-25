@@ -1,8 +1,12 @@
+"use client"
+
+import { useUseSideBar } from "@/hook/use-open-sidebar"
 import { ChevronRight } from "lucide-react"
 import Link from "next/link"
 
 const AnnouncementBar=()=>{
-    return(
+    const { isOpen } = useUseSideBar()
+    return(isOpen ||
         <div className="group mx-auto w-full relative top-0 bg-indigo-600 py-3 text-white transition-all duration-300 md:py-0">
             <div className="flex flex-col items-center justify-center gap-4 md:h-12 md:flex-row">
                 <Link

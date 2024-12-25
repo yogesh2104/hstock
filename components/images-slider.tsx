@@ -1,6 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 export const ImagesSlider = ({
@@ -11,6 +12,7 @@ export const ImagesSlider = ({
   className,
   autoplay = true,
   direction = "right",
+  url
 }: {
   images: string[];
   children: React.ReactNode;
@@ -19,9 +21,9 @@ export const ImagesSlider = ({
   className?: string;
   autoplay?: boolean;
   direction?: "left" | "right";
+  url:string
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [loading, setLoading] = useState(false);
   const [loadedImages, setLoadedImages] = useState<string[]>([]);
 
   const handleNext = () => {
@@ -41,7 +43,6 @@ export const ImagesSlider = ({
   }, []);
 
   const loadImages = () => {
-    setLoading(true);
     const loadPromises = images.map((image) => {
       return new Promise((resolve, reject) => {
         const img = new Image();
@@ -54,7 +55,6 @@ export const ImagesSlider = ({
     Promise.all(loadPromises)
       .then((loadedImages) => {
         setLoadedImages(loadedImages as string[]);
-        setLoading(false);
       })
       .catch((error) => console.error("Failed to load images", error));
   };
@@ -84,68 +84,32 @@ export const ImagesSlider = ({
     };
   }, [autoplay]);
 
-  // const slideVariants = {
-  //   initial: {
-  //     scale: 0,
-  //     opacity: 0,
-  //     rotateX: 45,
-  //   },
-  //   visible: {
-  //     scale: 1,
-  //     rotateX: 0,
-  //     opacity: 1,
-  //     transition: {
-  //       duration: 0.5,
-  //       ease: [0.645, 0.045, 0.355, 1.0],
-  //     },
-  //   },
-  //   upExit: {
-  //     opacity: 1,
-  //     y: "-150%",
-  //     transition: {
-  //       duration: 1,
-  //     },
-  //   },
-  //   downExit: {
-  //     opacity: 1,
-  //     y: "150%",
-  //     transition: {
-  //       duration: 1,
-  //     },
-  //   },
-  // };
-
   const slideVariants = {
-    initial: {
-      scale: 0,
+    initial: (direction: "left" | "right") => ({
+      x: direction === "right" ? "100%" : "-100%",
       opacity: 0,
-      x: "100%",
-    },
+      zIndex: 0, // Ensure the new image starts below
+    }),
     visible: {
-      scale: 1,
       x: "0%",
       opacity: 1,
+      zIndex: 1, // Bring the visible image to the top
       transition: {
-        duration: 0.5,
-        ease: [0.645, 0.045, 0.355, 1.0],
+        duration: 0.6,
+        ease: [0.25, 0.8, 0.25, 1],
       },
     },
-    rightExit: {
-      opacity: 1,
-      x: "-100%",
+    exit: (direction: "left" | "right") => ({
+      x: direction === "right" ? "-100%" : "100%",
+      opacity: 0,
+      zIndex: 0, // Ensure the exiting image moves out without overlapping
       transition: {
-        duration: 1,
+        duration: 0.6,
+        ease: [0.25, 0.8, 0.25, 1],
       },
-    },
-    leftExit: {
-      opacity: 1,
-      x: "100%",
-      transition: {
-        duration: 1,
-      },
-    },
+    }),
   };
-
+  
   
   const areImagesLoaded = loadedImages.length > 0;
 
@@ -171,19 +135,24 @@ export const ImagesSlider = ({
       />
     )}
 
-    {areImagesLoaded && (
-      <AnimatePresence>
-        <motion.img
-          key={currentIndex}
-          src={loadedImages[currentIndex]}
-          initial="initial"
-          animate="visible"
-          exit={direction === "right" ? "rightExit" : "leftExit"}
-          variants={slideVariants}
-          className="image h-full w-full absolute inset-0 object-cover object-center z-30"
-        />
-      </AnimatePresence>
-    )}
+    <AnimatePresence custom={direction}>
+      <Link href={url}>
+        {loadedImages.map((image, index) =>
+          index === currentIndex ? (
+            <motion.img
+              key={index}
+              src={image}
+              custom={direction}
+              initial="initial"
+              animate="visible"
+              exit="exit"
+              variants={slideVariants}
+              className="image h-full w-full absolute inset-0 object-cover object-center z-30"
+            />
+          ) : null
+        )}
+      </Link>
+    </AnimatePresence>
 
     <div className="absolute inset-0 z-50 flex justify-between items-center px-4 pointer-events-none">
       <button

@@ -7,15 +7,14 @@ import { LucideIcon, Menu } from "lucide-react";
 import Link, { LinkProps } from "next/link";
 import React, { useState } from 'react';
 import { useRouter } from "next/navigation";
-import { ToggleTheme } from "./ToggleTheme";
+import { useUseSideBar } from "@/hook/use-open-sidebar";
 
 const MobileNavbar = ({session}:any) => {
-    console.log("session?.user?.role",session?.user?.role)
     const [isOpen, setIsOpen] = useState<boolean>(false);
-
+    const { setIsOpen:setOpenSidebar } = useUseSideBar()
     return (
-        <div className="flex lg:hidden items-center justify-end">
-            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+        <div className="flex lg:hidden items-center justify-end" data-sidebar={isOpen ? "open" : "closed"}>
+            <Sheet open={isOpen} onOpenChange={(e)=>{setIsOpen(e), setOpenSidebar(e)}}>
                 <SheetTrigger asChild className="">
                     {!isOpen&& <Button size="icon" aria-label="menu-button" variant="ghost"><Menu className="w-5 h-5 z-50" /></Button>}
                 </SheetTrigger>

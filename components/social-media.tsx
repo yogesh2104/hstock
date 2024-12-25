@@ -1,6 +1,6 @@
 const SocialMedia=()=>{
     return(
-        <div className="fixed left-0 top-1/2 transform -translate-y-1/2 flex flex-col space-y-4 z-50">
+        <div className="fixed left-0 bottom-3 md:top-1/4 transform -translate-y-1 md:-translate-y-1 flex flex-col space-y-4 z-50">
             <a
                 href="https://facebook.com"
                 target="_blank"
