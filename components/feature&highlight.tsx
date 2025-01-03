@@ -1,8 +1,8 @@
 "use client"
 import { siteConfig } from '@/config/site-config';
 import { motion } from 'framer-motion';
-import { MagicCard } from './magic.card';
 import { useTheme } from 'next-themes';
+import MagicCard from './magic.card';
 
 
 export default function FeaturesAndHighlight() {

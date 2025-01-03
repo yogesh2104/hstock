@@ -13,7 +13,7 @@ interface MagicCardProps extends React.HTMLAttributes<HTMLDivElement> {
   gradientTo?: string;
 }
 
-export function MagicCard({
+export default function MagicCard({
   children,
   className,
   gradientSize = 150,
