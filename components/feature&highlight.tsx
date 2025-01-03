@@ -1,8 +1,12 @@
 "use client"
 import { siteConfig } from '@/config/site-config';
 import { motion } from 'framer-motion';
+import { MagicCard } from './magic.card';
+import { useTheme } from 'next-themes';
+
 
 export default function FeaturesAndHighlight() {
+  const { theme } = useTheme()
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { 
@@ -73,19 +77,23 @@ export default function FeaturesAndHighlight() {
                 key={index}
                 variants={itemVariants}
                 whileHover="hover"
-                className=" border border-blue-900/30 rounded-2xl p-6 shadow-2xl transition-all duration-300 group"
+                className=" border border-blue-900/30 rounded-2xl shadow-2xl transition-all duration-300 group"
               >
-                <div className="mb-6 w-20 h-20 border border-border/10 dark:border-border/60 mx-auto rounded-full flex items-center justify-center">
-                  <div className="text-white scale-125 group-hover:scale-150 transition-transform duration-300">
-                    {feature.icon}
+                <MagicCard >
+                  <>  
+                  <div className="mb-6 w-20 h-20 border border-border/10 dark:border-border/60 mx-auto rounded-full flex items-center justify-center">
+                    <div className="text-white scale-125 group-hover:scale-150 transition-transform duration-300">
+                      {feature.icon}
+                    </div>
                   </div>
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-white transition-colors">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-400 group-hover:text-gray-200 transition-colors">
-                  {feature.description}
-                </p>
+                  <h3 className="text-2xl font-bold mb-4 text-white transition-colors">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-400 group-hover:text-gray-200 transition-colors">
+                    {feature.description}
+                  </p>
+                  </>
+                </MagicCard>
               </motion.div>
             ))}
           </motion.div>
@@ -124,8 +132,10 @@ export default function FeaturesAndHighlight() {
                 key={index}
                 variants={itemVariants}
                 whileHover="hover"
-                className="border border-purple-900/30 rounded-2xl p-6 shadow-2xl transition-all duration-300 group"
+                className="border border-purple-900/30 rounded-2xl shadow-2xl transition-all duration-300 group"
               >
+                <MagicCard >
+
                 <div className="mb-6 w-20 h-20 border border-border/10 dark:border-border/60 mx-auto rounded-full flex items-center justify-center">
                   <div className="text-white scale-125 group-hover:scale-150 transition-transform duration-300">
                     {feature.icon}
@@ -137,6 +147,7 @@ export default function FeaturesAndHighlight() {
                 <p className="text-gray-400 group-hover:text-gray-200 transition-colors">
                   {feature.description}
                 </p>
+                </MagicCard>
               </motion.div>
             ))}
           </motion.div>

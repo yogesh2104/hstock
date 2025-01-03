@@ -49,6 +49,7 @@ import { HeroSection } from "@/components/hero-section";
 import ImageEditor from "@/components/Latest image-editor";
 import { OurDesign } from "@/components/our-design";
 import PricingPlans from "@/components/pricing";
+import { WelcomeDialog } from "@/components/show-alert-dialog";
 import { API_ENDPOINT, BASE_URL } from "@/config/api-endpoint";
 
 const fetchData = async (url: string) => {
@@ -81,11 +82,15 @@ export default async function Home() {
 
   return (
     <>
+      <WelcomeDialog/>
       {getAPIData?.data?.length !== 0 && <HeroSection getAPIData={getAPIData?.data || []} />}
+      {getPlan?.data && <PricingPlans getPlan={getPlan.data} />}
       <FeaturesAndHighlight />
       <OurDesign />
       <ImageEditor />
-      {getPlan?.data && <PricingPlans getPlan={getPlan.data} />}
+      <div className="h-32">
+
+      </div>
       <ContactForm />
     </>
   );

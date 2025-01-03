@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Compare } from "./compare"
 import { siteConfig } from '@/config/site-config';
+import { useIsMobile } from "@/hook/use-mobile"
 
 interface EditingOption {
   id: string
@@ -15,6 +16,7 @@ interface EditingOption {
 
 
 export default function ImageEditor() {
+  const isMobile = useIsMobile()
   const [selectedOption, setSelectedOption] = React.useState<EditingOption>(siteConfig.editingOptions[0])
 
   return (
@@ -58,7 +60,7 @@ export default function ImageEditor() {
                         firstImageClassName=" object-left-top"
                         secondImageClassname=" object-left-top"
                         className="h-[280px] md:h-[580px] w-full"
-                        slideMode="drag"
+                        slideMode={isMobile ? "hover":"drag"}
                         autoplay
                       />
                       <div className="absolute bottom-4 z-50 left-4 rounded bg-black/50 px-2 py-1 text-sm text-white">Before</div>
