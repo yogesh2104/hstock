@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Loader2 } from "lucide-react";
+import MinimalTiptapEditor from "./editor/rich-editor";
+import { cn } from "@/lib/utils";
 
 export default function AdminEmailSection() {
-  const [htmlContent, setHtmlContent] = useState("");
   const [editingContent, setEditingContent] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -25,7 +25,6 @@ export default function AdminEmailSection() {
       const data = await res.json();
       if (data.length > 0) {
         setId(data[0].id)
-        setHtmlContent(data[0].htmlContent);
         setEditingContent(data[0].htmlContent);
       }
     } catch (err) {
@@ -45,7 +44,6 @@ export default function AdminEmailSection() {
         body: JSON.stringify({ htmlContent: editingContent, id }),
       });
       if (!res.ok) throw new Error("Failed to save content");
-      setHtmlContent(editingContent);
       fetchContent();
     } catch (err) {
       setError("Failed to save content. Please try again.");
@@ -71,12 +69,16 @@ export default function AdminEmailSection() {
             <CardTitle>Edit Content</CardTitle>
           </CardHeader>
           <CardContent>
-            <Textarea
+            <MinimalTiptapEditor
               value={editingContent}
-              onChange={(e) => setEditingContent(e.target.value)}
-              rows={20}
-              className="w-full"
-              placeholder="Enter your HTML here..."
+              throttleDelay={3000}
+              className={cn('h-full min-h-56 w-full rounded-xl')}
+              editorContentClassName="overflow-auto h-full"
+              output="json"
+              onChange={(value) => setEditingContent(value as string)}
+              placeholder="This is your placeholder..."
+              editable={true}
+              editorClassName="focus:outline-none px-5 py-4 h-full"
             />
             <Button onClick={saveContent} className="mt-4" disabled={isSaving}>
               {isSaving ? (
@@ -89,17 +91,6 @@ export default function AdminEmailSection() {
               )}
             </Button>
             {error && <p className="text-red-500 mt-2">{error}</p>}
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Preview</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div
-              className="border p-4 min-h-[200px] prose max-w-none"
-              dangerouslySetInnerHTML={{ __html: editingContent }}
-            />
           </CardContent>
         </Card>
       </div>
