@@ -1,22 +1,31 @@
 "use client"
 import { LayoutGrid } from "./layout-grid";
-import AnimationContainer from "./animation-container";
 import { useIsMobile } from '@/hook/use-mobile';
-import { motion } from 'framer-motion';
 
 export function OurDesign() {
   const isMobile = useIsMobile()
   return (
     <div className="py-10 px-4">
-        <AnimationContainer delay={0.1}>
-          <div className="space-y-3 mb-6 text-center" id='our-design'>    
-            <h2  className="text-3xl md:text-5xl font-extrabold tracking-tight ">Our Design</h2>
-            <p className="text-sm md:text-xl max-w-2xl mx-auto">Innovative tools designed to transform your creative workflow with unparalleled precision and ease</p>
+       <div className="text-center mb-16">
+          <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-medium mb-6">
+            ✨ Featured Work
           </div>
-        </AnimationContainer>
-        <div className="h-[60rem] w-full container mx-auto">
-          <LayoutGrid cards={isMobile ? cards.slice(0,4) :cards} />
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+            <span className="block bg-gradient-to-r from-slate-900 via-blue-600 to-indigo-600 bg-clip-text text-transparent dark:from-white dark:via-blue-400 dark:to-indigo-400">
+              Our Design
+            </span>
+            <span className="block bg-gradient-to-r from-blue-500 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+              That Stands Out
+            </span>
+          </h2>
+          <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            Create amazing experiences effortlessly with our flexible and innovative design solutions that captivate and
+            inspire.
+          </p>
         </div>
+      <div className="h-[60rem] w-full container mx-auto">
+        <LayoutGrid cards={isMobile ? cards.slice(0,4) :cards} />
+      </div>
     </div>
   );
 }

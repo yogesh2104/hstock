@@ -1,48 +1,3 @@
-// import ContactForm from "@/components/contact-form";
-// import FeaturesAndHighlight from "@/components/feature&highlight";
-// import { HeroSection } from "@/components/hero-section";
-// import ImageEditor from "@/components/Latest image-editor";
-// import { OurDesign } from "@/components/our-design";
-// import PricingPlans from "@/components/pricing";
-// import { API_ENDPOINT, BASE_URL } from "@/config/api-endpoint";
-
-
-// const callAllPlanList=async()=>{
-//     let response = await fetch(`${BASE_URL}${API_ENDPOINT.planApi}`);
-//     let data =  response.json();
-
-//     return data
-// }
-
-// const callHeroSectionList=async()=>{
-//   let response = await fetch(`${BASE_URL}${API_ENDPOINT.heroSection}?getFilter=true`);
-//   let data =  response.json();
-
-//   return data
-// }
-
-// export default async function Home() {
-//   const getPlan = await callAllPlanList()
-//   const getAPIData = await callHeroSectionList()
-
-//   return (
-//     <>
-//     {getAPIData?.data?.length!==0  && <HeroSection getAPIData={getAPIData?.data || []}/> }
-//     {/* <ServiceWeProvide/> */}
-//     {/* <Highlights/> */}
-//     <FeaturesAndHighlight/>
-//     {/* <SetpForDesgin/> */}
-//     <OurDesign/>
-//     <ImageEditor/>
-//     <PricingPlans getPlan={getPlan?.data || []}/>
-//     <ContactForm/>
-//     </>
-//   );
-// }
-
-
-
-
 import ContactForm from "@/components/contact-form";
 import FeaturesAndHighlight from "@/components/feature&highlight";
 import { HeroSection } from "@/components/hero-section";
@@ -88,9 +43,6 @@ export default async function Home() {
       <FeaturesAndHighlight />
       <OurDesign />
       <ImageEditor />
-      <div className="h-32">
-
-      </div>
       <ContactForm />
     </>
   );
