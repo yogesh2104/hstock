@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/db';
 import { getToken } from "next-auth/jwt";
-import { auth } from '@/auth';
 import { isDevCookies } from '@/config/api-endpoint';
 
 
@@ -30,7 +29,8 @@ export async function GET(req: NextRequest) {
                 state:true,
                 phoneNumber:true,
                 country:true,
-                pincode:true,   
+                pincode:true, 
+                active:true  
             }
         });
 
@@ -41,3 +41,25 @@ export async function GET(req: NextRequest) {
     }
 }
 
+export async function POST(req: NextRequest) {
+    const secret = process.env.AUTH_SECRET;
+    const token = await getToken({ req , secret, cookieName:isDevCookies});
+
+    if (!token) {
+        return NextResponse.json({ message: 'Unauthorized' },{status:401});
+    }
+
+    const { id, active } = await req.json();
+
+    try {
+        await db.user.update({
+            where: { id },
+            data: { active },
+        });
+
+        return NextResponse.json({ message: active ==true || active== 'true' ? "User Deactivated":"User restore" }, { status: 201});
+    } catch (error) {
+        console.error(error);
+        return NextResponse.json({ message: 'Failed to update.',data:[] }, { status: 500 });
+    }
+}

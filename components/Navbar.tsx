@@ -61,14 +61,14 @@ const Navbar = ({session}:any) => {
             {session?.user?.role=="admin" ? 
              <div className="hidden md:flex items-center gap-x-4">
                <Link href={'/control-panel'} className={cn(buttonVariants({ size: "sm"}),"bg-primary")} >Admin Dashboard</Link>
-               <div className="hidden md:flex"><ToggleTheme /></div>
+               {/* <div className="hidden md:flex"><ToggleTheme /></div> */}
              </div>
             : 
             <div className="hidden lg:flex items-center">
               <div className="flex items-center gap-x-4">
                 <div className={buttonVariants({ size: "sm", variant: "ghost" })}>{session?.user?.name}</div>
                 <Link href="/#pricing-plan" className={cn(buttonVariants({ size: "sm"}),"bg-primary")} >Buy Now</Link>
-                <div className="hidden lg:flex"><ToggleTheme /></div>
+                {/* <div className="hidden lg:flex"><ToggleTheme /></div> */}
               </div>
             </div>
             }
@@ -78,7 +78,7 @@ const Navbar = ({session}:any) => {
               <div className="flex items-center gap-x-4">
                 <Link href="/sign-in" className={buttonVariants({ size: "sm", variant: "ghost" })}>Sign In</Link>
                 <Link href="/sign-up" className={cn(buttonVariants({ size: "sm"}),"bg-primary")} >Sign-Up</Link>
-                <div className="hidden lg:flex"><ToggleTheme /></div>
+                {/* <div className="hidden lg:flex"><ToggleTheme /></div> */}
               </div>
             </div>}
           </FullWidthWrapper>

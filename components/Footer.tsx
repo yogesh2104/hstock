@@ -7,9 +7,9 @@ import { MapComponent, MapProvider } from "./map"
 
 const Footer = () => {
   return (
-    <footer className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 border-t border-gray-700/50 pt-16 pb-8 px-4 sm:px-6 lg:px-8 w-full">
+    <footer className="relative border-t pt-16 pb-8 px-4 sm:px-6 lg:px-8 w-full">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full shadow-lg"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-900/20 via-transparent to-transparent"></div>
+      <div className="absolute inset-0"></div>
 
       <div className="relative max-w-6xl mx-auto">
         <div className="grid gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
@@ -22,61 +22,61 @@ const Footer = () => {
                     height={50}
                     src={"/logo.png"}
                     alt="logo"
-                    className="rounded-xl w-12 h-12 mr-3 text-white transition-all duration-300"
+                    className="rounded-xl w-12 h-12 mr-3  transition-all duration-300"
                   />
                   <div className="absolute inset-0 rounded-xl blur-sm group-hover:blur-md transition-all duration-300"></div>
                 </div>
-                <span className="text-white group-hover:text-purple-300 transition-colors duration-300">
+                <span className=" group-hover:text-purple-300 transition-colors duration-300">
                   {siteConfig?.siteName || "Company"}
                 </span>
               </Link>
             </AnimationContainer>
 
             <div className="space-y-3">
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4">
-                <h3 className="text-lg font-semibold text-white mb-2 flex items-center">
+              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl">
+                <h3 className="text-lg font-semibold  mb-2 flex items-center">
                   <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
                   Business Hours
                 </h3>
-                <p className="text-gray-300 text-sm leading-relaxed">
+                <p className=" text-sm leading-relaxed">
                   Our calling hours are from 10:00 AM to 6:00 PM, Monday through Friday.
                 </p>
               </div>
             </div>
 
             <div className="space-y-3">
-              <h4 className="text-white font-medium text-sm">Follow Us</h4>
+              <h4 className="font-medium text-sm">Follow Us</h4>
               <div className="flex gap-3">
                 <Link
                   href="#"
                   className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-purple-400/50 transition-all duration-300 group"
                 >
-                  <MessageSquare className="w-5 h-5 text-gray-400 group-hover:text-purple-400 transition-colors" />
+                  <MessageSquare className="w-5 h-5 group-hover:text-purple-400 transition-colors" />
                 </Link>
                 <Link
                   href="#"
                   className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-blue-400/50 transition-all duration-300 group"
                 >
-                  <Twitter className="w-5 h-5 text-gray-400 group-hover:text-blue-400 transition-colors" />
+                  <Twitter className="w-5 h-5 group-hover:text-blue-400 transition-colors" />
                 </Link>
                 <Link
                   href="#"
                   className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-blue-600/50 transition-all duration-300 group"
                 >
-                  <Linkedin className="w-5 h-5 text-gray-400 group-hover:text-blue-600 transition-colors" />
+                  <Linkedin className="w-5 h-5 group-hover:text-blue-600 transition-colors" />
                 </Link>
                 <Link
                   href="#"
                   className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-red-500/50 transition-all duration-300 group"
                 >
-                  <Youtube className="w-5 h-5 text-gray-400 group-hover:text-red-500 transition-colors" />
+                  <Youtube className="w-5 h-5 group-hover:text-red-500 transition-colors" />
                 </Link>
               </div>
             </div>
           </div>
 
           <div className="space-y-6">
-            <h3 className="text-xl font-semibold text-white mb-6 relative">
+            <h3 className="text-xl font-semibold mb-6 relative">
               Quick Links
             </h3>
             <ul className="space-y-3">
@@ -85,7 +85,7 @@ const Footer = () => {
                   <Link
                     href={item.link}
                     scroll={true}
-                    className="text-gray-300 hover:text-white text-sm leading-6 transition-all duration-300 flex items-center group"
+                    className="text-sm leading-6 transition-all duration-300 flex items-center group"
                   >
                     <div className="w-1.5 h-1.5 bg-purple-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <span className="group-hover:translate-x-1 transition-transform duration-300">{item.name}</span>
@@ -96,7 +96,7 @@ const Footer = () => {
           </div>
 
           <div className="col-span-1 md:col-span-2 space-y-6">
-            <h3 className="text-xl font-semibold text-white mb-6 relative">
+            <h3 className="text-xl font-semibold mb-6 relative">
               Our Location
             </h3>
             <div className="relative">
@@ -113,17 +113,17 @@ const Footer = () => {
         <AnimationContainer delay={0.6} className="mt-12 border-t border-white/10 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center space-x-4">
-              <p className="text-sm text-gray-400">{siteConfig.footerText}</p>
+              <p className="text-sm">{siteConfig.footerText}</p>
             </div>
 
-            <div className="flex items-center space-x-6 text-xs text-gray-400">
-              <Link href="/privacy" className="hover:text-white transition-colors duration-300">
+            <div className="flex items-center space-x-6 text-xs">
+              <Link href="/privacy" className="transition-colors duration-300">
                 Privacy Policy
               </Link>
-              <Link href="/terms" className="hover:text-white transition-colors duration-300">
+              <Link href="/terms" className="transition-colors duration-300">
                 Terms of Service
               </Link>
-              <Link href="/cookies" className="hover:text-white transition-colors duration-300">
+              <Link href="/cookies" className="transition-colors duration-300">
                 Cookie Policy
               </Link>
             </div>

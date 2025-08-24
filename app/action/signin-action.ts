@@ -32,6 +32,10 @@ export const login = async (formData: FormData) => {
         return { error:"User Not Found" }
     }
 
+    if (!existingUser?.active) {
+        return { error: "Your account is inactive or deleted." };
+    }
+
     const isPasswordValid = await bcrypt.compareSync(
         formData.get("password") as string,
         existingUser.password as string

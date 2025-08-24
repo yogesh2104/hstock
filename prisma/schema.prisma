@@ -35,6 +35,7 @@ model User {
   state         String?
   pincode       Float?
   image         String?
+  active        Boolean @default(true)
   accounts      Account[]
   sessions      Session[]
   

@@ -435,106 +435,112 @@ export const siteConfig = {
     ],
     editingOptions :[
       { 
-        id: "auto-correction", 
-        name: "Auto Correction",
-        beforeImg: "/compare/auto-correction-before.jpg",
-        afterImg: "/compare/auto-correction-after.jpg"
+        id: "cinematic-effects", 
+        name: "Cinematic Effects",
+        beforeImg: "/Before-Aftre-Section/01 Cinematic/before.jpg",
+        afterImg: "/Before-Aftre-Section/01 Cinematic/After.jpg"
       },
       { 
-        id: "hue-saturation", 
-        name: "Hue Saturation",
-        beforeImg: "/compare/hue-saturation-before.jpg",
-        afterImg: "/compare/hue-saturation-after.jpg"
+        id: "clear-reset", 
+        name: "Clear Reset",
+        beforeImg: "/Before-Aftre-Section/02 Clear Reset/before.jpg",
+        afterImg: "/Before-Aftre-Section/02 Clear Reset/after.jpg"
       },
       { 
-        id: "blending-mode", 
-        name: "Blending mode",
-        beforeImg: "/compare/blending-mode-before.jpg",
-        afterImg: "/compare/blending-mode-after.jpg"
+        id: "frame-extract", 
+        name: "Frame Extract",
+        beforeImg: "/Before-Aftre-Section/03 Frame Extract/before.jpg",
+        afterImg: "/Before-Aftre-Section/03 Frame Extract/after.jpg"
       },
       { 
-        id: "brightness-contrast", 
-        name: "Brightness contrast",
-        beforeImg: "/compare/auto-correction-after.jpg",
-        afterImg: "/compare/auto-correction-before.jpg"
+        id: "red-cast-balance", 
+        name: "Red Cast",
+        beforeImg: "/Before-Aftre-Section/04 Red Cast/After.jpg",
+        afterImg: "/Before-Aftre-Section/04 Red Cast/Before.jpg"
       },
       { 
-        id: "change-color-light", 
-        name: "Change Color Light",
-        beforeImg: "/compare/auto-correction-after.jpg",
-        afterImg: "/compare/auto-correction-before.jpg"
+        id: "patch-fill", 
+        name: "Patch",
+        beforeImg: "/Before-Aftre-Section/05 Patch/After.jpg",
+        afterImg: "/Before-Aftre-Section/05 Patch/Before.jpg"
       },
       { 
-        id: "color-balance", 
-        name: "Color Balance",
-        beforeImg: "/compare/auto-correction-after.jpg",
-        afterImg: "/compare/auto-correction-before.jpg"
+        id: "tint-ffects", 
+        name: "Tint",
+        beforeImg: "/Before-Aftre-Section/06 Tint/After.jpg",
+        afterImg: "/Before-Aftre-Section/06 Tint/Before.jpg"
       },
       { 
-        id: "color-mixer-effect", 
-        name: "Color Mixer Effect",
-        beforeImg: "/compare/auto-correction-after.jpg",
-        afterImg: "/compare/auto-correction-before.jpg"
+        id: "creative", 
+        name: "Creative",
+        beforeImg: "/Before-Aftre-Section/07 Creative/After.jpg",
+        afterImg: "/Before-Aftre-Section/07 Creative/Before.jpg"
       },
       { 
         id: "fade", 
         name: "Fade",
-        beforeImg: "/compare/auto-correction-after.jpg",
-        afterImg: "/compare/auto-correction-before.jpg"
+        beforeImg: "/Before-Aftre-Section/07 Creative/After.jpg",
+        afterImg: "/Before-Aftre-Section/07 Creative/Before.jpg"
       },
       { 
-        id: "focus-tool", 
-        name: "Focus Tool",
-        beforeImg: "/compare/auto-correction-after.jpg",
-        afterImg: "/compare/auto-correction-before.jpg"
+        id: "jwellery", 
+        name: "Jwellery",
+        beforeImg: "/Before-Aftre-Section/08 Jwellery/After.jpg",
+        afterImg: "/Before-Aftre-Section/08 Jwellery/Before.jpg"
       },
       { 
-        id: "jewellery-highlight", 
-        name: "Jewellery Highlight",
-        beforeImg: "/compare/auto-correction-after.jpg",
-        afterImg: "/compare/auto-correction-before.jpg"
+        id: "dress", 
+        name: "Dress",
+        beforeImg: "/Before-Aftre-Section/09 Dress/After.jpg",
+        afterImg: "/Before-Aftre-Section/09 Dress/Before.jpg"
       },
       { 
-        id: "curve-level", 
-        name: "Curve & Level",
-        beforeImg: "/compare/auto-correction-after.jpg",
-        afterImg: "/compare/auto-correction-before.jpg"
+        id: "auto-retouch", 
+        name: "Auto Retouch",
+        beforeImg: "/Before-Aftre-Section/10 Auto Retouch/After.jpg",
+        afterImg: "/Before-Aftre-Section/10 Auto Retouch/Before.jpg"
       },
       { 
-        id: "pencil-effect", 
-        name: "Pencil Effect",
-        beforeImg: "/compare/auto-correction-after.jpg",
-        afterImg: "/compare/auto-correction-before.jpg"
+        id: "portrait-filter", 
+        name: "Portrait Filter",
+        beforeImg: "/Before-Aftre-Section/11 Portrait Filter/After.jpg",
+        afterImg: "/Before-Aftre-Section/11 Portrait Filter/Before.jpg"
       },
       { 
-        id: "shadow-highlight", 
-        name: "Shadow And Highlight",
-        beforeImg: "/compare/auto-correction-after.jpg",
-        afterImg: "/compare/auto-correction-before.jpg"
+        id: "group-filter", 
+        name: "Group Filter",
+        beforeImg: "/Before-Aftre-Section/12 Group Filter/After.jpg",
+        afterImg: "/Before-Aftre-Section/12 Group Filter/Before.jpg"
       },
       { 
-        id: "tint-temperature", 
-        name: "Tint And Temperature",
-        beforeImg: "/compare/auto-correction-after.jpg",
-        afterImg: "/compare/auto-correction-before.jpg"
+        id: "gradient", 
+        name: "Gradient",
+        beforeImg: "/Before-Aftre-Section/13 Gradient/After.jpg",
+        afterImg: "/Before-Aftre-Section/13 Gradient/Before.jpg"
       },
       { 
-        id: "toning", 
-        name: "Toning",
-        beforeImg: "/compare/auto-correction-after.jpg",
-        afterImg: "/compare/auto-correction-before.jpg"
+        id: "bokeh", 
+        name: "Bokeh",
+        beforeImg: "/Before-Aftre-Section/14 Bokeh/After.jpg",
+        afterImg: "/Before-Aftre-Section/14 Bokeh/Before.jpg"
       },
       { 
-        id: "transparency", 
-        name: "Transparency On Selection",
-        beforeImg: "/compare/auto-correction-after.jpg",
-        afterImg: "/compare/auto-correction-before.jpg"
+        id: "temp-create", 
+        name: "Temp Create",
+        beforeImg: "/Before-Aftre-Section/15 Temp Create/After.jpg",
+        afterImg: "/Before-Aftre-Section/15 Temp Create/Before.jpg"
       },
       { 
-        id: "water-color", 
-        name: "Water color Effect",
-        beforeImg: "/compare/auto-correction-after.jpg",
-        afterImg: "/compare/auto-correction-before.jpg"
+        id: "auto-cut", 
+        name: "Auto Cut",
+        beforeImg: "/Before-Aftre-Section/16 Aut Cut/After.jpg",
+        afterImg: "/Before-Aftre-Section/16 Aut Cut/Before.jpg"
+      },
+      { 
+        id: "watermark", 
+        name: "Watermark",
+        beforeImg: "/Before-Aftre-Section/17 Watermark/After.jpg",
+        afterImg: "/Before-Aftre-Section/17 Watermark/Before.jpg"
       },
     ],    
     footerLink:[

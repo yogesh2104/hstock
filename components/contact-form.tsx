@@ -53,13 +53,9 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 py-20 px-4">
+    <div className="min-h-screen py-20 px-4">
       <div className="max-w-7xl mx-auto">
-        {/* Header Section */}
         <div className="text-center mb-16">
-          <Badge variant="outline" className="mb-4 text-purple-600 border-purple-300 bg-purple-50">
-            Get In Touch
-          </Badge>
           <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
             Let's Start a
             <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
@@ -74,7 +70,7 @@ export default function ContactForm() {
         </div>
 
         <div className="grid lg:grid-cols-5 gap-12 items-start">
-          <div className="lg:col-span-2 space-y-8">
+          <div className="lg:col-span-2 space-y-8 md:mt-10">
             <div className="space-y-6">
               <div className="group">
                 <div className="flex items-start space-x-4 p-6 rounded-2xl bg-gray-50 border border-gray-200 hover:bg-gray-100 hover:shadow-md transition-all duration-300">

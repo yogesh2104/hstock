@@ -60,7 +60,7 @@ export const LinkEditBlock = React.forwardRef<HTMLDivElement, LinkEditorProps>(
           </div>
 
           <div className="flex justify-end space-x-2">
-            <Button variant={"custom"} type="button" onClick={handleSave}>
+            <Button type="button" onClick={handleSave}>
               Save
             </Button>
           </div>
