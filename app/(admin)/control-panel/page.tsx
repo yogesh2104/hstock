@@ -15,8 +15,8 @@ const callAllUserList=async(token:string)=>{
         headers: myHeaders,
     };
 
-    let response = await fetch(`${BASE_URL}${API_ENDPOINT.alluserList}`,requestOptions);
-    let data = response.json();
+    const response = await fetch(`${BASE_URL}${API_ENDPOINT.alluserList}`,requestOptions);
+    const data = response.json();
 
     return data
 }

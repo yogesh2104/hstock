@@ -13,8 +13,8 @@ const callHeroSectionList=async(token:string)=>{
         headers: myHeaders,
     };
 
-    let response = await fetch(`${BASE_URL}${API_ENDPOINT.heroSection}`,requestOptions);
-    let data = response.json();
+    const response = await fetch(`${BASE_URL}${API_ENDPOINT.heroSection}`,requestOptions);
+    const data = response.json();
 
     return data
 }

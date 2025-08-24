@@ -57,14 +57,14 @@ export default function ContactForm() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-            Let's Start a
+            Let&apos;s Start a
             <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
               {" "}
               Conversation
             </span>
           </h1>
           <p className="text-xl max-w-2xl mx-auto">
-            Have a project in mind? We'd love to hear about it. Send us a message and we'll get back to you within 24
+            Have a project in mind? We&apos;d love to hear about it. Send us a message and we&apos;ll get back to you within 24
             hours.
           </p>
         </div>
@@ -116,7 +116,7 @@ export default function ContactForm() {
                   <div>
                     <h3 className="text-black font-semibold mb-2">How Can We Help?</h3>
                     <p className="text-black leading-relaxed">
-                      Tell us about your project and we'll get back to you with a detailed proposal.
+                      Tell us about your project and we&apos;ll get back to you with a detailed proposal.
                     </p>
                   </div>
                 </div>
@@ -129,13 +129,13 @@ export default function ContactForm() {
               <CardContent className="p-8">
                 <div className="mb-8">
                   <h2 className="text-3xl font-bold  mb-3">Send us a Message</h2>
-                  <p className="">Fill out the form below and we'll get back to you soon.</p>
+                  <p className="">Fill out the form below and we&apos;ll get back to you soon.</p>
                 </div>
 
                 {status === "success" && (
                   <div className="mb-6 p-4 rounded-xl bg-green-500/20 border border-green-500/30 flex items-center space-x-3">
                     <CheckCircle className="w-5 h-5 text-green-400" />
-                    <p className="text-green-300 font-medium">Message sent successfully! We'll get back to you soon.</p>
+                    <p className="text-green-300 font-medium">Message sent successfully! We&apos;ll get back to you soon.</p>
                   </div>
                 )}
 
