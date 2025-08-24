@@ -72,7 +72,7 @@ export default function PricingPlans({ getPlan ,session}: adminPlanPros) {
                 <Card
                   key={plan.id}
                   className={cn(
-                    "relative flex flex-col border text-card-foreground min-w-[300px] flex-shrink-0",
+                    "relative flex flex-col border text-card-foreground min-w-[350px] flex-shrink-0",
                     plan.popular && "border-primary shadow-lg shadow-primary/20",
                   )}
                 >

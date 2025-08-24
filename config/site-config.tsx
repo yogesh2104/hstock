@@ -437,110 +437,110 @@ export const siteConfig = {
       { 
         id: "cinematic-effects", 
         name: "Cinematic Effects",
-        beforeImg: "/Before-Aftre-Section/01 Cinematic/before.jpg",
+        beforeImg: "/Before-Aftre-Section/01 Cinematic/Before.jpg",
         afterImg: "/Before-Aftre-Section/01 Cinematic/After.jpg"
       },
       { 
         id: "clear-reset", 
         name: "Clear Reset",
-        beforeImg: "/Before-Aftre-Section/02 Clear Reset/before.jpg",
-        afterImg: "/Before-Aftre-Section/02 Clear Reset/after.jpg"
+        beforeImg: "/Before-Aftre-Section/02 Clear Reset/Before.jpg",
+        afterImg: "/Before-Aftre-Section/02 Clear Reset/After.jpg"
       },
       { 
         id: "frame-extract", 
         name: "Frame Extract",
-        beforeImg: "/Before-Aftre-Section/03 Frame Extract/before.jpg",
-        afterImg: "/Before-Aftre-Section/03 Frame Extract/after.jpg"
+        beforeImg: "/Before-Aftre-Section/03 Frame Extract/Before.jpg",
+        afterImg: "/Before-Aftre-Section/03 Frame Extract/After.jpg"
       },
       { 
         id: "red-cast-balance", 
         name: "Red Cast",
-        beforeImg: "/Before-Aftre-Section/04 Red Cast/After.jpg",
-        afterImg: "/Before-Aftre-Section/04 Red Cast/Before.jpg"
+        beforeImg: "/Before-Aftre-Section/04 Red Cast/Before.jpg",
+        afterImg: "/Before-Aftre-Section/04 Red Cast/After.jpg"
       },
       { 
         id: "patch-fill", 
         name: "Patch",
-        beforeImg: "/Before-Aftre-Section/05 Patch/After.jpg",
-        afterImg: "/Before-Aftre-Section/05 Patch/Before.jpg"
+        beforeImg: "/Before-Aftre-Section/05 Patch/Before.jpg",
+        afterImg: "/Before-Aftre-Section/05 Patch/After.jpg"
       },
       { 
         id: "tint-ffects", 
         name: "Tint",
-        beforeImg: "/Before-Aftre-Section/06 Tint/After.jpg",
-        afterImg: "/Before-Aftre-Section/06 Tint/Before.jpg"
+        beforeImg: "/Before-Aftre-Section/06 Tint/Before.jpg",
+        afterImg: "/Before-Aftre-Section/06 Tint/After.jpg"
       },
       { 
         id: "creative", 
         name: "Creative",
-        beforeImg: "/Before-Aftre-Section/07 Creative/After.jpg",
-        afterImg: "/Before-Aftre-Section/07 Creative/Before.jpg"
+        beforeImg: "/Before-Aftre-Section/07 Creative/Before.jpg",
+        afterImg: "/Before-Aftre-Section/07 Creative/After.jpg"
       },
       { 
         id: "fade", 
         name: "Fade",
-        beforeImg: "/Before-Aftre-Section/07 Creative/After.jpg",
-        afterImg: "/Before-Aftre-Section/07 Creative/Before.jpg"
+        beforeImg: "/Before-Aftre-Section/07 Creative/Before.jpg",
+        afterImg: "/Before-Aftre-Section/07 Creative/After.jpg"
       },
       { 
         id: "jwellery", 
         name: "Jwellery",
-        beforeImg: "/Before-Aftre-Section/08 Jwellery/After.jpg",
-        afterImg: "/Before-Aftre-Section/08 Jwellery/Before.jpg"
+        beforeImg: "/Before-Aftre-Section/08 Jwellery/Before.jpg",
+        afterImg: "/Before-Aftre-Section/08 Jwellery/After.jpg"
       },
       { 
         id: "dress", 
         name: "Dress",
-        beforeImg: "/Before-Aftre-Section/09 Dress/After.jpg",
-        afterImg: "/Before-Aftre-Section/09 Dress/Before.jpg"
+        beforeImg: "/Before-Aftre-Section/09 Dress/Before.jpg",
+        afterImg: "/Before-Aftre-Section/09 Dress/After.jpg"
       },
       { 
         id: "auto-retouch", 
         name: "Auto Retouch",
-        beforeImg: "/Before-Aftre-Section/10 Auto Retouch/After.jpg",
-        afterImg: "/Before-Aftre-Section/10 Auto Retouch/Before.jpg"
+        beforeImg: "/Before-Aftre-Section/10 Auto Retouch/Before.jpg",
+        afterImg: "/Before-Aftre-Section/10 Auto Retouch/After.jpg"
       },
       { 
         id: "portrait-filter", 
         name: "Portrait Filter",
-        beforeImg: "/Before-Aftre-Section/11 Portrait Filter/After.jpg",
-        afterImg: "/Before-Aftre-Section/11 Portrait Filter/Before.jpg"
+        beforeImg: "/Before-Aftre-Section/11 Portrait Filter/Before.jpg",
+        afterImg: "/Before-Aftre-Section/11 Portrait Filter/After.jpg"
       },
       { 
         id: "group-filter", 
         name: "Group Filter",
-        beforeImg: "/Before-Aftre-Section/12 Group Filter/After.jpg",
-        afterImg: "/Before-Aftre-Section/12 Group Filter/Before.jpg"
+        beforeImg: "/Before-Aftre-Section/12 Group Filter/Before.jpg",
+        afterImg: "/Before-Aftre-Section/12 Group Filter/After.jpg"
       },
       { 
         id: "gradient", 
         name: "Gradient",
-        beforeImg: "/Before-Aftre-Section/13 Gradient/After.jpg",
-        afterImg: "/Before-Aftre-Section/13 Gradient/Before.jpg"
+        beforeImg: "/Before-Aftre-Section/13 Gradient/Before.jpg",
+        afterImg: "/Before-Aftre-Section/13 Gradient/After.jpg"
       },
       { 
         id: "bokeh", 
         name: "Bokeh",
-        beforeImg: "/Before-Aftre-Section/14 Bokeh/After.jpg",
-        afterImg: "/Before-Aftre-Section/14 Bokeh/Before.jpg"
+        beforeImg: "/Before-Aftre-Section/14 Bokeh/Before.jpg",
+        afterImg: "/Before-Aftre-Section/14 Bokeh/After.jpg"
       },
       { 
         id: "temp-create", 
         name: "Temp Create",
-        beforeImg: "/Before-Aftre-Section/15 Temp Create/After.jpg",
-        afterImg: "/Before-Aftre-Section/15 Temp Create/Before.jpg"
+        beforeImg: "/Before-Aftre-Section/15 Temp Create/Before.jpg",
+        afterImg: "/Before-Aftre-Section/15 Temp Create/After.jpg"
       },
       { 
         id: "auto-cut", 
         name: "Auto Cut",
-        beforeImg: "/Before-Aftre-Section/16 Aut Cut/After.jpg",
-        afterImg: "/Before-Aftre-Section/16 Aut Cut/Before.jpg"
+        beforeImg: "/Before-Aftre-Section/16 Aut Cut/Before.jpg",
+        afterImg: "/Before-Aftre-Section/16 Aut Cut/After.jpg"
       },
       { 
         id: "watermark", 
         name: "Watermark",
-        beforeImg: "/Before-Aftre-Section/17 Watermark/After.jpg",
-        afterImg: "/Before-Aftre-Section/17 Watermark/Before.jpg"
+        beforeImg: "/Before-Aftre-Section/17 Watermark/Before.jpg",
+        afterImg: "/Before-Aftre-Section/17 Watermark/After.jpg"
       },
     ],    
     footerLink:[
