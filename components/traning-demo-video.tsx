@@ -45,10 +45,15 @@ interface TrainingVideosProps {
 const TrainingVideos: React.FC<TrainingVideosProps> = ({ apiData }) => {
   return (
     <div className="py-6 px-4 md:container mx-auto md:rounded-xl mb-6">
-      <header className="text-center mb-6">
-        <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">Training Videos</h1>
-        <p className="text-white">Our Comprehensive Guide/Training</p>
-      </header>
+      {/* <div className="text-center">
+        <h1 className="text-4xl md:text-6xl font-bold mb-3 leading-tight">
+          Training Videos <br />
+          
+        </h1>
+        <p className="text-xl max-w-2xl mx-auto">
+          Our Comprehensive Guide/Training
+        </p>
+      </div> */}
 
       {apiData.map((section) => (
         <Fragment key={section.id}>

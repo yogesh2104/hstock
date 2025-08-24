@@ -36,6 +36,7 @@ model User {
   pincode       Float?
   image         String?
   active        Boolean @default(true)
+  buyId         String?
   accounts      Account[]
   sessions      Session[]
   

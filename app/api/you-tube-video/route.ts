@@ -3,38 +3,86 @@ import { db } from '@/db';
 import { getToken } from 'next-auth/jwt';
 import { isDevCookies } from '@/config/api-endpoint';
 
+// export async function POST(req: NextRequest) {
+//     const secret = process.env.AUTH_SECRET;
+//     const token = await getToken({ req , secret, cookieName: isDevCookies });
+
+//     if (!token) {
+//         return NextResponse.json({ message: 'Unauthorized' },{ status:401 });
+//     }
+//     const { title, videoData } = await req.json()
+
+//     try {
+
+//         await db.title.create({
+//             data:{
+//                 title,
+//                 video:{
+//                     create:videoData.map((vid:any)=>({
+//                         videoSrc: vid.videoSrc,
+//                         thumbnailSrc: vid.thumbnailSrc,
+//                         thumbnailAlt: vid.thumbnailAlt,
+//                         isActive: true,
+//                     }))
+//                 }
+//             },
+//             include:{
+//                 video:true
+//             }
+//         })
+
+//         return NextResponse.json({ message: 'YouTube Video Save Successfull'}, { status: 200 });
+//     } catch (error) {
+//         return NextResponse.json({ error: 'Failed To Upload Video', data:error }, { status: 500 });
+//     }
+// }
+
+// In your POST route, add branch:
+
+
 export async function POST(req: NextRequest) {
-    const secret = process.env.AUTH_SECRET;
-    const token = await getToken({ req , secret, cookieName: isDevCookies });
+  const secret = process.env.AUTH_SECRET;
+  const token = await getToken({ req, secret, cookieName: isDevCookies });
 
-    if (!token) {
-        return NextResponse.json({ message: 'Unauthorized' },{ status:401 });
+  if (!token) {
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+  }
+
+  const { title, videoData, titleId } = await req.json();
+
+  try {
+    if (titleId) {
+      await db.video.createMany({
+        data: videoData.map((vid: any) => ({
+          titleId,
+          videoSrc: vid.videoSrc,
+          thumbnailSrc: vid.thumbnailSrc,
+          thumbnailAlt: vid.thumbnailAlt,
+          isActive: true,
+        })),
+      });
+
+      return NextResponse.json({ message: "Videos Added Successfully" }, { status: 200 });
+    } else {
+      await db.title.create({
+        data: {
+          title,
+          video: {
+            create: videoData.map((vid: any) => ({
+              videoSrc: vid.videoSrc,
+              thumbnailSrc: vid.thumbnailSrc,
+              thumbnailAlt: vid.thumbnailAlt,
+              isActive: true,
+            })),
+          },
+        },
+      });
+
+      return NextResponse.json({ message: "YouTube Video Save Successful" }, { status: 200 });
     }
-    const { title, videoData } = await req.json()
-
-    try {
-
-        await db.title.create({
-            data:{
-                title,
-                video:{
-                    create:videoData.map((vid:any)=>({
-                        videoSrc: vid.videoSrc,
-                        thumbnailSrc: vid.thumbnailSrc,
-                        thumbnailAlt: vid.thumbnailAlt,
-                        isActive: true,
-                    }))
-                }
-            },
-            include:{
-                video:true
-            }
-        })
-
-        return NextResponse.json({ message: 'YouTube Video Save Successfull'}, { status: 200 });
-    } catch (error) {
-        return NextResponse.json({ error: 'Failed To Upload Video', data:error }, { status: 500 });
-    }
+  } catch (error) {
+    return NextResponse.json({ error: "Failed To Upload Video", data: error }, { status: 500 });
+  }
 }
 
 export async function PATCH(req:NextRequest){
@@ -63,13 +111,6 @@ export async function PATCH(req:NextRequest){
 }
 
 export async function GET(req:NextRequest){
-    const secret = process.env.AUTH_SECRET;
-    const token = await getToken({ req , secret, cookieName: isDevCookies });
-
-    if (!token) {
-        return NextResponse.json({ message: 'Unauthorized' },{ status:401 });
-    }
-
     const getFilterValueOrNot = req.nextUrl.searchParams.get('getFilter');
     try {
         

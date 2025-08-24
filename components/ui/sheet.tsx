@@ -6,7 +6,6 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { ToggleTheme } from "../ToggleTheme"
 
 const Sheet = SheetPrimitive.Root
 
@@ -67,8 +66,7 @@ const SheetContent = React.forwardRef<
     >
       <SheetPrimitive.Close className="absolute z-[99999] right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-0 focus:ring-ring focus:ring-offset-0 disabled:pointer-events-none data-[state=open]:bg-secondary">
         <div className="flex gap-3 items-center">
-          <X className="size-10" />
-          <ToggleTheme/>
+          <X className="size-6" />
         </div>
         <span className="sr-only">Close</span>
       </SheetPrimitive.Close>

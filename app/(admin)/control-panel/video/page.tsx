@@ -35,7 +35,7 @@ export default async function VideoPanel() {
     const getVideoList = await callAllVideoList(token)
 
     return (
-        <div className="container max-w-6xl mx-auto mt-10 ">
+        <div className="container max-w-6xl mx-auto ">
             <p>Video List</p>
             <VideoTable apiResponse={getVideoList?.data || []}/>
         </div>

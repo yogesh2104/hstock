@@ -1,14 +1,9 @@
 import TrainingVideos from "@/components/traning-demo-video";
 import { API_ENDPOINT, BASE_URL } from "@/config/api-endpoint";
-import { cookies } from 'next/headers'
 
-const callAllVideoList=async(token:string)=>{
-    const myHeaders = new Headers();
-    myHeaders.append("Authorization", `Bearer ${token}`)
-
+const callAllVideoList=async()=>{
     const requestOptions = {
         method: "GET",
-        headers: myHeaders,
     };
 
     let response = await fetch(`${BASE_URL}${API_ENDPOINT.youtubeVideo}/?getFilter=true`,requestOptions);
@@ -18,13 +13,7 @@ const callAllVideoList=async(token:string)=>{
 }
 
 export default async function DemoVideo() {
-    const cookieStore = await  cookies()
-    const env = process.env.NODE_ENV
-
-    const isDev = env == "development" ?  "authjs.session-token": "__Secure-authjs.session-token"
-    const token = cookieStore.get(isDev)?.value as string
-
-    const getVideoList = await callAllVideoList(token)
+    const getVideoList = await callAllVideoList()
 
     return <TrainingVideos apiData={getVideoList?.data || []}/>
 }

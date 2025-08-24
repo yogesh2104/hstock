@@ -8,7 +8,10 @@ import { cn } from "@/lib/utils"
 import {
   Dialog,
   DialogContent,
+  DialogHeader,
   DialogTitle,
+  DialogDescription,
+  DialogFooter,
 } from "@/components/ui/dialog"
 import { useState } from "react"
 import { Label } from "./ui/label"
@@ -35,6 +38,7 @@ type adminPlanPros = {
 
 export default function AdminPlans({getPlan}:adminPlanPros) {
   const [openInfo,setOpenInfo] = useState(false) 
+  const [openDelete, setOpenDelete] = useState(false)
   const [addPlanData,setAddPlanData] = useState({
     name:"",
     price:0,
@@ -121,6 +125,61 @@ export default function AdminPlans({getPlan}:adminPlanPros) {
                 plan.popular && "border-primary dark:shadow-lg"
               )}
             >
+
+              <Button
+                variant="destructive"
+                size="sm"
+                className="absolute top-2 right-2 z-[99999]"
+                onClick={() => setOpenDelete(true)}
+              >
+                Delete
+              </Button>
+
+              <Dialog open={openDelete} onOpenChange={setOpenDelete}>
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle>Delete Plan?</DialogTitle>
+                    <DialogDescription>
+                      Are you sure you want to delete <b>{plan.name}</b>?  
+                      This action cannot be undone.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <DialogFooter className="flex justify-end gap-2">
+                    <Button variant="outline" onClick={() => setOpenDelete(false)}>
+                      Cancel
+                    </Button>
+                    <Button
+                      variant="destructive"
+                      onClick={async () => {
+                        try {
+                          const response = await fetch(`${BASE_URL}${API_ENDPOINT.planApi}`, {
+                            method: "DELETE",
+                            headers: {
+                              "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify({ id: plan.id }),
+                          });
+
+                          const data = await response.json();
+
+                          if (response.ok) {
+                            toast.success("Plan deleted successfully");
+                            router.refresh();
+                          } else {
+                            toast.error(data.message || "Failed to delete plan");
+                          }
+                        } catch (error) {
+                          toast.error("Error deleting plan");
+                        } finally {
+                          setOpenDelete(false);
+                        }
+                      }}
+                    >
+                      Yes, Delete
+                    </Button>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
                 
               {plan.popular && (
                 <Badge
@@ -172,6 +231,8 @@ export default function AdminPlans({getPlan}:adminPlanPros) {
           ))}
         </div>
       </div>
+
+
 
       <Dialog open={openInfo} onOpenChange={setOpenInfo}>
         <DialogContent className="max-w-xl h-[36rem] overflow-auto">

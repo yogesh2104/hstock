@@ -7,6 +7,8 @@ import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { useState } from "react"
+import { Session } from "next-auth"
+import { useRouter } from "next/navigation"
 
 type adminPlanPros = {
   getPlan: {
@@ -18,7 +20,8 @@ type adminPlanPros = {
     buttonText: string
     popular: boolean
     features: string[]
-  }[]
+  }[],
+  session:Session | null
 }
 
 const planIcons = {
@@ -29,13 +32,22 @@ const planIcons = {
   Ultimate: Sparkles,
 }
 
-export default function PricingPlans({ getPlan }: adminPlanPros) {
+export default function PricingPlans({ getPlan ,session}: adminPlanPros) {
+  const router = useRouter()
   const [openInfo, setOpenInfo] = useState(false)
   const [selectedPlan, setSelectedPlan] = useState<any>(null)
 
   const handlePlanClick = (plan: any) => {
     setSelectedPlan(plan)
     setOpenInfo(true)
+  }
+
+  const handleBuynow=(id:string)=>{
+    if(session){
+      // logic for buy now
+    }else{
+      router.push(`/sign-up?buyid=${id}`);
+    }
   }
 
   return (
@@ -153,6 +165,7 @@ export default function PricingPlans({ getPlan }: adminPlanPros) {
             <Button
               className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white"
               size="lg"
+              onClick={()=>handleBuynow(selectedPlan?.name)}
             >
               Buy Now
             </Button>

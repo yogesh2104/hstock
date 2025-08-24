@@ -1,3 +1,4 @@
+import { auth } from "@/auth";
 import ContactForm from "@/components/contact-form";
 import FeaturesAndHighlight from "@/components/feature&highlight";
 import { HeroSection } from "@/components/hero-section";
@@ -30,6 +31,7 @@ const callAllPlanList = () => fetchData(`${BASE_URL}${API_ENDPOINT.planApi}`);
 const callHeroSectionList = () => fetchData(`${BASE_URL}${API_ENDPOINT.heroSection}?getFilter=true`);
 
 export default async function Home() {
+  const session = await auth();
   const [getPlan, getAPIData] = await Promise.all([
     callAllPlanList(),
     callHeroSectionList()
@@ -39,7 +41,7 @@ export default async function Home() {
     <>
       <WelcomeDialog/>
       {getAPIData?.data?.length !== 0 && <HeroSection getAPIData={getAPIData?.data || []} />}
-      {getPlan?.data && <PricingPlans getPlan={getPlan.data} />}
+      {getPlan?.data && <PricingPlans getPlan={getPlan.data} session={session} />}
       <FeaturesAndHighlight />
       <OurDesign />
       <ImageEditor />

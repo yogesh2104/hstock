@@ -61,14 +61,13 @@ export default function AdminEmailSection() {
   }
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto">
       <h1 className="text-2xl font-bold mb-4">HTML Editor</h1>
-      <div className="grid grid-cols-1 md:grid-cols-1 gap-4">
         <Card>
-          <CardHeader>
+          <CardHeader className="p-2">
             <CardTitle>Edit Content</CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="p-2">
             <MinimalTiptapEditor
               value={editingContent}
               throttleDelay={3000}
@@ -80,7 +79,7 @@ export default function AdminEmailSection() {
               editable={true}
               editorClassName="focus:outline-none px-5 py-4 h-full"
             />
-            <Button onClick={saveContent} className="mt-4" disabled={isSaving}>
+            <Button onClick={saveContent} className="w-72 mt-4" disabled={isSaving}>
               {isSaving ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -93,7 +92,7 @@ export default function AdminEmailSection() {
             {error && <p className="text-red-500 mt-2">{error}</p>}
           </CardContent>
         </Card>
-      </div>
+      
     </div>
   );
 }

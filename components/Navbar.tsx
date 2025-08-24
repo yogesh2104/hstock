@@ -9,7 +9,6 @@ import { LucideIcon } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useState } from 'react';
 import AnimationContainer, { FullWidthWrapper } from "./animation-container";
-import { ToggleTheme } from "./ToggleTheme"; 
  import MobileNavbar from "./MobileNavbar";
 import Image from "next/image";
 import { MainNav } from "./main.nav";

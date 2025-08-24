@@ -36,8 +36,8 @@ export default function ImageEditor() {
           </div>
         </div>
         
-        <div className="md:flex flex-row">
-          <div className="w-full md:w-64 rounded-lg border border-gray-200 shadow-xl p-4 overflow-y-auto">
+        <div className="md:flex flex-row p-2 md:p-0">
+          <div className="w-full md:w-64 rounded-lg border border-gray-200 mb-2 md:shadow-xl p-4 overflow-y-auto">
               <div className="space-y-2">
               {siteConfig.editingOptions.map((option) => (
                 <Button
@@ -57,7 +57,7 @@ export default function ImageEditor() {
           </div>
 
           <div className="flex-1 md:p-6 overflow-y-auto">
-            <h2 className="mb-6 text-2xl font-semibold text-black">{selectedOption.name}</h2>
+            <h2 className="mb-6 text-2xl font-semibold text-black px-2">{selectedOption.name}</h2>
             <div className="relative h-[350px] md:h-[580px] w-full overflow-hidden rounded-lg border">
               <Compare
                 firstImage={selectedOption.beforeImg}

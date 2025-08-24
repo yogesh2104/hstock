@@ -67,6 +67,37 @@ export async function PATCH(req:NextRequest){
     }
 }
 
+export async function DELETE(req: NextRequest) {
+    const secret = process.env.AUTH_SECRET;
+    const token = await getToken({ req, secret, cookieName: isDevCookies });
+
+    if (!token) {
+        return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
+
+    try {
+        const { id } = await req.json();
+
+        if (!id) {
+            return NextResponse.json({ message: "Plan ID is required" }, { status: 400 });
+        }
+
+        const planExists = await db.plan.findUnique({ where: { id } });
+
+        if (!planExists) {
+            return NextResponse.json({ message: "Plan not found" }, { status: 404 });
+        }
+
+        await db.plan.delete({ where: { id } });
+
+        return NextResponse.json({ message: "Plan deleted successfully" }, { status: 200 });
+    } catch (error) {
+        console.error("DELETE Error:", error);
+        return NextResponse.json({ message: "Failed to delete plan", error }, { status: 500 });
+    }
+}
+
+
 export async function GET(req:NextRequest){
     try {
         const findPlan = await db.plan.findMany({ 

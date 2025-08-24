@@ -16,8 +16,8 @@ export const signUp = async (formData: FormData) => {
         const state = formData.get("state") as string;
         const city = formData.get("city") as string;
         const pinCode = formData.get("pinCode") as string;
+        const byeID = formData.get("byeID") as string | null;
 
-        
         // Validate input
         if (!email || !password) {
             return { error: "All Fields Required!" };
@@ -50,7 +50,8 @@ export const signUp = async (formData: FormData) => {
                 country,
                 state,
                 city,
-                pincode:parseInt(pinCode)
+                pincode:parseInt(pinCode),
+                buyId:byeID
             }
         });
 

@@ -4,7 +4,7 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { signUp } from "@/app/action/singup-action";
 import { useState } from "react";
 import { User, Mail, Phone, MapPin, Lock, EyeOff, Eye, Building2 } from "lucide-react";
@@ -36,12 +36,19 @@ const SignUpForm = () => {
 
     const [showPassword, setShowPassword] = useState(false)
 
+    const searchParams = useSearchParams()
+    const byeID = searchParams.get('buyid')
+
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword)
     }
 
     async function handleSubmit(formData: FormData) {
         setIsLoading(true);
+
+        if (byeID) {
+            formData.append("byeID", byeID);
+        }
 
         const data = Object.fromEntries(formData.entries());
 

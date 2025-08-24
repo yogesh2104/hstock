@@ -20,7 +20,7 @@ export default async function HeroPanel() {
 
 
     return (
-        <div className="container max-w-6xl mx-auto mt-10">
+        <div className="container max-w-6xl mx-auto">
             <FeatureSectionsManager/>
         </div>
     )
