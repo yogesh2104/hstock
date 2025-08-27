@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import AdminPayment from "@/components/admin-payment";
+import PurchasesPage from "@/components/my-purchases";
 import { API_ENDPOINT, BASE_URL } from "@/config/api-endpoint";
 import { cookies } from 'next/headers'
 import { redirect } from "next/navigation";
@@ -33,6 +33,6 @@ export default async function ControlPanel() {
 
     const getData = await callmyPurchgases(token)
   return (
-    <AdminPayment purchases={getData || []} token={token}/>
+    <PurchasesPage data={getData || []}/>
 )
 }

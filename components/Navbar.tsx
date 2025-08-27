@@ -66,6 +66,7 @@ const Navbar = ({session}:any) => {
             <div className="hidden lg:flex items-center">
               <div className="flex items-center gap-x-4">
                 <div className={buttonVariants({ size: "sm", variant: "ghost" })}>{session?.user?.name}</div>
+                <Link href="/purchases" className={cn(buttonVariants({ size: "sm"}),"bg-primary")} >My purchases</Link>
                 <Link href="/#pricing-plan" className={cn(buttonVariants({ size: "sm"}),"bg-primary")} >Buy Now</Link>
                 {/* <div className="hidden lg:flex"><ToggleTheme /></div> */}
               </div>

@@ -122,7 +122,7 @@ export async function POST(req: NextRequest) {
                 where: { code: referralCode.toUpperCase() },
             });
 
-            if (!referral || !referral.isActive) {
+            if (!referral) {
                 return NextResponse.json({ message: 'Invalid or inactive referral code' }, { status: 400 });
             }
 

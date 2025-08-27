@@ -81,7 +81,36 @@ export async function PATCH(req: NextRequest) {
 }
 
 
-export async function GET(req:NextRequest){
+// export async function GET(req:NextRequest){
+//     const getFilterValueOrNot = req.nextUrl.searchParams.get('getFilter');
+    
+//     const filterCondition = getFilterValueOrNot
+//       ? { isShow: true }
+//       : undefined;
+
+//     try {
+//         const findHeroSection = await db.heroSection.findMany({
+//             where: filterCondition,
+//             include: {
+//                 image: true,
+//             },
+//         });
+
+//         if (!findHeroSection || findHeroSection.length === 0) {
+//             return NextResponse.json(
+//               { message: 'No Hero Section Data found', data: [] },
+//               { status: 404 }
+//             );
+//         }
+
+//         return NextResponse.json({ message : "Hero Section Link", data: findHeroSection} , { status : 200 })
+        
+//     } catch (error) {
+//         return NextResponse.json({ message: "Fail To Get Hero Section" , data : [] } , { status : 500 })
+//     }
+// }
+
+export async function GET(req: NextRequest) {
     const getFilterValueOrNot = req.nextUrl.searchParams.get('getFilter');
     
     const filterCondition = getFilterValueOrNot
@@ -96,17 +125,18 @@ export async function GET(req:NextRequest){
             },
         });
 
-        if (!findHeroSection || findHeroSection.length === 0) {
-            return NextResponse.json(
-              { message: 'No Hero Section Data found', data: [] },
-              { status: 404 }
-            );
-        }
-
-        return NextResponse.json({ message : "Hero Section Link", data: findHeroSection} , { status : 200 })
+        return NextResponse.json({ 
+            message: findHeroSection.length > 0 ? "Hero Section Data" : "No Hero Section Data found", 
+            data: findHeroSection 
+        }, { status: 200 });
         
     } catch (error) {
-        return NextResponse.json({ message: "Fail To Get Hero Section" , data : [] } , { status : 500 })
+        console.error("Error fetching hero section:", error);
+        return NextResponse.json({ 
+            message: "Failed to get Hero Section", 
+            error: error instanceof Error ? error.message : "Unknown error",
+            data: [] 
+        }, { status: 500 });
     }
 }
 

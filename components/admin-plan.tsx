@@ -129,7 +129,7 @@ export default function AdminPlans({getPlan}:adminPlanPros) {
               <Button
                 variant="destructive"
                 size="sm"
-                className="absolute top-2 right-2 z-[99999]"
+                className="absolute top-4 right-2"
                 onClick={() => setOpenDelete(true)}
               >
                 Delete

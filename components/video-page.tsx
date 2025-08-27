@@ -81,33 +81,6 @@ export default function VideoTable({apiResponse}:{apiResponse:any[]}) {
     setFormData({ ...formData, videoData: newVideoData })
   }
 
-  // const handleSubmit = async () => {
-  //   setLoader(true)
-  //   try {
-  //     const response = await fetch(`${BASE_URL}${API_ENDPOINT.youtubeVideo}`, {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify(formData),
-  //     })
-
-  //     const data = await response.json()
-  //     if (response.ok) {
-  //       router.refresh()
-  //       toast.success("Added Successfull")
-  //     } else {
-  //       router.refresh()
-  //       toast.error('Failed to submit data')
-  //     }
-  //   } catch (error) {
-  //       router.refresh()
-  //       toast.error('Error submitting data')
-  //   }finally{
-  //       setLoader(false)
-  //   }
-  // }
-
   const handleSubmit = async () => {
     setLoader(true);
     try {
@@ -163,6 +136,30 @@ export default function VideoTable({apiResponse}:{apiResponse:any[]}) {
     )
   }
 
+  const handleDeleteVideo = async (id: string) => {
+    if (!confirm("Are you sure you want to delete this video?")) return;
+
+    try {
+      const res = await fetch(`${BASE_URL}${API_ENDPOINT.youtubeVideo}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id }),
+      });
+
+      if (res.ok) {
+        toast.success("Video deleted successfully");
+        router.refresh()
+      } else {
+        router.refresh()
+        toast.error("Failed to delete video");
+      }
+    } catch (err) {
+      router.refresh()
+      toast.error("Error deleting video");
+    }
+  };
+
+
   return (
     <>
       <div className="container mx-auto py-10">
@@ -186,18 +183,17 @@ export default function VideoTable({apiResponse}:{apiResponse:any[]}) {
                   <TableHead>Title</TableHead>
                   <TableHead>Video Source</TableHead>
                   <TableHead className="text-center">Status</TableHead>
+                  <TableHead className="text-center">Delete</TableHead>
               </TableRow>
               </TableHeader>
               <TableBody>
               {videoData.video.filter(video => showInactive || video.isActive).map((video) => (
                   <TableRow key={video.id}>
                       <TableCell>
-                      <Image
-                          src={video.thumbnailSrc}
-                          alt={video.thumbnailAlt}
-                          width={100}
-                          height={56}
-                          className="rounded-md"
+                      <img 
+                        className='h-full w-full rounded-md' 
+                        src={video.thumbnailSrc}
+                        alt={video.thumbnailAlt}
                       />
                       </TableCell>
                       <TableCell className="font-medium">{video.thumbnailAlt}</TableCell>
@@ -212,12 +208,22 @@ export default function VideoTable({apiResponse}:{apiResponse:any[]}) {
                       </a>
                       </TableCell>
                       <TableCell className="text-center">
+                      <Button asChild variant={"outline"}>
                       {video.isActive ? (
                           <span className="text-green-500 cursor-pointer" onClick={()=>handleVideoActiveDeactive(video.id)}>Active</span>
                       ) : (
                           <span className="text-red-500 cursor-pointer" onClick={()=>handleVideoActiveDeactive(video.id)}>Inactive</span>
                       )}
+                      </Button>
                       </TableCell>
+                      <TableCell className="text-center">
+                      <Button
+                        variant={"destructive"}
+                        onClick={() => handleDeleteVideo(video.id)}
+                      >
+                        Delete
+                      </Button>
+                    </TableCell>
                   </TableRow>
                   ))}
               </TableBody>

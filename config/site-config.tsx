@@ -10,7 +10,17 @@ export const siteConfig = {
     phoneNumber:(<>
       <p className="text-gray-400">+91 0000 000 000</p>
       <p className="text-gray-400">+91 0000 000 000</p></>),
-    address:"full address",
+    address:"lorem asalskf akljgu4wie wengwo newwrgwi nwof guiewb ewjgjewgweiguwen wgegui",
+    ourLocation:(<>
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30143.74807002863!2d72.95785605!3d19.19657775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b8fcfe76fd59%3A0xcf367d85f7c50283!2sThane%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1756276300605!5m2!1sen!2sin" 
+      width="600" height="450" 
+      style={{border:0}} 
+      allowFullScreen
+      loading="lazy" 
+      referrerPolicy="no-referrer-when-downgrade"></iframe>
+    </>
+    ),
     NavigationItem:[
       {
         label:'Hero Section',

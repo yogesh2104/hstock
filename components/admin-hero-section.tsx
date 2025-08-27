@@ -133,8 +133,7 @@ export const AdminHeroSection=({getAPIData}:{getAPIData:adminProps[]})=>{
 
     return(
         <div>
-            <div className="flex gap-4 justify-end">
-                {/* <Button onClick={()=>setOpenButtonInfo(true)}>Enter Button Info</Button> */}
+            <div className="flex gap-4 justify-end mb-3">
                 <Button variant={"outline"} onClick={()=>setOpenLink(true)}>Enter Image Link</Button>
             </div>
 
@@ -143,13 +142,14 @@ export const AdminHeroSection=({getAPIData}:{getAPIData:adminProps[]})=>{
                     <Card key={item.id} className="mb-4">
                     <CardHeader className="flex flex-row items-center justify-between">
                         <CardTitle>Hero Section</CardTitle>
-                        <div className="flex space-x-2">
+                        <div className="flex items-center gap-2 space-x-2">
+                        {item?.isShow ? "Hide this slider":"Show this slider"}
                         <Button 
                             variant="outline" 
                             size="icon"
                             onClick={() => handleToggleShow(item.id,item.isShow)}
                         >
-                            {item.isShow ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                            {item.isShow ? <Eye className="h-4 w-4" />:<EyeOff className="h-4 w-4" />}
                         </Button>
                         <Button 
                             variant="destructive" 
@@ -168,7 +168,13 @@ export const AdminHeroSection=({getAPIData}:{getAPIData:adminProps[]})=>{
                         </div>
                         <Carousel className="w-full">
                         <CarouselContent>
-                            <ImagesSlider url={item.btnLink} className="h-[35rem]" images={item.image?.map((img)=>img.imageLink)}>
+                            <ImagesSlider 
+                            url={item.btnLink} 
+                            className="h-[35rem]" 
+                            images={item.image
+                                ?.map((img) => img.imageLink)
+                                .filter((link) => link && link.trim() !== "")}
+                            >
                             <div
                                 className="z-50 flex flex-col justify-end items-end"
                             >
@@ -241,7 +247,7 @@ export const AdminHeroSection=({getAPIData}:{getAPIData:adminProps[]})=>{
                         />
                     </div>
                     <div className="grid gap-2 py-1">
-                        <Label htmlFor="name" className="">Button Image Link</Label>
+                        <Label htmlFor="name" className="">Image Link</Label>
                             {heroImageLink?.map((btnLink,index)=>{
                                 return(
                                     <div key={index} className="flex items-center space-x-2 ">

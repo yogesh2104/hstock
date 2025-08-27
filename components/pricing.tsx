@@ -42,16 +42,17 @@ export default function PricingPlans({ getPlan ,session}: adminPlanPros) {
     setOpenInfo(true)
   }
 
-  const handleBuynow=(id:string)=>{
+  const handleBuynow=(name:string,id:string)=>{
     if(session){
+      router.push(`/payment/${id}`)
       // logic for buy now
     }else{
-      router.push(`/sign-up?buyid=${id}`);
+      router.push(`/sign-up?buyid=${name}`);
     }
   }
 
   return (
-    <section className="w-full py-16">
+    <section className="w-full py-16" id="pricing-plan">
       <div className="container mx-auto px-4 text-center">
         <div className="mx-auto px-4 py-8">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
@@ -165,7 +166,7 @@ export default function PricingPlans({ getPlan ,session}: adminPlanPros) {
             <Button
               className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white"
               size="lg"
-              onClick={()=>handleBuynow(selectedPlan?.name)}
+              onClick={()=>handleBuynow(selectedPlan?.name, selectedPlan?.id)}
             >
               Buy Now
             </Button>

@@ -3,7 +3,6 @@ import AnimationContainer from "./animation-container"
 import { MessageSquare, Youtube, Twitter, Linkedin } from "lucide-react"
 import Image from "next/image"
 import { siteConfig } from "@/config/site-config"
-import { MapComponent, MapProvider } from "./map"
 
 const Footer = () => {
   return (
@@ -101,9 +100,7 @@ const Footer = () => {
             </h3>
             <div className="relative">
               <div className="h-[240px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
-                <MapProvider>
-                  <MapComponent />
-                </MapProvider>
+                {siteConfig.ourLocation}
               </div>
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900/20 via-transparent to-transparent rounded-2xl pointer-events-none"></div>
             </div>

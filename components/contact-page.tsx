@@ -7,6 +7,7 @@ export type Player = {
     name: string
     email: string
     message: string
+    createdAt:string
   }
 
 export const columns: ColumnDef<Player>[] = [
@@ -22,6 +23,10 @@ export const columns: ColumnDef<Player>[] = [
       accessorKey:"message",
       header:"Message"
     },
+    {
+      accessorKey:"createdAt",
+      header:'Contact date'
+    }
   ]
 
   

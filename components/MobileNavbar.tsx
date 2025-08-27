@@ -23,12 +23,13 @@ const MobileNavbar = ({session}:any) => {
                     {session ? 
                         <div className="w-full py-2 mt-10">
                             <div className="flex items-center justify-evenly w-full space-x-2">
-                            {session?.user?.role=="admin" ?
+                            {session?.user?.role=="admin" &&
                                 <Link href={'/control-panel'} className={cn(buttonVariants({ size: "sm"}),"bg-primary w-full")} >Admin Dashboard</Link>
-                                :
-                                <div className={cn(buttonVariants({ size: "sm", variant: "outline"}),"w-full")}>{session?.user?.name}</div>
+                                // :
+                                // <div className={cn(buttonVariants({ size: "sm", variant: "outline"}),"w-full")}>{session?.user?.name}</div>
                             }
                             <MobileLink href={"/#pricing-plan"} onOpenChange={setIsOpen} className={cn(buttonVariants({ size: "sm"}),"bg-primary w-full")}>Buy Now</MobileLink>
+                            <MobileLink href={"/purchases"} onOpenChange={setIsOpen} className={cn(buttonVariants({ size: "sm"}),"bg-primary w-full")}>My purchases</MobileLink>
                             </div>
                         </div>
                         :

@@ -34,11 +34,9 @@ export default async function ControlPanel() {
 
     const getCode = await callAllReferralCodeList(token)
 
-
   return (
-    <div className="container max-w-6xl mx-auto mt-10 ">
-        <p>Refrral Code List.</p>
-        <ReferralDataTable data={getCode?.referral || []} />
+    <div className="container max-w-6xl mx-auto">
+        <ReferralDataTable data={getCode?.referrals || []} />
     </div>
     
 )}

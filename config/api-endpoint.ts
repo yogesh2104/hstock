@@ -10,6 +10,7 @@ export const API_ENDPOINT ={
     youtubeVideo:"/you-tube-video",
     createCode:"/referral/create",
     planApi:"/plan",
-    heroSection:"/hero-section/"
+    heroSection:"/hero-section/",
+    myPurchase:'/done'
     
 }

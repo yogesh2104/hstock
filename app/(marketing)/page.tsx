@@ -12,6 +12,10 @@ const fetchData = async (url: string) => {
   try {
     const response = await fetch(url);
     if (!response.ok) {
+      if (response.status === 404) {
+        console.warn(`API endpoint not found: ${url}`);
+        return null;
+      }
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const text = await response.text();

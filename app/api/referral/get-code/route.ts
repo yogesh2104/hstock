@@ -1,24 +1,56 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/db';
-import { getToken } from 'next-auth/jwt';
-import { isDevCookies } from '@/config/api-endpoint';
+// import { NextRequest, NextResponse } from 'next/server';
+// import { db } from '@/db';
+// import { getToken } from 'next-auth/jwt';
+// import { isDevCookies } from '@/config/api-endpoint';
+
+// export async function GET(req: NextRequest) {
+//     const secret = process.env.AUTH_SECRET;
+//     const token = await getToken({ req , secret, cookieName: isDevCookies });
+
+//     if (!token) {
+//         return NextResponse.json({ message: 'Unauthorized' },{ status:401 });
+//     }
+
+//     try {
+//         const referral = await db.referral.findMany();
+
+//         return NextResponse.json({ message: 'Referral code', referral: referral }, { status: 200 });
+//     } catch (error) {
+//         console.error(error);
+//         return NextResponse.json({ error: 'Failed to validate referral code' }, { status: 500 });
+//     }
+// }
+
+
+
+
+import { NextRequest, NextResponse } from "next/server";
+import { db } from "@/db";
+import { getToken } from "next-auth/jwt";
+import { isDevCookies } from "@/config/api-endpoint";
 
 export async function GET(req: NextRequest) {
-    const secret = process.env.AUTH_SECRET;
-    const token = await getToken({ req , secret, cookieName: isDevCookies });
+  const secret = process.env.AUTH_SECRET;
+  const token = await getToken({ req, secret, cookieName: isDevCookies });
 
-    if (!token) {
-        return NextResponse.json({ message: 'Unauthorized' },{ status:401 });
-    }
+  if (!token) return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
 
-    try {
-        const referral = await db.referral.findMany();
+  try {
+    // Auto-expire codes before returning
+    await db.referral.updateMany({
+      where: { expiresAt: { lt: new Date() }, status: "ACTIVE" },
+      data: { status: "EXPIRED" },
+    });
 
-        return NextResponse.json({ message: 'Referral code', referral: referral }, { status: 200 });
-    } catch (error) {
-        console.error(error);
-        return NextResponse.json({ error: 'Failed to validate referral code' }, { status: 500 });
-    }
+    const referrals = await db.referral.findMany({
+      orderBy: { createdAt: "desc" },
+    });
+
+    return NextResponse.json({ message: "Referral list", referrals }, { status: 200 });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ error: "Failed to fetch referrals" }, { status: 500 });
+  }
 }
 
 
@@ -50,7 +82,7 @@ export async function POST(req: NextRequest) {
                 code
             },
             data:{
-                isActive: !referral.isActive
+                status: referral.status == "ACTIVE" ? "INACTIVE":"ACTIVE"
             }
         })
 

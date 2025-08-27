@@ -70,7 +70,7 @@ export default function ContactForm() {
         </div>
 
         <div className="grid lg:grid-cols-5 gap-12 items-start">
-          <div className="lg:col-span-2 space-y-8 md:mt-10">
+          <div className="lg:col-span-2 space-y-8 ">
             <div className="space-y-6">
               <div className="group">
                 <div className="flex items-start space-x-4 p-6 rounded-2xl bg-gray-50 border border-gray-200 hover:bg-gray-100 hover:shadow-md transition-all duration-300">
@@ -134,8 +134,8 @@ export default function ContactForm() {
 
                 {status === "success" && (
                   <div className="mb-6 p-4 rounded-xl bg-green-500/20 border border-green-500/30 flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-400" />
-                    <p className="text-green-300 font-medium">Message sent successfully! We&apos;ll get back to you soon.</p>
+                    <CheckCircle className="w-5 h-5 text-primary" />
+                    <p className="text-primary font-medium">Message sent successfully! We&apos;ll get back to you soon.</p>
                   </div>
                 )}
 
