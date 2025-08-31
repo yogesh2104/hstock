@@ -28,7 +28,7 @@ export function NavUser({ session} : {session:Session | null}) {
   return (
     <SidebarMenu>
       <SidebarMenuItem>
-         <DropdownMenu>
+        <DropdownMenu>
           <DropdownMenuTrigger asChild className='focus:outline-none focus:ring-0 focus:ring-ring focus:ring-offset-0 focus-visible:ring-0'>
             <Button variant="ghost" className='w-full'>{session?.user?.email}</Button>
           </DropdownMenuTrigger>

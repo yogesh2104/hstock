@@ -44,7 +44,7 @@ export default async function Home() {
   return (
     <>
       <WelcomeDialog/>
-      {getAPIData?.data?.length !== 0 && <HeroSection getAPIData={getAPIData?.data || []} />}
+      {getAPIData?.data?.length !== 0 && <HeroSection getAPIData={getAPIData?.data || []} getPlan={getPlan.data} />}
       {getPlan?.data && <PricingPlans getPlan={getPlan.data} session={session} />}
       <FeaturesAndHighlight />
       <OurDesign />

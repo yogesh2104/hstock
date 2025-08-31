@@ -446,7 +446,7 @@ export const siteConfig = {
     editingOptions :[
       { 
         id: "cinematic-effects", 
-        name: "Cinematic Effects",
+        name: "Cinematic",
         beforeImg: "/Before-Aftre-Section/01 Cinematic/Before.jpg",
         afterImg: "/Before-Aftre-Section/01 Cinematic/After.jpg"
       },
@@ -486,12 +486,12 @@ export const siteConfig = {
         beforeImg: "/Before-Aftre-Section/07 Creative/Before.jpg",
         afterImg: "/Before-Aftre-Section/07 Creative/After.jpg"
       },
-      { 
-        id: "fade", 
-        name: "Fade",
-        beforeImg: "/Before-Aftre-Section/07 Creative/Before.jpg",
-        afterImg: "/Before-Aftre-Section/07 Creative/After.jpg"
-      },
+      // { 
+      //   id: "fade", 
+      //   name: "Fade",
+      //   beforeImg: "/Before-Aftre-Section/07 Creative/Before.jpg",
+      //   afterImg: "/Before-Aftre-Section/07 Creative/After.jpg"
+      // },
       { 
         id: "jwellery", 
         name: "Jwellery",
@@ -542,7 +542,7 @@ export const siteConfig = {
       },
       { 
         id: "auto-cut", 
-        name: "Auto Cut",
+        name: "Aut Cut",
         beforeImg: "/Before-Aftre-Section/16 Aut Cut/Before.jpg",
         afterImg: "/Before-Aftre-Section/16 Aut Cut/After.jpg"
       },

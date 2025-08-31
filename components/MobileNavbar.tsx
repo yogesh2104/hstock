@@ -8,6 +8,7 @@ import Link, { LinkProps } from "next/link";
 import React, { useState } from 'react';
 import { useRouter } from "next/navigation";
 import { useUseSideBar } from "@/hook/use-open-sidebar";
+import { logOut } from "@/app/action/signin-action";
 
 const MobileNavbar = ({session}:any) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -30,6 +31,7 @@ const MobileNavbar = ({session}:any) => {
                             }
                             <MobileLink href={"/#pricing-plan"} onOpenChange={setIsOpen} className={cn(buttonVariants({ size: "sm"}),"bg-primary w-full")}>Buy Now</MobileLink>
                             <MobileLink href={"/purchases"} onOpenChange={setIsOpen} className={cn(buttonVariants({ size: "sm"}),"bg-primary w-full")}>My purchases</MobileLink>
+                            <Button onClick={logOut}>Logout</Button>
                             </div>
                         </div>
                         :

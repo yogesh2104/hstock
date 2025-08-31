@@ -1,6 +1,4 @@
-"use client"
 import { ImagesSlider } from "./images-slider";
-import Link from "next/link";
 import { Button } from "./ui/button";
 
 interface adminProps{
@@ -17,16 +15,23 @@ interface adminProps{
       },
   ]
 }
+interface PlanProps{
+  id: string
+  name: string
+  logo: string
+  price: number
+  description: string
+  buttonText: string
+  popular: boolean
+  features: string[]
+}
 
-export function HeroSection({getAPIData}:{getAPIData:adminProps[]}) {
+export function HeroSection({getAPIData, getPlan }:{getAPIData:adminProps[],getPlan:PlanProps[] }) {
+  const isPopular = getPlan?.filter((plan)=>plan?.popular==true)
+  // @ts-ignore
+  const getUrl = `/payment/${isPopular[0]?.id}`
   return (
-    <ImagesSlider url={getAPIData[0]?.btnText || "#pricing-plan"} className="h-[30rem] md:h-[45rem]" images={getAPIData[0]?.image?.map((img)=>img?.imageLink)}>
-      {/* <div
-        className="z-50 flex flex-col justify-end items-end"
-      >
-      
-      
-      </div> */}
+    <ImagesSlider url={ getUrl || "#pricing-plan"} className="h-[30rem] md:h-[45rem]" images={getAPIData[0]?.image?.map((img)=>img?.imageLink)}>
       <Button>
         Buy Now
       </Button>

@@ -35,8 +35,51 @@ export default function ImageEditor() {
             </p>
           </div>
         </div>
+
+        <div className="grid grid-cols-1 xl:grid-cols-12 gap-6 max-w-6xl mx-auto">
+          <div className="xl:col-span-3">
+            <div className="w-full rounded-lg border  border-gray-200 mb-2 md:shadow-xl p-4 overflow-y-auto">
+              <div className="space-y-2">
+              {siteConfig.editingOptions.map((option) => (
+                <Button
+                    key={option.id}
+                    variant="link"
+                    size={"side"}
+                    className={cn(
+                        "w-full justify-start text-left font-normal",
+                        selectedOption.id === option.id && "text-black bg-gray-300"
+                    )}
+                    onClick={() => setSelectedOption(option)}
+                    >
+                    {option.name}
+                </Button>
+              ))}
+              </div>
+            </div>
+          </div>
+
+          <main className="xl:col-span-9">  
+            <div className="overflow-y-auto ">
+              <h2 className="mb-6 text-2xl font-semibold text-black px-2">{selectedOption.name}</h2>
+              <div className="relative h-[350px] md:h-[580px] w-full overflow-hidden rounded-lg border">
+                <Compare
+                  firstImage={selectedOption.beforeImg}
+                  secondImage={selectedOption.afterImg}
+                  firstImageClassName=" object-left-top"
+                  secondImageClassname=" object-left-top"
+                  className="h-[340px] md:h-[580px] w-full "
+                  slideMode={isMobile ? "hover":"drag"}
+                  autoplay
+                />
+                <div className="absolute bottom-4 z-50 left-4 rounded bg-black/50 px-2 py-1 text-sm text-white">Before</div>
+                <div className="absolute bottom-4 z-50 right-4 rounded bg-black/50 px-2 py-1 text-sm text-white">After</div>
+              </div>
+            </div>
+          </main>
+
+        </div>
         
-        <div className="md:flex flex-row p-2 md:p-0">
+        {/* <div className="md:flex flex-row p-2 md:p-0">
           <div className="w-full md:w-64 rounded-lg border border-gray-200 mb-2 md:shadow-xl p-4 overflow-y-auto">
               <div className="space-y-2">
               {siteConfig.editingOptions.map((option) => (
@@ -64,7 +107,7 @@ export default function ImageEditor() {
                 secondImage={selectedOption.afterImg}
                 firstImageClassName=" object-left-top"
                 secondImageClassname=" object-left-top"
-                className="h-[280px] md:h-[580px] w-full"
+                className="h-[230px] md:h-[580px] w-full"
                 slideMode={isMobile ? "hover":"drag"}
                 autoplay
               />
@@ -72,7 +115,7 @@ export default function ImageEditor() {
               <div className="absolute bottom-4 z-50 right-4 rounded bg-black/50 px-2 py-1 text-sm text-white">After</div>
             </div>
           </div>
-        </div>
+        </div> */}
       </section> 
     </div>
   )

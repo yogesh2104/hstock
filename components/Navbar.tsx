@@ -1,11 +1,11 @@
 "use client";
 
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { NavigationMenuLink } from "@/components/ui/navigation-menu";
 
 
 import { cn } from "@/lib/utils";
-import { LucideIcon } from "lucide-react";
+import { LogOut, LucideIcon } from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useState } from 'react';
 import AnimationContainer, { FullWidthWrapper } from "./animation-container";
@@ -13,7 +13,34 @@ import AnimationContainer, { FullWidthWrapper } from "./animation-container";
 import Image from "next/image";
 import { MainNav } from "./main.nav";
 import { siteConfig } from "@/config/site-config";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { logOut } from '@/app/action/signin-action';
+import { Avatar, AvatarFallback } from "./ui/avatar";
 
+function getInitials(fullName:string) {
+  if (typeof fullName !== 'string' || fullName.trim() === '') {
+    return ''
+  }
+
+  const nameParts = fullName.trim().split(' ');
+  let initials = '';
+
+  for (let i = 0; i < nameParts.length; i++) {
+    const part = nameParts[i];
+    if (part.length > 0) {
+      initials += part[0].toUpperCase();
+    }
+  }
+  return initials;
+}
 
 const Navbar = ({session}:any) => {
     const [scroll, setScroll] = useState(false);
@@ -65,9 +92,28 @@ const Navbar = ({session}:any) => {
             : 
             <div className="hidden lg:flex items-center">
               <div className="flex items-center gap-x-4">
-                <div className={buttonVariants({ size: "sm", variant: "ghost" })}>{session?.user?.name}</div>
-                <Link href="/purchases" className={cn(buttonVariants({ size: "sm"}),"bg-primary")} >My purchases</Link>
-                <Link href="/#pricing-plan" className={cn(buttonVariants({ size: "sm"}),"bg-primary")} >Buy Now</Link>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild className='focus:outline-none focus:ring-0 focus:ring-ring focus:ring-offset-0 focus-visible:ring-0'>
+                    <Avatar>
+                      <AvatarFallback className="font-bold">{getInitials(session?.user?.name)}</AvatarFallback>
+                    </Avatar>
+                    {/* <Button variant="ghost" className='w-full'>{session?.user?.name}</Button> */}
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-60" align="end">
+                    <DropdownMenuItem>
+                      <Link href="/purchases" className={" w-full"} >My purchases</Link>
+                    </DropdownMenuItem>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem>
+                      <LogOut />
+                      <span onClick={logOut}>Log out</span>
+                      <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+                <Link href="/#pricing-plan" className={cn(buttonVariants({ size: "sm"}),"w-full")} >Buy Now</Link>
+                {/* <div className={buttonVariants({ size: "sm", variant: "ghost" })}></div> */}
+                
                 {/* <div className="hidden lg:flex"><ToggleTheme /></div> */}
               </div>
             </div>
