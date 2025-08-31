@@ -49,6 +49,7 @@ const SignInForm = () => {
                             router.refresh();
                         } else {
                             toast.success("Login Successful");
+                            router.refresh()
                             router.push("/");
                         }
                     } catch (error: any) {

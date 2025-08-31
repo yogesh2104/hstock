@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { logOut } from '@/app/action/signin-action';
 import { Avatar, AvatarFallback } from "./ui/avatar";
+import { useRouter } from "next/navigation";
 
 function getInitials(fullName:string) {
   if (typeof fullName !== 'string' || fullName.trim() === '') {
@@ -43,6 +44,7 @@ function getInitials(fullName:string) {
 }
 
 const Navbar = ({session}:any) => {
+    const router = useRouter()
     const [scroll, setScroll] = useState(false);
 
     const handleScroll = () => {
@@ -106,7 +108,10 @@ const Navbar = ({session}:any) => {
                     <DropdownMenuSeparator />
                     <DropdownMenuItem>
                       <LogOut />
-                      <span onClick={logOut}>Log out</span>
+                      <span onClick={()=>{
+                        logOut()
+                        router.refresh()
+                      }}>Log out</span>
                       <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
                     </DropdownMenuItem>
                   </DropdownMenuContent>

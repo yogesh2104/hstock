@@ -136,7 +136,7 @@ export const ImagesSlider = ({
     )}
 
     <AnimatePresence custom={direction}>
-      <Link href={url}>
+      <a href={url}>
         {loadedImages.map((image, index) =>
           index === currentIndex ? (
             <motion.img
@@ -151,7 +151,7 @@ export const ImagesSlider = ({
             />
           ) : null
         )}
-      </Link>
+      </a>
     </AnimatePresence>
 
     <div className="absolute inset-0 z-50 flex justify-between items-center px-4 pointer-events-none">

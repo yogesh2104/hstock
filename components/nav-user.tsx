@@ -21,10 +21,11 @@ import {
 import { Button } from "./ui/button"
 import { Session } from "next-auth"
 import { logOut } from '@/app/action/signin-action';
+import { useRouter } from "next/navigation"
 
 
 export function NavUser({ session} : {session:Session | null}) {
-
+  const router = useRouter()
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -46,7 +47,10 @@ export function NavUser({ session} : {session:Session | null}) {
 
             <DropdownMenuItem>
               <LogOut />
-              <span onClick={logOut}>Log out</span>
+              <span onClick={()=>{
+                logOut()
+                router.refresh()
+              }}>Log out</span>
               <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
             </DropdownMenuItem>
           </DropdownMenuContent>

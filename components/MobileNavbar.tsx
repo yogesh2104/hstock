@@ -11,6 +11,7 @@ import { useUseSideBar } from "@/hook/use-open-sidebar";
 import { logOut } from "@/app/action/signin-action";
 
 const MobileNavbar = ({session}:any) => {
+    const router = useRouter();
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const { setIsOpen:setOpenSidebar } = useUseSideBar()
     return (
@@ -31,7 +32,10 @@ const MobileNavbar = ({session}:any) => {
                             }
                             <MobileLink href={"/#pricing-plan"} onOpenChange={setIsOpen} className={cn(buttonVariants({ size: "sm"}),"bg-primary w-full")}>Buy Now</MobileLink>
                             <MobileLink href={"/purchases"} onOpenChange={setIsOpen} className={cn(buttonVariants({ size: "sm"}),"bg-primary w-full")}>My purchases</MobileLink>
-                            <Button onClick={logOut}>Logout</Button>
+                            <Button onClick={()=>{
+                                logOut()
+                                router.refresh()
+                            }}>Logout</Button>
                             </div>
                         </div>
                         :
