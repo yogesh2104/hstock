@@ -3,11 +3,15 @@
 import { use, useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { toast } from "sonner"
 import { Check, Shield, Sparkles, Crown, Gift } from "lucide-react"
+import { useSession } from "next-auth/react";
+import Link from "next/link"
+import { cn } from "@/lib/utils"
+
 
 type PlanType = {
   id: string
@@ -19,6 +23,7 @@ type PlanType = {
 }
 
 export default function PaymentPage({ params }: { params: Promise<{ planId: string }> }) {
+  const { data: session, status } = useSession();
   const router = useRouter()
   const { planId } = use(params)
   const [plan, setPlan] = useState<PlanType | null>(null)
@@ -136,7 +141,7 @@ export default function PaymentPage({ params }: { params: Promise<{ planId: stri
   }
 
   return (
-    <div className="min-h-screen mb-10">
+    <div className="mb-10">
       <div className="container mx-auto py-8 px-4 max-w-4xl">
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium mb-4">
@@ -208,6 +213,7 @@ export default function PaymentPage({ params }: { params: Promise<{ planId: stri
             </CardHeader>
 
             <CardContent className="space-y-6">
+              {status != 'unauthenticated' ? <>
               <div className="bg-amber-50 border border-amber-200 rounded-xl p-4">
                 <Label className="text-sm font-medium text-amber-800 mb-2 block">Have a referral code?</Label>
                 <div className="flex gap-2">
@@ -250,9 +256,15 @@ export default function PaymentPage({ params }: { params: Promise<{ planId: stri
                   You'll find this in your payment app after completing the transaction
                 </p>
               </div>
+              </>:
+              <>
+              
+              </>
+              }
             </CardContent>
 
             <CardFooter className="pt-6">
+              {status != 'unauthenticated' ? <>
               <Button
                 onClick={handlePayment}
                 disabled={submitting || !txnId}
@@ -270,6 +282,15 @@ export default function PaymentPage({ params }: { params: Promise<{ planId: stri
                   </div>
                 )}
               </Button>
+              </>
+              :<>
+              <Link
+                href={'/sign-in'}
+                className={cn(buttonVariants({variant:"outline"}),"w-full h-12 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold rounded-xl shadow-lg transition-all duration-200 hover:text-white")}
+                >
+                Sign In 
+              </Link>
+              </>}
             </CardFooter>
           </Card>
         </div>

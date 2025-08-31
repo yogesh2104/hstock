@@ -4,12 +4,12 @@ import { getToken } from 'next-auth/jwt';
 import { isDevCookies } from '@/config/api-endpoint';
 
 export async function POST(req:NextRequest){
-    const secret = process.env.AUTH_SECRET;
-    const token = await getToken({ req , secret, cookieName: isDevCookies });
+    // const secret = process.env.AUTH_SECRET;
+    // const token = await getToken({ req , secret, cookieName: isDevCookies });
 
-    if (!token) {
-        return NextResponse.json({ message: 'Unauthorized' },{ status:401 });
-    }
+    // if (!token) {
+    //     return NextResponse.json({ message: 'Unauthorized' },{ status:401 });
+    // }
     try {
         const { id } = await req.json();
         if (!id) {

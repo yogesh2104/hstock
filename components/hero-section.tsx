@@ -1,5 +1,7 @@
+import Link from "next/link";
 import { ImagesSlider } from "./images-slider";
-import { Button } from "./ui/button";
+import { Button, buttonVariants } from "./ui/button";
+import { cn } from "@/lib/utils";
 
 interface adminProps{
   "id": string,
@@ -28,13 +30,13 @@ interface PlanProps{
 
 export function HeroSection({getAPIData, getPlan }:{getAPIData:adminProps[],getPlan:PlanProps[] }) {
   const isPopular = getPlan?.filter((plan)=>plan?.popular==true)
-  // @ts-ignore
+
   const getUrl = `/payment/${isPopular[0]?.id}`
   return (
     <ImagesSlider url={ getUrl || "#pricing-plan"} className="h-[30rem] md:h-[45rem]" images={getAPIData[0]?.image?.map((img)=>img?.imageLink)}>
-      <Button>
+      <Link href={getUrl || "#pricing-plan"} className={cn(buttonVariants({variant:"outline"}))}>
         Buy Now
-      </Button>
+      </Link>
     </ImagesSlider>
   );
 }
