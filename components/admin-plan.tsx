@@ -41,6 +41,7 @@ export default function AdminPlans({getPlan}:adminPlanPros) {
   const [openDelete, setOpenDelete] = useState(false)
   const [addPlanData,setAddPlanData] = useState({
     name:"",
+    logo:'',
     price:0,
     description:"",
     buttonText:"Buy Now",
@@ -90,6 +91,7 @@ export default function AdminPlans({getPlan}:adminPlanPros) {
         toast.success("Added Successfull")
         setAddPlanData({
             name:"",
+            logo:'',
             price:0,
             description:"",
             buttonText:"Buy Now",
@@ -235,7 +237,7 @@ export default function AdminPlans({getPlan}:adminPlanPros) {
 
 
       <Dialog open={openInfo} onOpenChange={setOpenInfo}>
-        <DialogContent className="max-w-xl h-[36rem] overflow-auto">
+        <DialogContent className="max-w-xl h-[42rem] overflow-auto">
             <DialogTitle>
                 <p className="text-2xl font-bold text-center">Add New Plan</p>
             </DialogTitle>
@@ -249,6 +251,17 @@ export default function AdminPlans({getPlan}:adminPlanPros) {
                     onChange={handleInputChange}
                     required
                     />
+                </div>
+                <div>
+                  <Label htmlFor="name">Plan Logo</Label>
+                  <Input
+                    id="logo"
+                    name="logo"
+                    placeholder="Default its show Original logo"
+                    value={addPlanData.logo}
+                    onChange={handleInputChange}
+                    required
+                  />
                 </div>
 
                 <div>

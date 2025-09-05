@@ -116,7 +116,7 @@ export default function ContactForm() {
                   <div>
                     <h3 className="text-black font-semibold mb-2">How Can We Help?</h3>
                     <p className="text-black leading-relaxed">
-                      Tell us about your project and we&apos;ll get back to you with a detailed proposal.
+                      {siteConfig?.howCanhelp}
                     </p>
                   </div>
                 </div>
@@ -125,7 +125,7 @@ export default function ContactForm() {
           </div>
 
           <div className="lg:col-span-3">
-            <Card className="bg-white border border-gray-200 shadow-xl">
+            <Card className="bg-white border border-gray-200 ">
               <CardContent className="p-8">
                 <div className="mb-8">
                   <h2 className="text-3xl font-bold  mb-3">Send us a Message</h2>

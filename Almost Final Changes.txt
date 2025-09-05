@@ -1,0 +1,74 @@
+* Before/After
+
+- Sequence Wise Buttons Complete Name (done)
+
+1.  Auto Retouch
+2.  Portrait Filter 
+3.  Group Filter 
+4.  Patch Fill -(Patch)
+5.  Red Cast Correction -( Red Cast)
+6.  Auto Cutting - ( Aut Cut)
+7.  Creative Effect - (Creative)
+8.  Jwellery Effect - ( Jwellery)
+9.  Dress Color - (Dress)
+10.  Gradient Effect - (Gradient)
+11.  Bokeh Effect - (Bokeh)
+12.  Cinematic Effect - (Cinematic)
+13.  Tint Effect -  (Tint)
+14.  Clear Reset Template - (Clear Reset)
+15.  Extract Template Elements - (Frame Extract)
+16.  Create PSD Template - (Temp Create)
+17.  Watermark
+
+
+* Admin Panel Add on things
+
+- Ky Hum Contact Wale Page ki details badal skte hai like = email, contact no etc (change from site-config)
+- Social Media Buttons ki Link Badal Sake(chnage form site-config) 
+
+*Buy Wale Section
+
+- 4 Software Ko List Karne Par Slider Na Lage (PC Par) Agar 4 Se Jyda Software List Kre To Slider Enable Ho(done)
+- logo Change Karne ka option hai Software ka ? Vo Chahiye Kyunki Har Software Ka Alag Logo Hai, Mereko pata nahi hai abhi(added logo)
+
+* Payment QR Wala Section 
+
+- Kya Hum Usme Ek UTR ID KA Example de Sakte hai As a img ? (UTR Wale Fill Box ke Side ME ek Question Mark Button dekr)(done)
+
+*Top Badge Introducing our 7 days trail at 199(done)
+
+*Welcome Banner(done)
+
+🎉 Welcome to HStock Album!
+🚀 Introducing – Your Complete Image & Albums Solution!
+🔥 Launching Offer: UPTO 50% OFF – Limited Time Only!
+
+*Contact Part
+
+Our Loaction(added)
+Hari Still Video Collection, Lodhi Market, Siyana Road, Bulandshahr (203001)
+
+Email Address(added)
+support@hstockalbums.com  
+
+Phone Number(added)
+8929003311
+8929006611
+
+How Can We Help?(added)
+Tell us about your project — we offer a powerful album designing software that makes creating albums and managing your photos faster and easier than ever before.
+
+*Footer (added)
+
+© 2025 HStock Albums All Rights Reserved
+Map - Search (Hari Still Video Collection) or 
+Link - https://maps.app.goo.gl/YNtgAXXEEmYQVnyr8
+
+*Cyber Crime Policy (added)
+
+Change Email, Numbers And Jurisdiction Address - Bulandshahr, Uttar Pradesh, India
+
+*Term & Conditions(added)
+
+ Change Number
+

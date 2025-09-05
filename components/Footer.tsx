@@ -1,6 +1,6 @@
 import Link from "next/link"
 import AnimationContainer from "./animation-container"
-import { MessageSquare, Youtube, Twitter, Linkedin } from "lucide-react"
+import { MessageSquare, Youtube, Twitter, Linkedin, Facebook, Instagram } from "lucide-react"
 import Image from "next/image"
 import { siteConfig } from "@/config/site-config"
 
@@ -46,26 +46,27 @@ const Footer = () => {
             <div className="space-y-3">
               <h4 className="font-medium text-sm">Follow Us</h4>
               <div className="flex gap-3">
+                
                 <Link
-                  href="#"
-                  className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-purple-400/50 transition-all duration-300 group"
-                >
-                  <MessageSquare className="w-5 h-5 group-hover:text-purple-400 transition-colors" />
-                </Link>
-                <Link
-                  href="#"
+                  href={siteConfig?.socialLink?.twitter}
                   className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-blue-400/50 transition-all duration-300 group"
                 >
                   <Twitter className="w-5 h-5 group-hover:text-blue-400 transition-colors" />
                 </Link>
                 <Link
-                  href="#"
+                  href={siteConfig?.socialLink?.facebook}
                   className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-blue-600/50 transition-all duration-300 group"
                 >
-                  <Linkedin className="w-5 h-5 group-hover:text-blue-600 transition-colors" />
+                  <Facebook className="w-5 h-5 group-hover:text-blue-600 transition-colors" />
                 </Link>
                 <Link
-                  href="#"
+                  href={siteConfig?.socialLink?.facebook}
+                  className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-blue-600/50 transition-all duration-300 group"
+                >
+                  <Instagram   className="w-5 h-5 group-hover:text-blue-600 transition-colors" />
+                </Link>
+                <Link
+                  href={siteConfig?.socialLink?.youtube}
                   className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-red-500/50 transition-all duration-300 group"
                 >
                   <Youtube className="w-5 h-5 group-hover:text-red-500 transition-colors" />

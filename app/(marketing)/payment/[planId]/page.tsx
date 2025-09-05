@@ -7,11 +7,16 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { toast } from "sonner"
-import { Check, Shield, Sparkles, Crown, Gift } from "lucide-react"
+import { Check, Shield, Sparkles, Crown, Gift,MessageCircleQuestion } from "lucide-react"
 import { useSession } from "next-auth/react";
 import Link from "next/link"
 import { cn } from "@/lib/utils"
 
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card"
 
 type PlanType = {
   id: string
@@ -245,9 +250,18 @@ export default function PaymentPage({ params }: { params: Promise<{ planId: stri
               </div>
 
               <div>
-                <Label className="text-sm font-medium text-gray-700 mb-2 block">Transaction ID *</Label>
+                <Label className="text-sm flex justify-between items-center font-medium text-gray-700 mb-2">Transaction ID(UTR) *
+                <HoverCard>
+                  <HoverCardTrigger asChild>
+                    <MessageCircleQuestion />
+                  </HoverCardTrigger>
+                  <HoverCardContent className="w-80 p-0">
+                    <img src="/UTR.png"/>
+                  </HoverCardContent>
+                </HoverCard>
+                </Label>
                 <Input
-                  placeholder="Enter your UPI transaction ID (e.g. UPI123456789)"
+                  placeholder="Enter your UTR transaction ID (e.g. UPI123456789)"
                   value={txnId}
                   onChange={(e) => setTxnId(e.target.value)}
                   className="h-12"

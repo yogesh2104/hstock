@@ -1,10 +1,12 @@
 "use client";
 
+import { siteConfig } from "@/config/site-config";
+
 const SocialMedia=()=>{
     return(
         <div className="fixed left-0 bottom-3 md:top-1/4 transform -translate-y-1 md:-translate-y-1 flex flex-col space-y-4 z-50">
             <a
-                href="https://facebook.com"
+                href={siteConfig?.socialLink?.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 bg-blue-600 text-white rounded-full shadow-md hover:bg-blue-700 transition"
@@ -20,7 +22,7 @@ const SocialMedia=()=>{
             </a>
 
             <a
-                href="https://twitter.com"
+                href={siteConfig?.socialLink?.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 bg-blue-400 text-white rounded-full shadow-md hover:bg-blue-500 transition"
@@ -36,7 +38,7 @@ const SocialMedia=()=>{
             </a>
 
             <a
-                href="https://instagram.com"
+                href={siteConfig?.socialLink?.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 bg-pink-500 text-white rounded-full shadow-md hover:bg-pink-600 transition"

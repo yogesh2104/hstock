@@ -1,5 +1,6 @@
 "use client"
 
+import { siteConfig } from "@/config/site-config"
 import { useUseSideBar } from "@/hook/use-open-sidebar"
 import { ChevronRight } from "lucide-react"
 import Link from "next/link"
@@ -16,7 +17,7 @@ const AnnouncementBar=()=>{
                 ✨{" "}
                 <span className="ml-1 font-[580] dark:font-[550]">
                     {" "}
-                    Introducing our 10 days free trail
+                    {siteConfig?.TopBadge}
                 </span>{" "}
                 <ChevronRight className="ml-1 mr-2 mt-[3px] hidden size-4 transition-all duration-300 ease-out group-hover:translate-x-1 lg:inline-block" />
                 </Link>

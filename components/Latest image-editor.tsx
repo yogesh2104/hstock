@@ -38,7 +38,7 @@ export default function ImageEditor() {
 
         <div className="grid grid-cols-1 xl:grid-cols-12 gap-6 max-w-6xl mx-auto">
           <div className="xl:col-span-3">
-            <div className="w-full rounded-lg border  border-gray-200 mb-2 md:shadow-xl p-4 overflow-y-auto">
+            <div className="w-full rounded-lg border  border-gray-200 mb-2  p-4 overflow-y-auto">
               <div className="space-y-2">
               {siteConfig.editingOptions.map((option) => (
                 <Button

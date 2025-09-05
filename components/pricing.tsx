@@ -44,11 +44,19 @@ export default function PricingPlans({ getPlan ,session}: adminPlanPros) {
 
   const handleBuynow=(name:string,id:string)=>{
     if(session){
-      router.push(`/payment/${id}`)
+      window.open(`/payment/${id}`)
       // logic for buy now
     }else{
       router.push(`/sign-up?buyid=${name}`);
     }
+  }
+
+  const orderedPlans = [...getPlan]
+  const popularIndex = orderedPlans.findIndex((p) => p.popular)
+
+  if (popularIndex !== -1) {
+    const [popularPlan] = orderedPlans.splice(popularIndex, 1) // remove popular
+    orderedPlans.splice(1, 0, popularPlan) // insert at index 1 (2nd place)
   }
 
   return (
@@ -66,63 +74,83 @@ export default function PricingPlans({ getPlan ,session}: adminPlanPros) {
           </p>
         </div>
         <div className="relative">
-          <div className="flex overflow-x-auto gap-6 pt-12 pb-4 lg:gap-8 scrollbar-hide">
-            {getPlan.map((plan) => {
-              const IconComponent = planIcons[plan.name as keyof typeof planIcons] || Star
-              return (
-                <Card
-                  key={plan.id}
-                  className={cn(
-                    "relative flex flex-col border text-card-foreground min-w-[350px] flex-shrink-0",
-                    plan.popular && "border-primary shadow-lg shadow-primary/20",
-                  )}
-                >
-                  {plan.popular && (
-                    <Badge
-                      className="absolute -top-3 right-3 rounded-sm px-3 py-1 text-xs font-semibold bg-destructive text-destructive-foreground"
-                      variant="destructive"
-                    >
-                      Most Popular
-                    </Badge>
-                  )}
-                  <CardHeader className="cursor-pointer" onClick={()=>setOpenInfo(true)}>
+          <div
+            className={cn(
+              "flex gap-4 pt-12 pb-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide",
+              "px-4",
+              "lg:px-0",
+            )}
+            style={{
+              scrollBehavior: "smooth",
+              WebkitOverflowScrolling: "touch",
+            }}
+          >
+            {orderedPlans.map((plan) => (
+              <Card
+                key={plan.id}
+                className={cn(
+                  "relative flex flex-col border text-card-foreground flex-shrink-0",
+                  "w-[calc(100vw-4rem)] snap-center",
+                  "lg:w-[calc(25%-0.75rem)] lg:min-w-[280px]",
+                  plan.popular && "border-primary shadow-primary/20",
+                )}
+              >
+                {plan.popular && (
+                  <Badge
+                    className="absolute -top-3 right-3 rounded-sm px-3 py-1 text-xs font-semibold bg-primary text-primary-foreground"
+                    variant="default"
+                  >
+                    Most Popular
+                  </Badge>
+                )}
+
+                <CardHeader className="cursor-pointer" onClick={() => setOpenInfo(true)}>
                   <h3 className="text-lg font-semibold">{plan.name}</h3>
-                  <img src={plan.logo} className="size-20 mx-auto"/>
+                  <img src={plan.logo || "/logo.png"} className="size-20 mx-auto" />
                 </CardHeader>
-                  <CardContent className="flex flex-col gap-4 flex-grow px-6 pb-6">
-                    <div className="flex items-baseline justify-center gap-1">
-                      <span className="text-4xl font-bold">₹</span>
-                      <span className="text-5xl font-bold tracking-tight">{plan.price.toLocaleString()}</span>
-                    </div>
-                    <p className="text-sm text-muted-foreground text-center">{plan.description}</p>
-                    <Button
-                      className={cn(
-                        "w-full mt-4",
-                        plan.popular && "bg-primary text-primary-foreground hover:bg-primary/90",
-                      )}
-                      onClick={() => handlePlanClick(plan)}
-                      variant={plan.popular ? "default" : "outline"}
-                    >
-                      {plan.buttonText}
-                    </Button>
-                  </CardContent>
-                  <CardFooter className="flex-1 flex flex-col items-start px-6 pb-6">
-                    <h4 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-3">
-                      Features
-                    </h4>
-                    <ul className="grid gap-2 text-left w-full">
-                      {plan.features.map((feature) => (
-                        <li key={feature} className="flex items-center gap-2 text-sm text-foreground">
-                          <Check className="h-4 w-4 text-green-500 flex-shrink-0" />
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </CardFooter>
-                </Card>
-              )
-            })}
+
+                <CardContent className="flex flex-col gap-4 px-6 pb-6">
+                  <div className="flex items-baseline justify-center gap-1">
+                    <span className="text-4xl font-bold">₹</span>
+                    <span className="text-5xl font-bold tracking-tight">{plan.price.toLocaleString()}</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground text-center">{plan.description}</p>
+                  <Button
+                    className={cn(
+                      "w-full mt-4",
+                      plan.popular && "bg-primary text-primary-foreground hover:bg-primary/90",
+                    )}
+                    onClick={() => handlePlanClick(plan)}
+                    variant={plan.popular ? "default" : "outline"}
+                  >
+                    {plan.buttonText}
+                  </Button>
+                </CardContent>
+
+                <CardFooter className="flex-1 flex flex-col items-baseline px-6 pb-6">
+                  <h4 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-3">Features</h4>
+                  <ul className="grid gap-2 text-left w-full">
+                    {plan.features.map((feature) => (
+                      <li key={feature} className="flex items-center gap-2 text-sm text-foreground">
+                        <Check className="h-4 w-4 text-green-500 flex-shrink-0" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </CardFooter>
+              </Card>
+            ))}
           </div>
+          {getPlan.length > 4 && (
+            <div className="hidden lg:flex justify-center mt-4 gap-2">
+              <div className="text-sm text-muted-foreground">Scroll to see more plans →</div>
+            </div>
+          )}
+          {getPlan.length > 1 && (
+            <div className="flex lg:hidden justify-center mt-4 gap-2">
+              <div className="text-sm text-muted-foreground">Swipe to see more plans</div>
+            </div>
+          )}
         </div>
       </div>
 

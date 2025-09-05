@@ -9,6 +9,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog"
 import { useEffect } from "react"
+import { siteConfig } from "@/config/site-config"
 
 export const WelcomeDialog = () => {
   const { isAlertOpen, checkAndShowAlert, closeAlert } = useDialogStore()
@@ -21,9 +22,9 @@ export const WelcomeDialog = () => {
     <Dialog open={isAlertOpen} onOpenChange={closeAlert}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Welcome to our website!</DialogTitle>
+          <DialogTitle>{siteConfig?.welcomeTitle}</DialogTitle>
           <DialogDescription>
-            This dialog will show once every day. We're glad to have you here!
+            {siteConfig?.welcomeMessage}
           </DialogDescription>
         </DialogHeader>
       </DialogContent>

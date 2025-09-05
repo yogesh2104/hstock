@@ -5,18 +5,17 @@ export const siteConfig = {
     siteName:"HStock Albums",
     siteLogo:"/images/logo.webp",
     siteDiscription:"hstock Team is an online platform I developed to host BATTLEGROUNDS MOBILE INDIA (BGMI) tournaments, offering both free and paid rooms for players to compete and connect. This side project allowed me to combine my passion for gaming with my front-end and back-end development skills while learning new technologies in the process.",
-    email:"privacy@hstock.com",
-    footerText:"© 1996-2024, hstockalbums.com, All Rights Reserved",
-    phoneNumber:(<>
-      <p className="text-gray-400">+91 0000 000 000</p>
-      <p className="text-gray-400">+91 0000 000 000</p></>),
-    address:"lorem asalskf akljgu4wie wengwo newwrgwi nwof guiewb ewjgjewgweiguwen wgegui",
+    email:"support@hstockalbums.com",
+    footerText:"© 2025 HStock Albums All Rights Reserved",
+    TopBadge:"Introducing our 7 days trail at 199", 
+    phoneNumber:(<><span>+91 8929003311</span>{", "}<span>+91 8929006611</span></>),
+    address:"Hari Still Video Collection, Lodhi Market, Siyana Road, Bulandshahr (203001) Uttar Pradesh, India",
+    howCanhelp:"Tell us about your project — we offer a powerful album designing software that makes creating albums and managing your photos faster and easier than ever before.",
     ourLocation:(<>
-    <iframe 
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30143.74807002863!2d72.95785605!3d19.19657775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b8fcfe76fd59%3A0xcf367d85f7c50283!2sThane%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1756276300605!5m2!1sen!2sin" 
-      width="600" height="450" 
-      style={{border:0}} 
-      allowFullScreen
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1754.568811821721!2d77.8789196!3d28.4151039!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ca107bf4c4f95%3A0xc063ed22e53dfd0f!2sHari%20Still%20Video%20Collection!5e0!3m2!1sen!2sin!4v1757071416583!5m2!1sen!2sin" 
+      width="600" height="450"
+      style={{border:0}}
+      allowFullScreen 
       loading="lazy" 
       referrerPolicy="no-referrer-when-downgrade"></iframe>
     </>
@@ -344,7 +343,7 @@ export const siteConfig = {
         },
         {
           id: 9,
-          text: "If you face any issues related to HStock, you can feel free to call us at +91XXXXXXXXXX, +91XXXXXXXXXX."
+          text: "If you face any issues related to HStock, you can feel free to call us at +91 8929003311, +91 8929006611"
         }
       ],
       hindi: [
@@ -382,7 +381,7 @@ export const siteConfig = {
         },
         {
           id: 9,
-          text: "अगर आपकों HStock से संबंधित कोई भी परेशानी का सामना करना पड़ें, तो आप हमें बेफिक्र कॉल कर सकते हैं - +91XXXXXXXXXX, +91XXXXXXXXXX।"
+          text: "अगर आपकों HStock से संबंधित कोई भी परेशानी का सामना करना पड़ें, तो आप हमें बेफिक्र कॉल कर सकते हैं - +91 8929003311, +91 8929006611"
         }
       ]
     },
@@ -445,66 +444,6 @@ export const siteConfig = {
     ],
     editingOptions :[
       { 
-        id: "cinematic-effects", 
-        name: "Cinematic",
-        beforeImg: "/Before-Aftre-Section/01 Cinematic/Before.jpg",
-        afterImg: "/Before-Aftre-Section/01 Cinematic/After.jpg"
-      },
-      { 
-        id: "clear-reset", 
-        name: "Clear Reset",
-        beforeImg: "/Before-Aftre-Section/02 Clear Reset/Before.jpg",
-        afterImg: "/Before-Aftre-Section/02 Clear Reset/After.jpg"
-      },
-      { 
-        id: "frame-extract", 
-        name: "Frame Extract",
-        beforeImg: "/Before-Aftre-Section/03 Frame Extract/Before.jpg",
-        afterImg: "/Before-Aftre-Section/03 Frame Extract/After.jpg"
-      },
-      { 
-        id: "red-cast-balance", 
-        name: "Red Cast",
-        beforeImg: "/Before-Aftre-Section/04 Red Cast/Before.jpg",
-        afterImg: "/Before-Aftre-Section/04 Red Cast/After.jpg"
-      },
-      { 
-        id: "patch-fill", 
-        name: "Patch",
-        beforeImg: "/Before-Aftre-Section/05 Patch/Before.jpg",
-        afterImg: "/Before-Aftre-Section/05 Patch/After.jpg"
-      },
-      { 
-        id: "tint-ffects", 
-        name: "Tint",
-        beforeImg: "/Before-Aftre-Section/06 Tint/Before.jpg",
-        afterImg: "/Before-Aftre-Section/06 Tint/After.jpg"
-      },
-      { 
-        id: "creative", 
-        name: "Creative",
-        beforeImg: "/Before-Aftre-Section/07 Creative/Before.jpg",
-        afterImg: "/Before-Aftre-Section/07 Creative/After.jpg"
-      },
-      // { 
-      //   id: "fade", 
-      //   name: "Fade",
-      //   beforeImg: "/Before-Aftre-Section/07 Creative/Before.jpg",
-      //   afterImg: "/Before-Aftre-Section/07 Creative/After.jpg"
-      // },
-      { 
-        id: "jwellery", 
-        name: "Jwellery",
-        beforeImg: "/Before-Aftre-Section/08 Jwellery/Before.jpg",
-        afterImg: "/Before-Aftre-Section/08 Jwellery/After.jpg"
-      },
-      { 
-        id: "dress", 
-        name: "Dress",
-        beforeImg: "/Before-Aftre-Section/09 Dress/Before.jpg",
-        afterImg: "/Before-Aftre-Section/09 Dress/After.jpg"
-      },
-      { 
         id: "auto-retouch", 
         name: "Auto Retouch",
         beforeImg: "/Before-Aftre-Section/10 Auto Retouch/Before.jpg",
@@ -523,28 +462,82 @@ export const siteConfig = {
         afterImg: "/Before-Aftre-Section/12 Group Filter/After.jpg"
       },
       { 
+        id: "patch-fill", 
+        name: "Patch Fill",
+        beforeImg: "/Before-Aftre-Section/05 Patch/Before.jpg",
+        afterImg: "/Before-Aftre-Section/05 Patch/After.jpg"
+      },
+      { 
+        id: "red-cast-balance", 
+        name: "Red Cast Correction",
+        beforeImg: "/Before-Aftre-Section/04 Red Cast/Before.jpg",
+        afterImg: "/Before-Aftre-Section/04 Red Cast/After.jpg"
+      },
+      { 
+        id: "auto-cut", 
+        name: "Auto Cutting",
+        beforeImg: "/Before-Aftre-Section/16 Aut Cut/Before.jpg",
+        afterImg: "/Before-Aftre-Section/16 Aut Cut/After.jpg"
+      },
+      { 
+        id: "creative", 
+        name: "Creative Effect",
+        beforeImg: "/Before-Aftre-Section/07 Creative/Before.jpg",
+        afterImg: "/Before-Aftre-Section/07 Creative/After.jpg"
+      },
+      { 
+        id: "jwellery", 
+        name: "Jwellery Effect",
+        beforeImg: "/Before-Aftre-Section/08 Jwellery/Before.jpg",
+        afterImg: "/Before-Aftre-Section/08 Jwellery/After.jpg"
+      },
+      { 
+        id: "dress", 
+        name: "Dress Color",
+        beforeImg: "/Before-Aftre-Section/09 Dress/Before.jpg",
+        afterImg: "/Before-Aftre-Section/09 Dress/After.jpg"
+      },
+      { 
         id: "gradient", 
-        name: "Gradient",
+        name: "Gradient Effect",
         beforeImg: "/Before-Aftre-Section/13 Gradient/Before.jpg",
         afterImg: "/Before-Aftre-Section/13 Gradient/After.jpg"
       },
       { 
         id: "bokeh", 
-        name: "Bokeh",
+        name: "Bokeh Effect",
         beforeImg: "/Before-Aftre-Section/14 Bokeh/Before.jpg",
         afterImg: "/Before-Aftre-Section/14 Bokeh/After.jpg"
       },
       { 
-        id: "temp-create", 
-        name: "Temp Create",
-        beforeImg: "/Before-Aftre-Section/15 Temp Create/Before.jpg",
-        afterImg: "/Before-Aftre-Section/15 Temp Create/After.jpg"
+        id: "cinematic-effects", 
+        name: "Cinematic Effect",
+        beforeImg: "/Before-Aftre-Section/01 Cinematic/Before.jpg",
+        afterImg: "/Before-Aftre-Section/01 Cinematic/After.jpg"
       },
       { 
-        id: "auto-cut", 
-        name: "Aut Cut",
-        beforeImg: "/Before-Aftre-Section/16 Aut Cut/Before.jpg",
-        afterImg: "/Before-Aftre-Section/16 Aut Cut/After.jpg"
+        id: "tint-ffects", 
+        name: "Tint Effect",
+        beforeImg: "/Before-Aftre-Section/06 Tint/Before.jpg",
+        afterImg: "/Before-Aftre-Section/06 Tint/After.jpg"
+      },
+      { 
+        id: "clear-reset", 
+        name: "Clear Reset Template",
+        beforeImg: "/Before-Aftre-Section/02 Clear Reset/Before.jpg",
+        afterImg: "/Before-Aftre-Section/02 Clear Reset/After.jpg"
+      },
+      { 
+        id: "frame-extract", 
+        name: "Extract Template Elements",
+        beforeImg: "/Before-Aftre-Section/03 Frame Extract/Before.jpg",
+        afterImg: "/Before-Aftre-Section/03 Frame Extract/After.jpg"
+      },
+      { 
+        id: "temp-create", 
+        name: "Create PSD Template",
+        beforeImg: "/Before-Aftre-Section/15 Temp Create/Before.jpg",
+        afterImg: "/Before-Aftre-Section/15 Temp Create/After.jpg"
       },
       { 
         id: "watermark", 
@@ -583,6 +576,30 @@ export const siteConfig = {
         link:"/cyber-crime-policy"
       }
     ],
+    socialLink:{
+      facebook:"#",
+      twitter:"#",
+      instagram:'#',
+      youtube:'#'
+    },
+    welcomeTitle:(<>
+      <h2 className="text-2xl font-bold text-start">
+        🎉 Welcome to <span className="text-indigo-600">HStock Album</span>!
+      </h2>
+    </>),
+    welcomeMessage : (
+      <div className="space-y-3 text-start">
+        <p className="text-base text-gray-700">
+          🚀 Your all-in-one solution for stunning{" "}
+          <span className="font-semibold text-indigo-600">images & albums</span>
+        </p>
+        <p className="text-lg font-bold text-red-600">
+          🔥 Launch Offer: <span className="text-yellow-500">UP TO 50% OFF</span>{" "}
+          <span className="text-gray-800">– Limited Time Only!</span>
+        </p>
+      </div>
+    )
+
 }
 
 export type SiteConfig = typeof siteConfig
