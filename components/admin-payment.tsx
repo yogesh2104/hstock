@@ -137,45 +137,45 @@ export default function AdminPayment({ purchases,emailTemp, token}: AdminPurchas
         setError(null);
   
         // 1️⃣ Register API
-        const formdata = new FormData();
-        formdata.append("apiKey", "iconic@infotech@PhotoAlbum");
-        formdata.append("act", "Register");
-        formdata.append("productId", purchase?.plan?.planID);
-        formdata.append("name", purchase?.user?.name);
-        formdata.append("email", purchase?.user?.email);
-        formdata.append(
-          "address",
-          `${purchase?.user?.address} ${purchase?.user?.address2 || ""} ${purchase?.user?.city} ${purchase?.user?.country} ${purchase?.user?.pincode}`
-        );
-        formdata.append("mobile", String(purchase?.user?.phoneNumber));
+        // const formdata = new FormData();
+        // formdata.append("apiKey", "iconic@infotech@PhotoAlbum");
+        // formdata.append("act", "Register");
+        // formdata.append("productId", purchase?.plan?.planID);
+        // formdata.append("name", purchase?.user?.name);
+        // formdata.append("email", purchase?.user?.email);
+        // formdata.append(
+        //   "address",
+        //   `${purchase?.user?.address} ${purchase?.user?.address2 || ""} ${purchase?.user?.city} ${purchase?.user?.country} ${purchase?.user?.pincode}`
+        // );
+        // formdata.append("mobile", String(purchase?.user?.phoneNumber));
   
-        const registerRes = await fetch("https://xpn.me/photoAlbum/api.php", {
-          method: "POST",
-          body: formdata,
-        });
+        // const registerRes = await fetch("https://xpn.me/photoAlbum/api.php", {
+        //   method: "POST",
+        //   body: formdata,
+        // });
   
-        const registerResult = await registerRes.text();
-        console.log("Register result:", registerResult);
+        // const registerResult = await registerRes.text();
+        // console.log("Register result:", registerResult);
   
         // 2️⃣ GetLicKey API (only if register success)
-        const formdata1 = new FormData();
-        formdata1.append("apiKey", "iconic@infotech@PhotoAlbum");
-        formdata1.append("email", purchase?.user?.email);
-        formdata1.append("expiry", selectedDate.toISOString());
-        formdata1.append("act", "GetLicKey");
-        formdata1.append("productId", purchase.plan.planID);
+        // const formdata1 = new FormData();
+        // formdata1.append("apiKey", "iconic@infotech@PhotoAlbum");
+        // formdata1.append("email", purchase?.user?.email);
+        // formdata1.append("expiry", selectedDate.toISOString());
+        // formdata1.append("act", "GetLicKey");
+        // formdata1.append("productId", purchase.plan.planID);
   
-        const licenseRes = await fetch("https://xpn.me/photoAlbum/api.php", {
-          method: "POST",
-          body: formdata1,
-        });
+        // const licenseRes = await fetch("https://xpn.me/photoAlbum/api.php", {
+        //   method: "POST",
+        //   body: formdata1,
+        // });
   
-        const licenseResult = await licenseRes.json();
-        const licKey =
-          licenseResult?.licenseKey ||
-          licenseResult?.key ||
-          JSON.stringify(licenseResult);
-        setLicenseKey(licKey);
+        // const licenseResult = await licenseRes.json();
+        // const licKey =
+        //   licenseResult?.licenseKey ||
+        //   licenseResult?.key ||
+        //   JSON.stringify(licenseResult);
+        // setLicenseKey(licKey);
   
         // 3️⃣ Call your Next.js API
         const backendRes = await fetch("/api/final-purchase", {
@@ -186,7 +186,7 @@ export default function AdminPayment({ purchases,emailTemp, token}: AdminPurchas
           },
           body: JSON.stringify({
             userId: purchase.user.id, 
-            licenseKey:licKey,
+            licenseKey:"licKey",
             emailTempId:emailID
           }),
         });
