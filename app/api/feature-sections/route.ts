@@ -25,7 +25,7 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   const secret = process.env.AUTH_SECRET;
-  const token = await getToken({ req: request, secret, cookieName: process.env.COOKIE_NAME });
+  const token = await getToken({ req: request, secret, cookieName: isDevCookies });
 
   if (!token) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
