@@ -11,11 +11,21 @@ export async function GET(req: NextRequest) {
 
   try {
     let payments;
+    let emailTemplate
+    // const emailTemplate = await db.featureSection.findMany({
+    //   select:{
+    //     emailTitle:true,
+    //     id:true
+    //   }
+    // })
 
     if (token.role === "admin") {
       payments = await db.payment.findMany({
         include: { user: true, plan: true },
         orderBy: { createdAt: "desc" },
+      });
+      emailTemplate = await db.featureSection.findMany({
+        select: { emailTitle: true, id: true },
       });
     } else {
       payments = await db.payment.findMany({
@@ -25,7 +35,7 @@ export async function GET(req: NextRequest) {
       });
     }
 
-    return NextResponse.json(payments, { status: 200 });
+    return NextResponse.json( { payments, emailTemplate }, { status: 200 });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ message: "Error fetching purchases" }, { status: 500 });

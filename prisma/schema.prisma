@@ -241,6 +241,7 @@ model Image {
 
 model FeatureSection {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
+  emailTitle  String
   htmlContent String
   content     Json
   createdAt  DateTime @default(now())

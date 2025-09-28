@@ -60,12 +60,18 @@ interface Purchase {
   }
 }
 
+interface EmailProps{
+  emailTitle: string, 
+  id: string
+}
+
 interface AdminPurchasesProps {
   purchases: Purchase[],
+  emailTemp:EmailProps[],
   token:string | null
 }
 
-export default function AdminPayment({ purchases, token}: AdminPurchasesProps) {
+export default function AdminPayment({ purchases,emailTemp, token}: AdminPurchasesProps) {
   const router = useRouter()
   const [purchaseStatuses, setPurchaseStatuses] = useState<Record<string, string>>(
     purchases.reduce(
@@ -77,9 +83,11 @@ export default function AdminPayment({ purchases, token}: AdminPurchasesProps) {
     ),
   )
 
+  const [selectedTemplates, setSelectedTemplates] = useState<Record<string, string>>({});
+
   const [licenseKey, setLicenseKey] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [dates, setDates] = useState<Record<string, Date | undefined>>({})
+  const [dates, setDates] = useState<Record<string | number, Date | undefined>>({})
   
   
   const handleDateChange = (id: string, newDate: Date | undefined) => {
@@ -119,7 +127,7 @@ export default function AdminPayment({ purchases, token}: AdminPurchasesProps) {
     }
   }
 
-  const handleSendDetails = async (purchase: Purchase) => {
+  const handleSendDetails = async (purchase: Purchase, emailID:string,) => {
     const selectedDate = dates[purchase.id]
     if (!selectedDate) {
       toast.error("Please select an expiry date before sending details.")
@@ -178,7 +186,8 @@ export default function AdminPayment({ purchases, token}: AdminPurchasesProps) {
           },
           body: JSON.stringify({
             userId: purchase.user.id, 
-            licenseKey:licKey
+            licenseKey:licKey,
+            emailTempId:emailID
           }),
         });
         if(backendRes.ok){
@@ -203,6 +212,13 @@ export default function AdminPayment({ purchases, token}: AdminPurchasesProps) {
         return "bg-gray-100 text-gray-800 border-gray-200"
     }
   }
+
+  const handleTemplateChange = (purchaseId: string, templateId: string) => {
+    setSelectedTemplates((prev) => ({
+      ...prev,
+      [purchaseId]: templateId,
+    }));
+  };
 
   return (
     <div className="p-6">
@@ -300,6 +316,23 @@ export default function AdminPayment({ purchases, token}: AdminPurchasesProps) {
                       </Select>
                     </div>
 
+                    <div>
+                      <label className="text-sm font-medium text-slate-700 mb-2 block">Select Email Template</label>
+                      <Select 
+                        value={selectedTemplates[purchase.id] || ""}
+                        onValueChange={(value) => handleTemplateChange(purchase.id, value)}
+                      >
+                        <SelectTrigger className="w-full">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {emailTemp?.map((e)=>(
+                            <SelectItem value={e.id}>{e?.emailTitle}</SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+
                     <div className="flex flex-col gap-3">
                       <Label htmlFor="date" className="px-1">
                         Select Expiry Date
@@ -326,7 +359,7 @@ export default function AdminPayment({ purchases, token}: AdminPurchasesProps) {
                     </div>
 
                     <Button
-                      onClick={() => handleSendDetails(purchase)}
+                      onClick={() => handleSendDetails(purchase, selectedTemplates[purchase.id])}
                       className="w-full bg-blue-600 hover:bg-blue-700 text-white"
                     >
                       <Send className="w-4 h-4 mr-2" />

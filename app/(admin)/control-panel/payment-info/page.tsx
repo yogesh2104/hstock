@@ -32,7 +32,8 @@ export default async function ControlPanel() {
     }
 
     const getData = await callmyPurchgases(token)
+    console.log("gettetete",getData)
   return (
-    <AdminPayment purchases={getData || []} token={token}/>
+    <AdminPayment purchases={getData?.payments || []} emailTemp={getData?.emailTemplate || []} token={token}/>
 )
 }

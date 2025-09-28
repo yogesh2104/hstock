@@ -22,13 +22,15 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ message: 'Unauthorized' },{status:401});
     }
 
-    const { userId, licenseKey,} = await req.json();
+    const { userId, licenseKey, emailTempId} = await req.json();
 
     try {
         const getUserData = await db.user.findUnique({
             where:{ id : userId as string}
         })
-        const getEmailConetent = await db.featureSection.findFirst()
+        const getEmailConetent = await db.featureSection.findUnique({
+            where:{id : emailTempId}
+        })
         const emailHtml = `
         ${getEmailConetent?.htmlContent}
 
