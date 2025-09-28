@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from 'react'
+// import '@/components/editor/style/index.css'
 import '@/components/editor/style/index.css'
 import type { Content, Editor } from '@tiptap/react'
 import type { UseMinimalTiptapEditorProps } from './hook/use-minimal-tiptap' 
@@ -79,7 +80,7 @@ export const MinimalTiptapEditor = React.forwardRef<HTMLDivElement, MinimalTipta
         name="editor"
         ref={ref}
         className={cn(
-          'flex h-auto min-h-80 w-full flex-col rounded-3xl border border-input',
+          'flex h-[592] min-h-80 w-full flex-col rounded-3xl border border-input pb-6',
           editor?.isEditable && "border-b-4",
           className
         )}

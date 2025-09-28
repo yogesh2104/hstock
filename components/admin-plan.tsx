@@ -27,6 +27,7 @@ type adminPlanPros = {
   getPlan: {
     id: string,
     name: string,
+    planID:string,
     logo: string,
     price: Number,
     description: string,
@@ -42,6 +43,7 @@ export default function AdminPlans({getPlan}:adminPlanPros) {
   const [addPlanData,setAddPlanData] = useState({
     name:"",
     logo:'',
+    planID:'',
     price:0,
     description:"",
     buttonText:"Buy Now",
@@ -92,6 +94,7 @@ export default function AdminPlans({getPlan}:adminPlanPros) {
         setAddPlanData({
             name:"",
             logo:'',
+            planID:'',
             price:0,
             description:"",
             buttonText:"Buy Now",
@@ -237,7 +240,7 @@ export default function AdminPlans({getPlan}:adminPlanPros) {
 
 
       <Dialog open={openInfo} onOpenChange={setOpenInfo}>
-        <DialogContent className="max-w-xl h-[42rem] overflow-auto">
+        <DialogContent className="max-w-xl h-[45rem] overflow-auto">
             <DialogTitle>
                 <p className="text-2xl font-bold text-center">Add New Plan</p>
             </DialogTitle>
@@ -250,6 +253,17 @@ export default function AdminPlans({getPlan}:adminPlanPros) {
                     value={addPlanData.name}
                     onChange={handleInputChange}
                     required
+                    />
+                </div>
+                <div>
+                    <Label htmlFor="planID">Plan ID</Label>
+                    <Input
+                      id="planID"
+                      name="planID"
+                      value={addPlanData.planID}
+                      onChange={handleInputChange}
+                      placeholder="e.g: PSA01"
+                      required
                     />
                 </div>
                 <div>

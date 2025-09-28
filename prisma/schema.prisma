@@ -84,7 +84,6 @@ model License {
   expiryDate    DateTime
   status        String      @default("active") // active, expired, revoked
   message       String?
-  links         String[]
   transaction   Transaction?
 
   createdAt     DateTime @default(now())
@@ -196,6 +195,7 @@ model Video {
 model Plan {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
   name         String
+  planID       String
   logo         String   @default("/logo.png")
   price        Int
   description  String   
@@ -242,6 +242,7 @@ model Image {
 model FeatureSection {
   id         String @id @default(auto()) @map("_id") @db.ObjectId
   htmlContent String
+  content     Json
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 }

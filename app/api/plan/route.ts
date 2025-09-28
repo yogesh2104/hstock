@@ -10,7 +10,7 @@ export async function POST(req: NextRequest) {
     if (!token) {
         return NextResponse.json({ message: 'Unauthorized' },{ status:401 });
     }
-    const { name,logo,price, description, buttonText, popular, features } = await req.json()
+    const { name,logo,price, description, buttonText, popular, features, planID } = await req.json()
 
     const getPlan = await db.plan.findMany({ 
        orderBy:{
@@ -23,6 +23,7 @@ export async function POST(req: NextRequest) {
             data:{
                 name,
                 logo,
+                planID,
                 price:Number(price),
                 description,
                 buttonText,

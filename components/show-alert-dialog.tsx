@@ -20,7 +20,7 @@ export const WelcomeDialog = () => {
 
   return (
     <Dialog open={isAlertOpen} onOpenChange={closeAlert}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[525px]">
         <DialogHeader>
           <DialogTitle>{siteConfig?.welcomeTitle}</DialogTitle>
           <DialogDescription>
