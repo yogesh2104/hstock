@@ -5,10 +5,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Send, User, CreditCard, Calendar, Hash, ChevronDownIcon } from "lucide-react"
+import { Send, User, CreditCard, Calendar, Hash, ChevronDownIcon, Loader2 } from "lucide-react"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
-import { BASE_URL } from "@/config/api-endpoint"
+import { BASE_URL, phpbackendURL } from "@/config/api-endpoint"
 
 import { Calendar as ComCalendar } from "@/components/ui/calendar"
 import { Label } from "./ui/label"
@@ -84,6 +84,7 @@ export default function AdminPayment({ purchases,emailTemp, token}: AdminPurchas
   )
 
   const [selectedTemplates, setSelectedTemplates] = useState<Record<string, string>>({});
+  const [selectedLoader, setSelectedLoader] = useState<Record<string, boolean>>({});
 
   const [licenseKey, setLicenseKey] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -129,73 +130,88 @@ export default function AdminPayment({ purchases,emailTemp, token}: AdminPurchas
 
   const handleSendDetails = async (purchase: Purchase, emailID:string,) => {
     const selectedDate = dates[purchase.id]
+    const dateObj = new Date(selectedDate || new Date());
+    const formattedDate = dateObj.toISOString().split('T')[0];
+
+    console.log("formattedDate",formattedDate)
     if (!selectedDate) {
       toast.error("Please select an expiry date before sending details.")
       return
     }else{
       try {
         setError(null);
+        setSelectedLoader((pre)=>({
+          ...pre,
+          [purchase.id]: true,
+        }))
   
         // 1️⃣ Register API
-        // const formdata = new FormData();
-        // formdata.append("apiKey", "iconic@infotech@PhotoAlbum");
-        // formdata.append("act", "Register");
-        // formdata.append("productId", purchase?.plan?.planID);
-        // formdata.append("name", purchase?.user?.name);
-        // formdata.append("email", purchase?.user?.email);
-        // formdata.append(
-        //   "address",
-        //   `${purchase?.user?.address} ${purchase?.user?.address2 || ""} ${purchase?.user?.city} ${purchase?.user?.country} ${purchase?.user?.pincode}`
-        // );
-        // formdata.append("mobile", String(purchase?.user?.phoneNumber));
+        const formdata = new FormData();
+        formdata.append("apiKey", "iconic@infotech@PhotoAlbum");
+        formdata.append("act", "Register");
+        formdata.append("productId", purchase?.plan?.planID);
+        formdata.append("name", purchase?.user?.name);
+        formdata.append("email", purchase?.user?.email);
+        formdata.append(
+          "address",
+          `${purchase?.user?.address} ${purchase?.user?.address2 || ""} ${purchase?.user?.city} ${purchase?.user?.country} ${purchase?.user?.pincode}`
+        );
+        formdata.append("mobile", String(purchase?.user?.phoneNumber));
   
-        // const registerRes = await fetch("https://xpn.me/photoAlbum/api.php", {
-        //   method: "POST",
-        //   body: formdata,
-        // });
-  
-        // const registerResult = await registerRes.text();
-        // console.log("Register result:", registerResult);
-  
-        // 2️⃣ GetLicKey API (only if register success)
-        // const formdata1 = new FormData();
-        // formdata1.append("apiKey", "iconic@infotech@PhotoAlbum");
-        // formdata1.append("email", purchase?.user?.email);
-        // formdata1.append("expiry", selectedDate.toISOString());
-        // formdata1.append("act", "GetLicKey");
-        // formdata1.append("productId", purchase.plan.planID);
-  
-        // const licenseRes = await fetch("https://xpn.me/photoAlbum/api.php", {
-        //   method: "POST",
-        //   body: formdata1,
-        // });
-  
-        // const licenseResult = await licenseRes.json();
-        // const licKey =
-        //   licenseResult?.licenseKey ||
-        //   licenseResult?.key ||
-        //   JSON.stringify(licenseResult);
-        // setLicenseKey(licKey);
-  
-        // 3️⃣ Call your Next.js API
-        const backendRes = await fetch("/api/final-purchase", {
+        const registerRes = await fetch(`${phpbackendURL}/api.php`, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}` 
-          },
-          body: JSON.stringify({
-            userId: purchase.user.id, 
-            licenseKey:"licKey",
-            emailTempId:emailID
-          }),
+          body: formdata,
         });
-        if(backendRes.ok){
-          toast.success("Email Send.....")
+
+        if(registerRes.ok){
+          const registerResult = await registerRes.text();
+  
+          // 2️⃣ GetLicKey API (only if register success)
+          const formdata1 = new FormData();
+          formdata1.append("apiKey", "iconic@infotech@PhotoAlbum");
+          formdata1.append("email", purchase?.user?.email);
+          formdata1.append("expiry", formattedDate);
+          formdata1.append("act", "GetLicKey");
+          formdata1.append("productId", purchase.plan.planID);
+    
+          const licenseRes = await fetch(`${phpbackendURL}/api.php`, {
+            method: "POST",
+            body: formdata1,
+          });
+          if(licenseRes.ok){
+            const licenseResult = await licenseRes.text();
+            setLicenseKey(licenseResult);
+      
+            // 3️⃣ Call your Next.js API
+            const backendRes = await fetch("/api/final-purchase", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}` 
+              },
+              body: JSON.stringify({
+                userId: purchase.user.id, 
+                licenseKey:licenseResult,
+                emailTempId:emailID
+              }),
+            });
+            if(backendRes.ok){
+              toast.success("Email Send.....")
+            }
+          }else{
+            toast.error("Error while sending details....")
+          }
+        }else{
+          toast.error("Error while sending details....")
         }
       } catch (err: any) {
         console.error("Error:", err);
         setError(err.message || "Something went wrong");
+      }finally{
+        setSelectedLoader((pre)=>({
+          ...pre,
+          [purchase.id]: false,
+        }))
       }
     }
   };
@@ -327,7 +343,7 @@ export default function AdminPayment({ purchases,emailTemp, token}: AdminPurchas
                         </SelectTrigger>
                         <SelectContent>
                           {emailTemp?.map((e)=>(
-                            <SelectItem value={e.id}>{e?.emailTitle}</SelectItem>
+                            <SelectItem value={e.id} key={e.id}>{e?.emailTitle}</SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
@@ -362,8 +378,10 @@ export default function AdminPayment({ purchases,emailTemp, token}: AdminPurchas
                       onClick={() => handleSendDetails(purchase, selectedTemplates[purchase.id])}
                       className="w-full bg-blue-600 hover:bg-blue-700 text-white"
                     >
+                      {selectedLoader[purchase.id] ? <Loader2 className="animate-spin"/> :<>
                       <Send className="w-4 h-4 mr-2" />
                       Send Details
+                      </>}
                     </Button>
                   </div>
                 </div>
