@@ -108,7 +108,7 @@ const AboutUsPage = () => {
           className="relative flex justify-center items-center"
         >
           <Image
-            src="/Before-Aftre-Section/12 Group Filter/After.jpg"
+            src="/about.jpg"
             alt="Dinesh Singh"
             width={600}
             height={600}

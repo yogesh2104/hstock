@@ -36,13 +36,14 @@ export async function POST(req: NextRequest) {
 
         <hr />
 
-        <p><strong>License Key:</strong> ${licenseKey}</p>
+        <p><strong>Your Activation Key::</strong> ${licenseKey}</p>
+        
         `
 
         await transporter.sendMail({
             from: process.env.EMAIL_ID,
             to: getUserData?.email as string,
-            subject: `Product License Key`,
+            subject: `Thank You for Purchasing HStock Albums 🎉`,
             html: emailHtml,
         });
 

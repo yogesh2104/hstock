@@ -115,15 +115,15 @@ const Footer = () => {
             </div>
 
             <div className="flex items-center space-x-6 text-xs">
-              <Link href="/privacy" className="transition-colors duration-300">
+              <Link href="/policy" className="transition-colors duration-300">
                 Privacy Policy
               </Link>
               <Link href="/terms" className="transition-colors duration-300">
                 Terms of Service
               </Link>
-              <Link href="/cookies" className="transition-colors duration-300">
+              {/* <Link href="/cookies" className="transition-colors duration-300">
                 Cookie Policy
-              </Link>
+              </Link> */}
             </div>
           </div>
         </AnimationContainer>
