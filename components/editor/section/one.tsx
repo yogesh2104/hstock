@@ -84,7 +84,7 @@ export const SectionOne: React.FC<SectionOneProps> = React.memo(
         if (level) {
           editor.chain().focus().toggleHeading({ level }).run()
         } else {
-          editor.chain().focus().setParagraph().run()
+          (editor as any).chain().focus().setParagraph().run()
         }
       },
       [editor]

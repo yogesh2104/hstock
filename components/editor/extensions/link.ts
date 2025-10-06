@@ -3,6 +3,7 @@ import TiptapLink from '@tiptap/extension-link'
 import type { EditorView } from '@tiptap/pm/view'
 import { getMarkRange } from '@tiptap/react'
 import { Plugin, TextSelection } from '@tiptap/pm/state'
+import type { Attributes as TiptapHTMLAttributes } from '@tiptap/core'
 
 export const Link = TiptapLink.extend({
   /*
@@ -20,13 +21,13 @@ export const Link = TiptapLink.extend({
     return [{ tag: 'a[href]:not([data-type="button"]):not([href *= "javascript:" i])' }]
   },
 
-  renderHTML({ HTMLAttributes }) {
+  renderHTML({ HTMLAttributes }: { HTMLAttributes: TiptapHTMLAttributes }) {
     return ['a', mergeAttributes(this.options.HTMLAttributes, HTMLAttributes), 0]
   },
 
   addOptions() {
     return {
-      ...this.parent?.(),
+      ...((this as any).parent?.() || {}),
       openOnClick: false,
       HTMLAttributes: {
         class: 'link'
@@ -38,7 +39,7 @@ export const Link = TiptapLink.extend({
     const { editor } = this
 
     return [
-      ...(this.parent?.() || []),
+      ...((this as any).parent?.() || {}),
       new Plugin({
         props: {
           handleKeyDown: (_: EditorView, event: KeyboardEvent) => {

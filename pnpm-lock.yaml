@@ -115,7 +115,7 @@ importers:
         version: 2.11.5(@tiptap/core@3.6.5(@tiptap/pm@2.11.5))
       '@tiptap/html':
         specifier: ^3.6.1
-        version: 3.6.1(@tiptap/core@3.6.5(@tiptap/pm@2.11.5))(@tiptap/pm@2.11.5)(happy-dom@18.0.1)
+        version: 3.6.5(@tiptap/core@3.6.5(@tiptap/pm@2.11.5))(@tiptap/pm@2.11.5)(happy-dom@18.0.1)
       '@tiptap/pm':
         specifier: ^2.11.5
         version: 2.11.5
@@ -1820,11 +1820,11 @@ packages:
     peerDependencies:
       '@tiptap/core': ^2.7.0
 
-  '@tiptap/html@3.6.1':
-    resolution: {integrity: sha512-aic1EmKBwePFGy9svBoIPXgk7BD+pea5NzNKgQzXo3madZ0uPXnrazyLSpfQn3dgXwa9dXDB0XTuOp3jGo/SaQ==}
+  '@tiptap/html@3.6.5':
+    resolution: {integrity: sha512-w37vPb5o/sKFbmnSGS2YE8yfWh2CAtmXnVFVg/tO1UYIVifVsfVVjOkfcbAQNZcHve+7NSwcIeI6oDh7FeYyIw==}
     peerDependencies:
-      '@tiptap/core': ^3.6.1
-      '@tiptap/pm': ^3.6.1
+      '@tiptap/core': ^3.6.5
+      '@tiptap/pm': ^3.6.5
       happy-dom: ^18.0.1
 
   '@tiptap/pm@2.11.5':
@@ -5101,7 +5101,7 @@ snapshots:
     dependencies:
       '@tiptap/core': 3.6.5(@tiptap/pm@2.11.5)
 
-  '@tiptap/html@3.6.1(@tiptap/core@3.6.5(@tiptap/pm@2.11.5))(@tiptap/pm@2.11.5)(happy-dom@18.0.1)':
+  '@tiptap/html@3.6.5(@tiptap/core@3.6.5(@tiptap/pm@2.11.5))(@tiptap/pm@2.11.5)(happy-dom@18.0.1)':
     dependencies:
       '@tiptap/core': 3.6.5(@tiptap/pm@2.11.5)
       '@tiptap/pm': 2.11.5

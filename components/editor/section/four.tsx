@@ -21,8 +21,8 @@ const formatActions: ListItem[] = [
       </svg>
     ),
     isActive: editor => editor.isActive('orderedList'),
-    action: editor => editor.chain().focus().toggleOrderedList().run(),
-    canExecute: editor => editor.can().chain().focus().toggleOrderedList().run(),
+    action: editor => (editor as any).chain().focus().toggleOrderedList().run(),
+    canExecute: editor => (editor as any).can().chain().focus().toggleOrderedList().run(),
     shortcuts: []
   },
   {
@@ -30,8 +30,8 @@ const formatActions: ListItem[] = [
     label: 'Bullet list',
     icon: <ListBulletIcon className="size-5" />,
     isActive: editor => editor.isActive('bulletList'),
-    action: editor => editor.chain().focus().toggleBulletList().run(),
-    canExecute: editor => editor.can().chain().focus().toggleBulletList().run(),
+    action: editor => (editor as any).chain().focus().toggleBulletList().run(),
+    canExecute: editor => (editor as any).can().chain().focus().toggleBulletList().run(),
     shortcuts: []
   }
 ]

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import type { Editor } from '@tiptap/react'
+import type { AnyExtension, Editor } from '@tiptap/react'
 import type { Content, UseEditorOptions } from '@tiptap/react'
 import { StarterKit } from '@tiptap/starter-kit'
 import { useEditor } from '@tiptap/react'
@@ -84,7 +84,7 @@ export const useMinimalTiptapEditor = ({
   const handleBlur = React.useCallback((editor: Editor) => onBlur?.(getOutput(editor, output)), [output, onBlur])
 
   const editor = useEditor({
-    extensions: createExtensions(placeholder),
+    extensions: createExtensions(placeholder) as AnyExtension[],
     editorProps: {
       attributes: {
         autocomplete: 'off',

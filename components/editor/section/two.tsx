@@ -22,18 +22,18 @@ const formatActions: TextStyle[] = [
     value: 'bold',
     label: 'Bold',
     icon: <FontBoldIcon className="size-5" />,
-    action: editor => editor.chain().focus().toggleBold().run(),
+    action: editor => (editor as any).chain().focus().toggleBold().run(),
     isActive: editor => editor.isActive('bold'),
-    canExecute: editor => editor.can().chain().focus().toggleBold().run() && !editor.isActive('codeBlock'),
+    canExecute: editor => (editor as any).can().chain().focus().toggleBold().run() && !editor.isActive('codeBlock'),
     shortcuts: []
   },
   {
     value: 'italic',
     label: 'Italic',
     icon: <FontItalicIcon className="size-5" />,
-    action: editor => editor.chain().focus().toggleItalic().run(),
+    action: editor => (editor as any).chain().focus().toggleItalic().run(),
     isActive: editor => editor.isActive('italic'),
-    canExecute: editor => editor.can().chain().focus().toggleItalic().run() && !editor.isActive('codeBlock'),
+    canExecute: editor => (editor as any).can().chain().focus().toggleItalic().run() && !editor.isActive('codeBlock'),
     shortcuts: []
   },
   {

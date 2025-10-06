@@ -1,33 +1,10 @@
 import { isDevCookies } from "@/config/api-endpoint";
 import { db } from "@/db";
+import { tiptapExtensions } from "@/lib/tiptap";
 import { generateHTML } from "@tiptap/html";
-import StarterKit from "@tiptap/starter-kit";
 import { getToken } from "next-auth/jwt";
 import { NextResponse } from "next/server";
-import Link from "@tiptap/extension-link";
-import Underline from "@tiptap/extension-underline";
-import TextStyle from "@tiptap/extension-text-style";
-import Color from "@tiptap/extension-color";
-import TextAlign from "@tiptap/extension-text-align";
-import Blockquote from "@tiptap/extension-blockquote";
-import HorizontalRule from "@tiptap/extension-horizontal-rule";
-import Code from "@tiptap/extension-code";
 
-export const tiptapExtensions = [
-  StarterKit,
-  Underline,
-  Link.configure({
-    openOnClick: false,
-  }),
-  TextStyle,
-  Color,
-  TextAlign.configure({
-    types: ["heading", "paragraph"],
-  }),
-  Blockquote,
-  HorizontalRule,
-  Code,
-];
 
 export async function GET(request: Request) {
   const secret = process.env.AUTH_SECRET;
