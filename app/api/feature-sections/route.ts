@@ -24,6 +24,56 @@ export async function GET(request: Request) {
   }
 }
 
+// export async function POST(request: Request) {
+//   const secret = process.env.AUTH_SECRET;
+//   const token = await getToken({ req: request, secret, cookieName: isDevCookies });
+
+//   if (!token) {
+//     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+//   }
+
+//   try {
+//     const body = await request.json();
+//     const { content, id, emailTitle } = body;
+
+//     if (!content) {
+//       return NextResponse.json({ error: "Editor content is required" }, { status: 400 });
+//     }
+
+//     const parsedContent =
+//       typeof content === "string" ? JSON.parse(content) : content;
+
+//     const html = generateHTML(parsedContent,tiptapExtensions);
+
+//     if (id) {
+//       await db.featureSection.upsert({
+//         where: { id },
+//         update: { htmlContent: html, content: parsedContent, emailTitle },
+//         create: { htmlContent: html, content: parsedContent, emailTitle },
+//       });
+//     } else {
+//       await db.featureSection.create({
+//         data: {
+//           emailTitle,
+//           htmlContent: html,
+//           content: parsedContent,
+//         },
+//       });
+//     }
+
+//     return NextResponse.json(
+//       { message: "Saved successfully", emailTitle, htmlContent: html, content: parsedContent },
+//       { status: 201 }
+//     );
+//   } catch (error: any) {
+//     console.error(error);
+//     return NextResponse.json(
+//       { error: error?.message || "Internal server error" },
+//       { status: 500 }
+//     );
+//   }
+// }
+
 export async function POST(request: Request) {
   const secret = process.env.AUTH_SECRET;
   const token = await getToken({ req: request, secret, cookieName: isDevCookies });
@@ -34,90 +84,30 @@ export async function POST(request: Request) {
 
   try {
     const body = await request.json();
-    const { content, id, emailTitle } = body;
+    const { htmlContent, emailTitle, id } = body;
 
-    if (!content) {
-      return NextResponse.json({ error: "Editor content is required" }, { status: 400 });
+    if (!htmlContent || !emailTitle) {
+      return NextResponse.json({ error: "Email title and HTML content are required" }, { status: 400 });
     }
 
-    const parsedContent =
-      typeof content === "string" ? JSON.parse(content) : content;
-
-    const html = generateHTML(parsedContent,tiptapExtensions);
-
+    // Upsert or create new record
     if (id) {
       await db.featureSection.upsert({
         where: { id },
-        update: { htmlContent: html, content: parsedContent, emailTitle },
-        create: { htmlContent: html, content: parsedContent, emailTitle },
+        update: { emailTitle, htmlContent },
+        create: { emailTitle, htmlContent },
       });
     } else {
       await db.featureSection.create({
-        data: {
-          emailTitle,
-          htmlContent: html,
-          content: parsedContent,
-        },
+        data: { emailTitle, htmlContent },
       });
     }
 
-    return NextResponse.json(
-      { message: "Saved successfully", emailTitle, htmlContent: html, content: parsedContent },
-      { status: 201 }
-    );
+    return NextResponse.json({ message: "Saved successfully" }, { status: 201 });
   } catch (error: any) {
-    console.error(error);
-    return NextResponse.json(
-      { error: error?.message || "Internal server error" },
-      { status: 500 }
-    );
+    console.error("POST /feature-sections error:", error);
+    return NextResponse.json({ error: error?.message || "Internal server error" }, { status: 500 });
   }
 }
-
-
-// export async function POST(request: Request) {
-//   const secret = process.env.AUTH_SECRET;
-//   const token = await getToken({ req:request , secret, cookieName: isDevCookies });
-
-//   if (!token) {
-//       return NextResponse.json({ message: 'Unauthorized' },{ status:401 });
-//   }
-  
-//   try {
-//     const body = await request.json()
-//     const { content , id, emailTitle } = body;
-
-//     if (!content) {
-//       return NextResponse.json({ error: 'HTML content is required' });
-//     }
-//     const parsedContent =
-//     typeof content === "string"
-//       ? JSON.parse(content)
-//       : content
-//     const html = generateHTML(parsedContent, [StarterKit])
-
-//     if(id){
-//       await db.featureSection.upsert({
-//         where: { id },
-//         update: { htmlContent:html,content:content, emailTitle },
-//         create: { htmlContent:html,content:content, emailTitle },
-//       });
-//     }else{
-//       await db.featureSection.create({
-//         data:{
-//           htmlContent:html,
-//           content:content,
-//           emailTitle
-//         }
-//       });
-//     }
-
-
-
-//     return NextResponse.json(body, { status: 201 })
-//   } catch (error) {
-//     return NextResponse.json({ error: error }, { status: 500 })
-//   }
-// }
 
 

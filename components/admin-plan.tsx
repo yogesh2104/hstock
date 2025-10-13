@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
-import { Check, Plus, X } from 'lucide-react'
+import { Check, Delete, Edit, Plus, X } from 'lucide-react'
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 import {
@@ -40,9 +40,10 @@ type adminPlanPros = {
 export default function AdminPlans({getPlan}:adminPlanPros) {
   const [openInfo,setOpenInfo] = useState(false) 
   const [openDelete, setOpenDelete] = useState(false)
+  const [isEditing, setIsEditing] = useState(false);
   const [addPlanData,setAddPlanData] = useState({
     name:"",
-    logo:'',
+    logo:'/logo.png',
     planID:'',
     price:0,
     description:"",
@@ -76,42 +77,83 @@ export default function AdminPlans({getPlan}:adminPlanPros) {
     setAddPlanData(prev => ({ ...prev, features: newFeatures }))
   }
 
-  const handleSubmit = async(e: React.FormEvent) => {
-    e.preventDefault()
+  // const handleSubmit = async(e: React.FormEvent) => {
+  //   e.preventDefault()
+  //   try {
+  //     const response = await fetch(`${BASE_URL}${API_ENDPOINT.planApi}`, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify(addPlanData),
+  //     })
+
+  //     const data = await response.json()
+  //     if (response.ok) {
+  //       router.refresh()
+  //       toast.success("Added Successfull")
+  //       setAddPlanData({
+  //           name:"",
+  //           logo:'',
+  //           planID:'',
+  //           price:0,
+  //           description:"",
+  //           buttonText:"Buy Now",
+  //           popular:false,
+  //           features:[""]
+  //       })
+  //     } else {
+  //       router.refresh()
+  //       toast.error('Failed to submit data')
+  //     }
+  //   } catch (error) {
+  //       router.refresh()
+  //       toast.error('Error submitting data')
+  //   } finally{
+  //       setOpenInfo(false)
+  //   }
+  // }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
     try {
+      const method = isEditing ? "PATCH" : "POST";
+
       const response = await fetch(`${BASE_URL}${API_ENDPOINT.planApi}`, {
-        method: 'POST',
+        method,
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(addPlanData),
-      })
+      });
 
-      const data = await response.json()
+      const data = await response.json();
+
       if (response.ok) {
-        router.refresh()
-        toast.success("Added Successfull")
+        router.refresh();
+        toast.success(isEditing ? "Plan Updated Successfully" : "Plan Added Successfully");
         setAddPlanData({
-            name:"",
-            logo:'',
-            planID:'',
-            price:0,
-            description:"",
-            buttonText:"Buy Now",
-            popular:false,
-            features:[""]
-        })
+          name: "",
+          logo: "/logo.png",
+          planID: "",
+          price: 0,
+          description: "",
+          buttonText: "Buy Now",
+          popular: false,
+          features: [""],
+        });
       } else {
-        router.refresh()
-        toast.error('Failed to submit data')
+        toast.error(data.message || "Failed to save data");
       }
     } catch (error) {
-        router.refresh()
-        toast.error('Error submitting data')
-    } finally{
-        setOpenInfo(false)
+      toast.error("Error submitting data");
+    } finally {
+      setOpenInfo(false);
+      setIsEditing(false);
     }
-  }
+  };
+
 
 
   return (
@@ -130,15 +172,29 @@ export default function AdminPlans({getPlan}:adminPlanPros) {
                 plan.popular && "border-primary dark:shadow-lg"
               )}
             >
+              <div>
+                <Button
+                  variant="destructive"
+                  size="icon"
+                  className="absolute top-4 right-2"
+                  onClick={() => setOpenDelete(true)}
+                >
+                  <Delete/>
+                </Button>
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="absolute top-4 right-14"
+                  onClick={() => {
+                    setAddPlanData(plan as any);
+                    setIsEditing(true);
+                    setOpenInfo(true);
+                  }}
+                >
+                  <Edit/>
+                </Button>
+              </div>
 
-              <Button
-                variant="destructive"
-                size="sm"
-                className="absolute top-4 right-2"
-                onClick={() => setOpenDelete(true)}
-              >
-                Delete
-              </Button>
 
               <Dialog open={openDelete} onOpenChange={setOpenDelete}>
                 <DialogContent>
@@ -239,10 +295,27 @@ export default function AdminPlans({getPlan}:adminPlanPros) {
 
 
 
-      <Dialog open={openInfo} onOpenChange={setOpenInfo}>
+      <Dialog open={openInfo} onOpenChange={(open) => {
+          setOpenInfo(open);
+          if (!open) {
+            setIsEditing(false);
+            setAddPlanData({
+              name: "",
+              logo: "/logo.png",
+              planID: "",
+              price: 0,
+              description: "",
+              buttonText: "Buy Now",
+              popular: false,
+              features: [""],
+            });
+          }
+        }}>
         <DialogContent className="max-w-xl h-[45rem] overflow-auto">
             <DialogTitle>
-                <p className="text-2xl font-bold text-center">Add New Plan</p>
+              <p className="text-2xl font-bold text-center">
+                {isEditing ? "Edit Plan" : "Add New Plan"}
+              </p>
             </DialogTitle>
             <form onSubmit={handleSubmit} className="space-y-2">
                 <div>
@@ -274,7 +347,7 @@ export default function AdminPlans({getPlan}:adminPlanPros) {
                     placeholder="Default its show Original logo"
                     value={addPlanData.logo}
                     onChange={handleInputChange}
-                    required
+                    
                   />
                 </div>
 
@@ -354,7 +427,7 @@ export default function AdminPlans({getPlan}:adminPlanPros) {
                     </Button>
                 </div>
                 <div className="text-center">
-                    <Button type="submit">Add Plan</Button>
+                    <Button type="submit">{isEditing ? "Update Plan" : "Add Plan"}</Button>
                 </div>
             </form>
         </DialogContent>
