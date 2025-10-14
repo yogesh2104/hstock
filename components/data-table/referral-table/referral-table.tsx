@@ -272,6 +272,7 @@ export function  ReferralDataTable<TData, TValue>({
   const [code, setCode] = useState("")
   const [discount, setDiscount] = useState<string | number>(0)
   const [expiresAt, setExpiresAt] = useState<string>("")
+  const [minPrice, setMinPrice] = useState("")
 
   const route = useRouter()
 
@@ -304,6 +305,10 @@ export function  ReferralDataTable<TData, TValue>({
     {
       accessorKey: "discount",
       header: "Discount",
+    },
+    {
+      accessorKey: "minPrice",
+      header: "Min. Price to apply",
     },
     {
       accessorKey: "expiresAt",
@@ -367,6 +372,7 @@ export function  ReferralDataTable<TData, TValue>({
         discount: Number(discount),
       }
       if (expiresAt) bodyData.expiresAt = expiresAt
+      if (minPrice) bodyData.minPrice = Number(minPrice)
 
       try {
         const response = await fetch(`${BASE_URL}${API_ENDPOINT.createCode}`, {
@@ -509,6 +515,16 @@ export function  ReferralDataTable<TData, TValue>({
                 type="date"
                 value={expiresAt}
                 onChange={(e) => setExpiresAt(e.target.value)}
+                className="col-span-3"
+              />
+            </div>
+            <div className="grid grid-cols-1 items-center gap-4">
+              <Label htmlFor="minPrice">Minimum Price</Label>
+              <Input
+                id="minPrice"
+                type="number"
+                value={minPrice}
+                onChange={(e) => setMinPrice(e.target.value)}
                 className="col-span-3"
               />
             </div>

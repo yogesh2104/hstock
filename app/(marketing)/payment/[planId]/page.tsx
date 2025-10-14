@@ -76,7 +76,7 @@ export default function PaymentPage({ params }: { params: Promise<{ planId: stri
       const res = await fetch("/api/referral/validate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code: coupon }),
+        body: JSON.stringify({ code: coupon,price: plan?.price }),
       })
       const data = await res.json()
       if (res.ok) {
@@ -243,8 +243,8 @@ export default function PaymentPage({ params }: { params: Promise<{ planId: stri
                   <h4 className="font-semibold text-gray-900 mb-2">Scan QR Code to Pay</h4>
                   <p className="text-sm text-gray-600">Use any UPI app to complete payment</p>
                 </div>
-                <div className="inline-block bg-white p-4 rounded-2xl shadow-lg">
-                  <img src="/QR.png" alt="QR Code" className="w-48 h-48 mx-auto" />
+                <div className="inline-block bg-white p-1 rounded-2xl shadow-lg">
+                  <img src="/plan/QR.jpeg" alt="QR Code" className="w-48 h-48 mx-auto rounded-xl" />
                 </div>
                 <p className="text-xs text-gray-500 mt-3">Supported: Google Pay, PhonePe, Paytm, BHIM & more</p>
               </div>

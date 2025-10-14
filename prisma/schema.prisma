@@ -170,6 +170,7 @@ model Referral {
   id         String         @id @default(auto()) @map("_id") @db.ObjectId
   code       String         @unique
   discount   Float          @default(0)
+  minPrice   Float          @default(0)
   status     ReferralStatus @default(ACTIVE)
   expiresAt  DateTime?
   createdAt  DateTime       @default(now())
