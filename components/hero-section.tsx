@@ -33,7 +33,12 @@ export function HeroSection({getAPIData, getPlan }:{getAPIData:adminProps[],getP
 
   const getUrl = `/payment/${isPopular[0]?.id}`
   return (
-    <ImagesSlider url={ getUrl || "#pricing-plan"} autoplay={false} className="h-[16rem] md:h-[22rem] lg:h-[36rem] xl:h-[42rem] 2xl:h-[72rem]" images={getAPIData[0]?.image?.map((img)=>img?.imageLink)}>
+    <ImagesSlider 
+      url={ getUrl || "#pricing-plan"} 
+      objectFit="contain"
+      className="h-[16rem] md:h-[22rem] lg:h-[36rem] xl:h-[42rem] 2xl:h-[52rem]" 
+      images={getAPIData[0]?.image?.map((img)=>img?.imageLink)}
+    >
       <a href={getUrl || "#pricing-plan"} className={cn(buttonVariants({variant:"outline"}))}>
         Buy Now
       </a>

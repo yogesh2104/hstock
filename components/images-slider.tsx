@@ -12,7 +12,8 @@ export const ImagesSlider = ({
   className,
   autoplay = true,
   direction = "right",
-  url
+  url,
+  objectFit = "cover" // Add this prop
 }: {
   images: string[];
   children: React.ReactNode;
@@ -21,7 +22,8 @@ export const ImagesSlider = ({
   className?: string;
   autoplay?: boolean;
   direction?: "left" | "right";
-  url:string
+  url: string;
+  objectFit?: "cover" | "contain" | "fill" | "none" | "scale-down"; // Add this
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loadedImages, setLoadedImages] = useState<string[]>([]);
@@ -88,12 +90,12 @@ export const ImagesSlider = ({
     initial: (direction: "left" | "right") => ({
       x: direction === "right" ? "100%" : "-100%",
       opacity: 0,
-      zIndex: 0, // Ensure the new image starts below
+      zIndex: 0,
     }),
     visible: {
       x: "0%",
       opacity: 1,
-      zIndex: 1, // Bring the visible image to the top
+      zIndex: 1,
       transition: {
         duration: 0.6,
         ease: [0.25, 0.8, 0.25, 1],
@@ -102,72 +104,78 @@ export const ImagesSlider = ({
     exit: (direction: "left" | "right") => ({
       x: direction === "right" ? "-100%" : "100%",
       opacity: 0,
-      zIndex: 0, // Ensure the exiting image moves out without overlapping
+      zIndex: 0,
       transition: {
         duration: 0.6,
         ease: [0.25, 0.8, 0.25, 1],
       },
     }),
   };
-  
-  
+
   const areImagesLoaded = loadedImages.length > 0;
 
   return (
     <div
-    className={cn(
-      "overflow-hidden h-full w-full relative flex items-end pb-10 justify-center",
-      className
-    )}
-    style={{
-      perspective: "1000px",
-    }}
-  >
-    {areImagesLoaded && (
-      <div className="z-50 pointer-events-auto">
-        {children}
+      className={cn(
+        "overflow-hidden h-full w-full relative flex items-end pb-10 justify-center",
+        className
+      )}
+      style={{
+        perspective: "1000px",
+      }}
+    >
+      {areImagesLoaded && (
+        <div className="z-50 pointer-events-auto">
+          {children}
+        </div>
+      )}
+
+      {areImagesLoaded && overlay && (
+        <div
+          className={cn("absolute inset-0 z-40 pointer-events-none", overlayClassName)}
+        />
+      )}
+
+      <AnimatePresence custom={direction}>
+        <a href={url}>
+          {loadedImages.map((image, index) =>
+            index === currentIndex ? (
+              <motion.img
+                key={index}
+                src={image}
+                custom={direction}
+                initial="initial"
+                animate="visible"
+                exit="exit"
+                variants={slideVariants}
+                className={cn(
+                  "image h-full w-full absolute inset-0 object-center z-30 rounded-3xl",
+                  objectFit === "cover" && "object-cover",
+                  objectFit === "contain" && "object-contain",
+                  objectFit === "fill" && "object-fill",
+                  objectFit === "none" && "object-none",
+                  objectFit === "scale-down" && "object-scale-down"
+                )}
+              />
+            ) : null
+          )}
+        </a>
+      </AnimatePresence>
+
+      <div className="absolute inset-0 z-50 flex justify-between items-center px-4 pointer-events-none">
+        <button
+          onClick={handlePrevious}
+          className="bg-white w-10 text-black p-2 rounded-full shadow-md hover:bg-gray-200 z-50 pointer-events-auto"
+        >
+          ❮
+        </button>
+        <button
+          onClick={handleNext}
+          className="bg-white w-10 text-black p-2 rounded-full shadow-md hover:bg-gray-200 z-50 pointer-events-auto"
+        >
+          ❯
+        </button>
       </div>
-    )}
-
-    {areImagesLoaded && overlay && (
-      <div
-        className={cn("absolute inset-0 bg-black/10 z-40 pointer-events-none", overlayClassName)}
-      />
-    )}
-
-    <AnimatePresence custom={direction}>
-      <a href={url}>
-        {loadedImages.map((image, index) =>
-          index === currentIndex ? (
-            <motion.img
-              key={index}
-              src={image}
-              custom={direction}
-              initial="initial"
-              animate="visible"
-              exit="exit"
-              variants={slideVariants}
-              className="image h-full w-full absolute inset-0 object-cover object-center z-30"
-            />
-          ) : null
-        )}
-      </a>
-    </AnimatePresence>
-
-    <div className="absolute inset-0 z-50 flex justify-between items-center px-4 pointer-events-none">
-      <button
-        onClick={handlePrevious}
-        className="bg-white w-10 text-black p-2 rounded-full shadow-md hover:bg-gray-200 z-50 pointer-events-auto"
-      >
-        ❮
-      </button>
-      <button
-        onClick={handleNext}
-        className="bg-white w-10 text-black p-2 rounded-full shadow-md hover:bg-gray-200 z-50 pointer-events-auto"
-      >
-        ❯
-      </button>
     </div>
-  </div>
-)
+  );
 };
