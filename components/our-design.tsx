@@ -251,14 +251,14 @@ const ImageModal = ({ card, isOpen, onClose }: {
 
   return (
     <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-black/90" onClick={onClose}>
-      <div className="relative max-w-7xl max-h-full w-full">
+      <div className="relative max-w-7xl h-[97vh] w-full">
         <img
           src={card.thumbnail}
           alt={card.title || `Design ${card.id}`}
           className="w-full h-full object-contain rounded-lg"
           onClick={(e) => e.stopPropagation()}
         />
-        <X onClick={onClose} className="absolute top-4 right-4 w-10 h-10 bg-black/50 text-white  rounded-full p-2 cursor-pointer"/>
+        <X onClick={onClose} className="absolute top-2 right-4 w-10 h-10 bg-black/50 text-white  rounded-full p-2 cursor-pointer"/>
       </div>
     </div>
   );
