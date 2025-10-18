@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import ContactForm from "@/components/contact-form";
 import FeaturesAndHighlight from "@/components/feature&highlight";
+import SoftwareStructure from "@/components/softwareStrucute";
 import { HeroSection } from "@/components/hero-section";
 import ImageEditor from "@/components/Latest image-editor";
 import { OurDesign } from "@/components/our-design";
@@ -47,6 +48,7 @@ export default async function Home() {
       {getAPIData?.data?.length !== 0 && <HeroSection getAPIData={getAPIData?.data || []} getPlan={getPlan.data} />}
       {getPlan?.data && <PricingPlans getPlan={getPlan.data} session={session} />}
       <FeaturesAndHighlight />
+      <SoftwareStructure />
       <OurDesign />
       <ImageEditor />
       <ContactForm />

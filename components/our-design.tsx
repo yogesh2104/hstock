@@ -250,7 +250,7 @@ const ImageModal = ({ card, isOpen, onClose }: {
   if (!isOpen || !card) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90" onClick={onClose}>
+    <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-black/90" onClick={onClose}>
       <div className="relative max-w-7xl max-h-full w-full">
         <img
           src={card.thumbnail}
