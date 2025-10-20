@@ -48,7 +48,7 @@ const Footer = () => {
               <div className="flex gap-1">
                 
                 <Link
-                  href={siteConfig?.socialLink?.twitter}
+                  href={siteConfig?.socialLink?.whatsapp}
                   className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-green-400/50 transition-all duration-300 group"
                 >
                 <svg xmlns="http://www.w3.org/2000/svg" className="group-hover:text-green-600" fill="currentColor" width="22" height="22"  viewBox="0 0 32 32" id="whatsapp">
@@ -63,7 +63,7 @@ const Footer = () => {
                   <Facebook className="w-5 h-5 group-hover:text-blue-600 transition-colors" />
                 </Link>
                 <Link
-                  href={siteConfig?.socialLink?.facebook}
+                  href={siteConfig?.socialLink?.instagram}
                   className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-blue-600/50 transition-all duration-300 group"
                 >
                   <Instagram   className="w-5 h-5 group-hover:text-blue-600 transition-colors" />
