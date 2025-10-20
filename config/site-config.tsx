@@ -577,10 +577,11 @@ export const siteConfig = {
       }
     ],
     socialLink:{
-      facebook:"#",
+      facebook:"https://www.facebook.com/hstockalbums/",
       twitter:"#",
-      instagram:'#',
-      youtube:'#'
+      instagram:'https://www.instagram.com/hstockalbums/',
+      youtube:'https://www.youtube.com/@HStockAlbums',
+      whatsapp:"https://whatsapp.com/channel/0029Vb6XIeUGehEKfBmEPx0n"
     },
     welcomeTitle:(<>
       <h2 className="text-2xl font-bold text-start">

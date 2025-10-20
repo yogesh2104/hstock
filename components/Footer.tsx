@@ -45,13 +45,16 @@ const Footer = () => {
 
             <div className="space-y-3">
               <h4 className="font-medium text-sm">Follow Us</h4>
-              <div className="flex gap-3">
+              <div className="flex gap-1">
                 
                 <Link
                   href={siteConfig?.socialLink?.twitter}
-                  className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-blue-400/50 transition-all duration-300 group"
+                  className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-green-400/50 transition-all duration-300 group"
                 >
-                  <Twitter className="w-5 h-5 group-hover:text-blue-400 transition-colors" />
+                <svg xmlns="http://www.w3.org/2000/svg" className="group-hover:text-green-600" fill="currentColor" width="22" height="22"  viewBox="0 0 32 32" id="whatsapp">
+                <path d="m23.237 18.253-2.889-1.333c-.256-.142-.51-.028-.765.284-.311.425-.454.595-.822 1.049-.198.255-.34.425-.566.453-.256.057-.595-.085-.652-.085-.907-.311-1.955-1.077-2.748-1.786-.765-.708-1.615-1.7-1.983-2.579-.057-.113-.17-.397 0-.623.34-.454.397-.482.765-.907.255-.312.453-.595.368-.851L12.671 8.56c-.114-.227-.453-.255-.85-.284-.34 0-.708 0-.963.057-.566.199-1.728 1.729-1.869 2.835-.312 2.409 1.869 5.612 4.051 7.596 2.182 2.013 5.553 3.912 7.932 3.373 1.105-.255 2.522-1.53 2.635-2.126.057-.255.028-.623-.028-.964-.029-.397-.114-.68-.342-.794z"></path>
+                <path d="M16.014 0C7.714 0 1 6.718 1 14.994c0 2.919.85 5.641 2.266 7.936L1 32l8.102-3.685a14.933 14.933 0 0 0 6.913 1.701c8.27 0 14.985-6.718 14.985-15.022C31 6.718 24.285 0 16.014 0zm0 27.011c-2.663 0-5.1-.85-7.082-2.324l-3.654 2.324 1.643-4.167a11.977 11.977 0 0 1-2.918-7.851c0-6.632 5.382-11.989 12.012-11.989a11.972 11.972 0 0 1 11.983 11.989c-.001 6.633-5.355 12.018-11.984 12.018z"></path>
+              </svg>
                 </Link>
                 <Link
                   href={siteConfig?.socialLink?.facebook}
