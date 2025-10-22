@@ -3,6 +3,7 @@ import Navbar from "@/components/Navbar";
 import { auth } from "@/auth";
 import AnnouncementBar from "@/components/announcement";
 import SocialMedia from "@/components/social-media";
+export const revalidate = 3600;
 
 const MainLayout=async({
     children,
