@@ -6,7 +6,7 @@ import { Check, Star, Zap, Crown, Building2, Sparkles } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Session } from "next-auth"
 import { useRouter } from "next/navigation"
 
@@ -33,9 +33,11 @@ const planIcons = {
 }
 
 export default function PricingPlans({ getPlan ,session}: adminPlanPros) {
+  const scrollRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
   const [openInfo, setOpenInfo] = useState(false)
   const [selectedPlan, setSelectedPlan] = useState<any>(null)
+  const [isPaused, setIsPaused] = useState(false)
 
   const handlePlanClick = (plan: any) => {
     setSelectedPlan(plan)
@@ -55,9 +57,50 @@ export default function PricingPlans({ getPlan ,session}: adminPlanPros) {
   const popularIndex = orderedPlans.findIndex((p) => p.popular)
 
   if (popularIndex !== -1) {
-    const [popularPlan] = orderedPlans.splice(popularIndex, 1) // remove popular
-    orderedPlans.splice(1, 0, popularPlan) // insert at index 1 (2nd place)
+    const [popularPlan] = orderedPlans.splice(popularIndex, 1)
+    orderedPlans.splice(1, 0, popularPlan)
   }
+
+  useEffect(() => {
+    const container = scrollRef.current
+    if (!container) return
+
+    if (window.innerWidth > 768) return
+
+    const cardWidth = container.scrollWidth / getPlan.length
+    let index = 0
+
+    let interval: NodeJS.Timeout
+
+    const startAutoScroll = () => {
+      interval = setInterval(() => {
+        if (isPaused || !container) return
+        index = (index + 1) % getPlan.length
+        container.scrollTo({
+          left: cardWidth * index,
+          behavior: "smooth",
+        })
+      }, 2000)
+    }
+
+    startAutoScroll()
+
+    const pauseScroll = () => setIsPaused(true)
+    const resumeScroll = () => setIsPaused(false)
+
+    container.addEventListener("mouseenter", pauseScroll)
+    container.addEventListener("mouseleave", resumeScroll)
+    container.addEventListener("touchstart", pauseScroll)
+    container.addEventListener("touchend", resumeScroll)
+
+    return () => {
+      clearInterval(interval)
+      container.removeEventListener("mouseenter", pauseScroll)
+      container.removeEventListener("mouseleave", resumeScroll)
+      container.removeEventListener("touchstart", pauseScroll)
+      container.removeEventListener("touchend", resumeScroll)
+    }
+  }, [getPlan.length, isPaused])
 
   return (
     <section className="w-full py-16" id="pricing-plan">
@@ -75,9 +118,10 @@ export default function PricingPlans({ getPlan ,session}: adminPlanPros) {
         </div>
         <div className="relative">
           <div
+            ref={scrollRef}
             className={cn(
               "flex gap-4 pt-12 pb-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide",
-              "px-4",
+              "pl-4 pr-12", // Show peek of next card
               "lg:px-0",
             )}
             style={{
@@ -90,7 +134,7 @@ export default function PricingPlans({ getPlan ,session}: adminPlanPros) {
                 key={plan.id}
                 className={cn(
                   "relative flex flex-col border text-card-foreground flex-shrink-0",
-                  "w-[calc(100vw-4rem)] snap-center",
+                  "w-[calc(100vw-6rem)] snap-center", // Reduced width to show peek
                   "lg:w-[calc(25%-0.75rem)] lg:min-w-[280px]",
                   plan.popular && "border-primary shadow-primary/20",
                 )}
@@ -148,7 +192,9 @@ export default function PricingPlans({ getPlan ,session}: adminPlanPros) {
           )}
           {getPlan.length > 1 && (
             <div className="flex lg:hidden justify-center mt-4 gap-2">
-              <div className="text-sm text-muted-foreground">Swipe to see more plans</div>
+              <div className="text-sm text-muted-foreground font-medium animate-pulse">
+                ← Swipe to see all {getPlan.length} plans →
+              </div>
             </div>
           )}
         </div>

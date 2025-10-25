@@ -27,7 +27,7 @@ import {
     DialogTitle,
     DialogTrigger,
   } from "@/components/ui/dialog"
-  import { Loader2, PlusCircle, X } from 'lucide-react'
+  import { Delete, Loader2, Pencil, PlusCircle, X } from 'lucide-react'
 import { Input } from './ui/input'
 import { useSession } from 'next-auth/react'
 import { API_ENDPOINT, BASE_URL } from '@/config/api-endpoint'
@@ -48,10 +48,16 @@ import { toast } from 'sonner'
 
 
 export default function VideoTable({apiResponse}:{apiResponse:any[]}) {
-  const [showInactive, setShowInactive] = useState(false)
+  const [showInactive, setShowInactive] = useState(true)
   const router =  useRouter()
   const [loader,setLoader] = useState(false)
   const  [openDialog,setOpenDialog] = useState(false)
+
+  const [openEditDialog, setOpenEditDialog] = useState(false)
+  const [editTitle, setEditTitle] = useState("")
+  const [editTitleId, setEditTitleId] = useState("")
+  const [editLoading, setEditLoading] = useState(false)
+  const [isAdding,setIsAdding]= useState(false)
 
   const [formData, setFormData] = useState<FormData>({
     title: '',
@@ -94,6 +100,11 @@ export default function VideoTable({apiResponse}:{apiResponse:any[]}) {
       if (response.ok) {
         setOpenDialog(false)
         router.refresh();
+        setFormData({
+          title: '',
+          videoData: [{ videoSrc: '', thumbnailSrc: '', thumbnailAlt: '' }]
+        })
+        setIsAdding(false)
         toast.success("Video Added Successfully");
       } else {
         toast.error(data.error || "Failed to submit data");
@@ -107,7 +118,7 @@ export default function VideoTable({apiResponse}:{apiResponse:any[]}) {
 
   const handleVideoActiveDeactive=async (id:string)=>{
     setLoader(true)
-    const bData = { id }
+    const bData = { id, isActiveToggle: true }
     try {
       const response = await fetch(`${BASE_URL}${API_ENDPOINT.youtubeVideo}`, {
         method: "PATCH",
@@ -159,6 +170,64 @@ export default function VideoTable({apiResponse}:{apiResponse:any[]}) {
     }
   };
 
+  const handleUpdateTitle = async () => {
+    if (!editTitle.trim()) return toast.error("Title cannot be empty")
+
+    setEditLoading(true)
+    try {
+      const res = await fetch(`${BASE_URL}${API_ENDPOINT.youtubeVideo}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id: editTitleId,
+          isUpdateTitle: true,
+          newTitle: editTitle,
+        }),
+      })
+
+      if (res.ok) {
+        toast.success("Title updated successfully")
+        setOpenEditDialog(false)
+        router.refresh()
+      } else {
+        toast.error("Failed to update title")
+      }
+    } catch (err) {
+      toast.error("Error updating title")
+    } finally {
+      setEditLoading(false)
+    }
+  }
+
+  const handleDeleteTitle= async(id:string)=>{
+    if (!confirm("Are you sure you want to delete this Section?")) return;
+
+    console.log("id",id)
+
+    try {
+      const res = await fetch(`${BASE_URL}${API_ENDPOINT.youtubeVideo}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, isTitle:true }),
+      });
+
+      if (res.ok) {
+        toast.success("Video Title deleted successfully");
+        router.refresh()
+      } else {
+        router.refresh()
+        toast.error("Failed to delete video");
+      }
+    } catch (err) {
+      router.refresh()
+      toast.error("Error deleting video");
+    }
+  }
+
+  const handleOpenCloseDialog=()=>{
+    setOpenDialog((pre)=>!pre)
+    setIsAdding(false)
+  }
 
   return (
     <>
@@ -175,7 +244,27 @@ export default function VideoTable({apiResponse}:{apiResponse:any[]}) {
       </div>
       {apiResponse.map((videoData) => (
           <div key={videoData.id} className="mb-8">
-          <h2 className="text-2xl font-bold mb-4">{videoData.title}</h2>
+            <div className="flex items-center gap-2 mb-4">  
+              <h2 className="text-2xl font-bold mb-4">{videoData.title}</h2>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  setEditTitle(videoData.title)
+                  setEditTitleId(videoData.id)
+                  setOpenEditDialog(true)
+                }}
+              >
+                <Pencil className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={()=>handleDeleteTitle(videoData.id)}
+              >
+                Delete
+              </Button>
+            </div>
           <Table className='border'>
               <TableHeader>
               <TableRow>
@@ -236,9 +325,11 @@ export default function VideoTable({apiResponse}:{apiResponse:any[]}) {
               setFormData({ 
               title: videoData.title, 
               videoData: [{ videoSrc: '', thumbnailSrc: '', thumbnailAlt: '' }],
-              titleId: videoData.id
+              titleId: videoData.id,
+              isAdding:true
             })
             setOpenDialog(true)
+            setIsAdding(true)
             }}
           >
             Add Video to {videoData.title}
@@ -247,7 +338,7 @@ export default function VideoTable({apiResponse}:{apiResponse:any[]}) {
       ))}
       </div>
 
-      <Dialog open={openDialog} onOpenChange={setOpenDialog}>
+      <Dialog open={openDialog} onOpenChange={handleOpenCloseDialog}>
           <DialogTrigger asChild>
               <Button variant="outline">Add Video Data</Button>
           </DialogTrigger>
@@ -267,6 +358,7 @@ export default function VideoTable({apiResponse}:{apiResponse:any[]}) {
                       value={formData.title}
                       onChange={handleInputChange}
                       className="col-span-3"
+                      disabled={isAdding}
                   />
               </div>
               {formData.videoData.map((video, index) => (
@@ -327,6 +419,53 @@ export default function VideoTable({apiResponse}:{apiResponse:any[]}) {
               </DialogFooter>
           </DialogContent>
       </Dialog>
+
+      <Dialog open={openEditDialog} onOpenChange={setOpenEditDialog}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Edit Title</DialogTitle>
+            <DialogDescription>Update the title name below.</DialogDescription>
+          </DialogHeader>
+
+          <div className="grid gap-4 py-4">
+            <div className="grid grid-cols-4 items-center gap-4">
+              <Label htmlFor="editTitle" className="">
+                Title
+              </Label>
+              <Input
+                id="editTitle"
+                value={editTitle}
+                onChange={(e) => setEditTitle(e.target.value)}
+                className="col-span-3"
+              />
+            </div>
+          </div>
+
+          <DialogFooter>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => setOpenEditDialog(false)}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="button"
+              onClick={handleUpdateTitle}
+              disabled={editLoading}
+            >
+              {editLoading ? (
+                <>
+                  <Loader2 className="h-4 w-4 mr-2 animate-spin" /> Updating...
+                </>
+              ) : (
+                "Update"
+              )}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
     </>
   )
 }
